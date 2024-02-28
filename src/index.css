@@ -11,3 +11,7 @@ body {
 	font-style: normal;
 	/* background: ""; */
 }
+
+.tradingview-widget-copyright {
+	display: none;
+}
