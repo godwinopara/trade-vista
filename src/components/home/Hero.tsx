@@ -10,8 +10,8 @@ export default function Hero() {
 					The Most Efficient Crypto Trading and Investment Platform
 				</h1>
 				<p className="text-lg text-gray-500 mb-10">
-					All of your Investments in one place — from Bitcoin <br />
-					and Ethereum to Litecoin and Ripple.
+					All-in-one crypto wallet and trading platform provides you with the tools <br /> and
+					security you need to manage, trade, and grow your digital assets.
 				</p>
 				<div className="flex items-center gap-x-8">
 					<Link to="/signup" className="border border-black py-3 px-8 block rounded-md">
