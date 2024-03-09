@@ -1,6 +1,6 @@
 export default function Stats() {
 	return (
-		<section className="py-10 bg-[#f7f6fe]">
+		<section className="py-10 bg-gray1">
 			<div className="max-w-7xl mx-auto flex items-center justify-between ">
 				<Stat1 />
 				<Stat2 />

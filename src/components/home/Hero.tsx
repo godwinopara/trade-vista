@@ -7,7 +7,7 @@ export default function Hero() {
 			<div className="">
 				<span className="text-xl block mb-10 text-gray-500">BREAK THROUGH BREAK FREE</span>
 				<h1 className="text-6xl font-bold mb-5 tracking-wide leading-[120%]">
-					The Most Efficient Crypto Trading and Investment Platform
+					The Most Efficient Forex Trading and Investment Platform
 				</h1>
 				<p className="text-lg text-gray-500 mb-10">
 					All-in-one crypto wallet and trading platform provides you with the tools <br /> and

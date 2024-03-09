@@ -1,7 +1,5 @@
-import React from "react";
-import NavItem from "./NavItem";
 import { Link } from "react-router-dom";
-import { TfiClose } from "react-icons/tfi";
+// import { TfiClose } from "react-icons/tfi";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 export default function Navbar() {

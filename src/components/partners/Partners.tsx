@@ -12,7 +12,7 @@ export default function Partners() {
 	const academicImages = [psl];
 
 	return (
-		<section className="max-w-7xl mx-auto my-20">
+		<section className="max-w-7xl mx-auto my-24">
 			<h3 className="font-extrabold text-3xl mb-10">Who Trusts InvestInspire</h3>
 			<div className="grid grid-cols-3 items-center gap-x-10">
 				<PartnersCard

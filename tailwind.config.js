@@ -4,11 +4,16 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundColor: {
-				primary: "#5235e8",
-				"primary-hover": "#3e26bb",
+				primary: "#0064fa",
+				"primary-hover": "##0052cc",
 			},
 			backgroundImage: {
 				gradient: "linear-gradient(to bottom,var(--white),var(--primary-50))",
+			},
+			colors: {
+				gray1: "#f7f6fe",
+				primary: "#0064fa",
+				"primary-hover": "##0052cc",
 			},
 		},
 	},
