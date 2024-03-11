@@ -1,12 +1,13 @@
 import MainLayout from "../components/layouts/MainLayout";
 import Hero from "../components/home/Hero";
 import { TickerTape } from "react-ts-tradingview-widgets";
-import Partners from "../components/partners/Partners";
 import Stats from "../components/home/Stats";
 import Steps from "../components/home/Steps";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import AssetsYouCanTrade from "../components/home/AssetsYouCanTrade";
 import Features from "../components/home/Features";
+import TradeWithUs from "../components/home/TradeWithUs";
+import Plans from "../components/home/Plans";
 
 export default function Home() {
 	return (
@@ -16,9 +17,10 @@ export default function Home() {
 			<TickerTape></TickerTape>
 			<WhyChooseUs />
 			<Features />
-			{/* <Partners /> */}
 			<AssetsYouCanTrade />
+			<TradeWithUs />
 			<Steps />
+			<Plans />
 		</MainLayout>
 	);
 }

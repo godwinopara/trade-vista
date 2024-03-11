@@ -5,7 +5,7 @@ module.exports = {
 		extend: {
 			backgroundColor: {
 				primary: "#0064fa",
-				"primary-hover": "##0052cc",
+				"primary-hover": "#0052cc",
 			},
 			backgroundImage: {
 				gradient: "linear-gradient(to bottom,var(--white),var(--primary-50))",

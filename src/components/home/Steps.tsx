@@ -9,7 +9,7 @@ export default function Steps() {
 	return (
 		<section className="max-w-7xl mx-auto py-24">
 			<div className="flex flex-col justify-center items-center">
-				<h2 className="text-5xl font-bold mb-5">We Make Trading Easy</h2>
+				<h2 className="text-4xl font-bold mb-5">We Make Trading Easy</h2>
 				<p className="text-xl">Get started in 3 simple steps</p>
 			</div>
 			<div className="xl:grid xl:grid-cols-3 xl:gap-x-10 xl:my-20">

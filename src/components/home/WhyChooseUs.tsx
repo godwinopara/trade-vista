@@ -8,7 +8,7 @@ export default function WhyChooseUs() {
 		<section className="max-w-7xl mx-auto my-20">
 			<div className="text-center mb-10">
 				<h3 className="uppercase mb-4 text-lg">Why InvestInspire?</h3>
-				<h2 className=" font-bold max-w-2xl mx-auto xl:text-5xl">
+				<h2 className=" font-bold max-w-xl mx-auto xl:text-4xl">
 					The Tools You Need to Reach Your Forex Trading Potential
 				</h2>
 			</div>
