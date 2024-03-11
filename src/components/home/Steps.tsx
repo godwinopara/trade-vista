@@ -49,7 +49,7 @@ interface StepsCardProps {
 
 const StepsCard = ({ img, title, description, url, btnText }: StepsCardProps) => {
 	return (
-		<div className=" bg-gray1 p-8 rounded-lg flex flex-col justify-center">
+		<div className=" bg-secondary p-8 rounded-lg flex flex-col justify-center">
 			<div className="text-3xl text-white inline-flex mb-5  items-center">
 				{typeof img === "string" && (
 					<div className="bg-primary inline-block p-3 rounded-xl">

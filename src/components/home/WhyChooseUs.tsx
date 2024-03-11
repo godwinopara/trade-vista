@@ -46,7 +46,7 @@ interface TradeOptionsCardProps {
 
 const TradeOptionsCard = ({ img, title, description }: TradeOptionsCardProps) => {
 	return (
-		<div className="flex items-center bg-[#F3F5F7] rounded-lg z-10">
+		<div className="flex items-center bg-secondary rounded-lg z-10">
 			<div className="pl-6 w-[40%]">
 				<h3 className="font-semibold text-2xl mb-2">{title}</h3>
 				<p className="text-sm">{description}</p>

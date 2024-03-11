@@ -6,6 +6,7 @@ import Stats from "../components/home/Stats";
 import Steps from "../components/home/Steps";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import AssetsYouCanTrade from "../components/home/AssetsYouCanTrade";
+import Features from "../components/home/Features";
 
 export default function Home() {
 	return (
@@ -14,7 +15,8 @@ export default function Home() {
 			<Stats />
 			<TickerTape></TickerTape>
 			<WhyChooseUs />
-			<Partners />
+			<Features />
+			{/* <Partners /> */}
 			<AssetsYouCanTrade />
 			<Steps />
 		</MainLayout>
