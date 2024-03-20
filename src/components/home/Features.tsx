@@ -3,11 +3,11 @@ import { FaShieldAlt, FaChartPie, FaMoneyCheck, FaComment } from "react-icons/fa
 
 export default function Features() {
 	return (
-		<section className="px-3 py-20 xl:px-0 bg-black4 text-white1 bg-secondary">
+		<section className="px-6 py-20 xl:px-0 bg-black4 text-white1 bg-secondary">
 			<div className="max-w-7xl mx-auto">
 				<div className="grid xl:flex items-center gap-20">
 					<div className="bg-pattern2 bg-center bg-cover xl:w-[45%]">
-						<img src={phone} alt="image of a chart" className="mx-auto w-1/2 xl:w-[80%]" />
+						<img src={phone} alt="chart" className="mx-auto w-1/2 xl:w-[80%]" />
 					</div>
 					<div className="w-full">
 						<div className=" mb-16">

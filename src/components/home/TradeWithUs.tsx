@@ -150,75 +150,19 @@ export default function TradeWithUs() {
 	];
 
 	return (
-		<section className="px-4  bg-secondary">
-			<div className="lg:grid grid-cols-2 gap-28  py-24 max-w-7xl mx-auto">
-				<div className="mb-20 lg:mb-0 max-w-7xl mx-auto">
-					<div className="mb-10">
-						<h2 className="text-3xl text-center lg:text-left lg:text-4xl font-bold mb-8">
-							Trade with a top-tier global broker for your trades.
-						</h2>
-						<p>
-							With 15 years of financial trading expertise, we provide competitive pricing on a
-							variety of global CFD instruments. Enjoy trading the UK 100 from 0.8 points, Germany
-							30 from 0.9 points, EUR/USD from 0.6, and EUR/GBP from 0.8 pips.
-						</p>
-						<br />
-						<p>
-							Benefit from depth of market availability across all our forex pairs. Harness the
-							power of our API technology to seamlessly integrate your strategies with trading
-							applications or craft custom user interfaces. Explore the creation and testing of
-							automated trading strategies using our APIs.
-						</p>
-						<br />
-						<p>
-							Backed by substantial investments in cutting-edge technology, we actively manage your
-							trade's internet path, ensuring the fastest route every time. With the ability to
-							accelerate the client-side of your MT4 platform, executing with Universal Cryptosphere
-							Trade ensures prompt trade delivery surpassing typical ECN technologies.
-						</p>
-					</div>
-					<div>
-						<div className="flex items-center mb-2">
-							<span className="mr-2 bg-primary-hover text-white p-1 rounded-[100%]">
-								<FaCheck />
-							</span>
-							No digital wallet
-						</div>
-						<div className="flex items-center mb-2">
-							<span className="mr-2 bg-primary-hover text-white p-1 rounded-[100%]">
-								<FaCheck />
-							</span>
-							Low commission
-						</div>
-						<div className="flex items-center mb-2">
-							<span className="mr-2 bg-primary-hover text-white p-1 rounded-[100%]">
-								<FaCheck />
-							</span>
-							Leveraged crypto trading
-						</div>
-						<div className="flex items-center mb-2">
-							<span className="mr-2 bg-primary-hover text-white p-1 rounded-[100%]">
-								<FaCheck />
-							</span>
-							Competitive cryptocurrency spreads
-						</div>
-						<div className="flex items-center mb-2">
-							<span className="mr-2 bg-primary-hover text-white p-1 rounded-[100%]">
-								<FaCheck />
-							</span>
-							All trading strategies and styles allowed
-						</div>
-					</div>
-				</div>
-				<div className="h-full">
-					<MarketOverview
-						colorTheme="light"
-						height={600}
-						width="100%"
-						showFloatingTooltip
-						tabs={tabs}
-					></MarketOverview>
-				</div>
+		<section className="px-6">
+			<h2 className="text-3xl text-center flex justify-center items-center  lg:text-4xl font-bold mb-8">
+				Trade over 2100 global markets <br />
+				with a top-tier global broker.
+			</h2>
+			<div className="h-full">
+				<MarketOverview
+					colorTheme="light"
+					height={600}
+					width="100%"
+					showFloatingTooltip
+					tabs={tabs}
+				></MarketOverview>
 			</div>
 		</section>
 	);

@@ -1,7 +1,7 @@
 export default function Stats() {
 	return (
-		<section className="py-10 bg-secondary">
-			<div className="max-w-7xl mx-auto flex items-center justify-between ">
+		<section className="px-6 py-10 bg-secondary xl:px-0">
+			<div className="max-w-7xl mx-auto flex flex-col gap-y-10 xl:flex-row xl:items-center xl:justify-between ">
 				<Stat1 />
 				<Stat2 />
 				<Stat3 />

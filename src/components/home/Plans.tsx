@@ -4,9 +4,11 @@ import Button from "../Button";
 
 export default function Plans() {
 	return (
-		<section>
-			<div className="text-center">
-				<h2 className="text-4xl mb-4 font-bold">Accounts tailored to your trading style</h2>
+		<section className="px-6 xl:px-0">
+			<div className="text-center mb-5">
+				<h2 className="text-3xl lg:text-4xl mb-5 font-bold">
+					Accounts tailored to your trading style
+				</h2>
 				<p className="xl:w-[40%] mx-auto">
 					Investinspire has accounts for both new and more active traders. Check which fits and
 					you’re set to go.
@@ -72,7 +74,7 @@ export default function Plans() {
 					<Link to="https://universalcryptospheredashboard.vercel.app/auth/login">
 						<Button
 							btnText="Start Earning"
-							className="bg-primary text-white text-lg py-4 rounded-md w-full"
+							className="border border-primary-hover text-primary hover:text-white hover:bg-primary-hover text-lg py-4 rounded-md w-full"
 						/>
 					</Link>
 				</div>
@@ -135,7 +137,7 @@ export default function Plans() {
 					<Link to="https://universalcryptospheredashboard.vercel.app/auth/login">
 						<Button
 							btnText="Start Earning"
-							className="bg-primary text-white text-xl py-4 rounded-md w-full"
+							className="border border-primary-hover text-primary hover:text-white hover:bg-primary-hover text-lg py-4 rounded-md w-full"
 						/>
 					</Link>
 				</div>

@@ -5,14 +5,14 @@ import reliable from "../../images/reliable.jpeg";
 
 export default function WhyChooseUs() {
 	return (
-		<section className="max-w-7xl mx-auto my-20">
+		<section className="max-w-7xl mx-auto my-20 px-6 xl:px-0">
 			<div className="text-center mb-10">
 				<h3 className="uppercase mb-4 text-lg">Why InvestInspire?</h3>
 				<h2 className=" font-bold max-w-xl mx-auto xl:text-4xl">
 					The Tools You Need to Reach Your Forex Trading Potential
 				</h2>
 			</div>
-			<div className="xl:grid xl:grid-cols-2 xl:gap-10">
+			<div className="grid gap-10 xl:grid-cols-2 ">
 				<TradeOptionsCard
 					img={spreads}
 					title="Razor Sharp Spreads"
@@ -46,12 +46,12 @@ interface TradeOptionsCardProps {
 
 const TradeOptionsCard = ({ img, title, description }: TradeOptionsCardProps) => {
 	return (
-		<div className="flex items-center bg-secondary rounded-lg z-10">
-			<div className="pl-6 w-[40%]">
+		<div className="py-10 items-center bg-secondary rounded-lg z-10 xl:flex">
+			<div className="pl-6 xl:w-[40%]">
 				<h3 className="font-semibold text-2xl mb-2">{title}</h3>
 				<p className="text-sm">{description}</p>
 			</div>
-			<div className="w-[60%]">
+			<div className="xl:w-[60%]">
 				<img src={img} alt="" className="rounded-lg" />
 			</div>
 		</div>

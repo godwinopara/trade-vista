@@ -7,12 +7,12 @@ import treasuries from "../../images/treasuries.svg";
 
 export default function AssetsYouCanTrade() {
 	return (
-		<section className="max-w-7xl mx-auto my-24">
-			<h3 className="text-center">GLOBAL MARKET AT YOUR FINGERTIPS</h3>
-			<h2 className="text-4xl text-center font-semibold mb-16">
+		<section className="max-w-7xl mx-auto my-24 px-6">
+			<h3 className="text-center mb-8">GLOBAL MARKET AT YOUR FINGERTIPS</h3>
+			<h2 className="text-2xl xl:text-4xl text-center font-semibold mb-16">
 				Trade your favourite instruments from around the world
 			</h2>
-			<div className="grid grid-cols-3 gap-10">
+			<div className="grid xl:grid-cols-3 gap-10">
 				<TradingOptionsCard
 					img={forex}
 					title="Forex"

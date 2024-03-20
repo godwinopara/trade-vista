@@ -7,12 +7,12 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 export default function Steps() {
 	return (
-		<section className="max-w-7xl mx-auto py-24">
-			<div className="flex flex-col justify-center items-center">
-				<h2 className="text-4xl font-bold mb-5">We Make Trading Easy</h2>
-				<p className="text-xl">Get started in 3 simple steps</p>
+		<section className="max-w-7xl mx-auto py-24 px-6 xl:px-0">
+			<div className="flex flex-col justify-center items-center mb-10">
+				<h2 className="text-3xl lg:text-4xl font-bold mb-5">We Make Trading Easy</h2>
+				<p className="text-xl mb-5">Get started in 3 simple steps</p>
 			</div>
-			<div className="xl:grid xl:grid-cols-3 xl:gap-x-10 xl:my-20">
+			<div className="grid gap-y-10 xl:grid-cols-3 xl:gap-y-0 xl:gap-x-10 xl:my-20">
 				<StepsCard
 					img={<FaUser />}
 					title="Step1: Create Account"

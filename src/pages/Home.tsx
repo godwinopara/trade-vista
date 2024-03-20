@@ -8,6 +8,7 @@ import AssetsYouCanTrade from "../components/home/AssetsYouCanTrade";
 import Features from "../components/home/Features";
 import TradeWithUs from "../components/home/TradeWithUs";
 import Plans from "../components/home/Plans";
+import Platforms from "../components/home/Platforms";
 
 export default function Home() {
 	return (
@@ -21,6 +22,7 @@ export default function Home() {
 			<TradeWithUs />
 			<Steps />
 			<Plans />
+			<Platforms />
 		</MainLayout>
 	);
 }
