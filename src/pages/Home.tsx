@@ -11,18 +11,18 @@ import Plans from "../components/home/Plans";
 import Platforms from "../components/home/Platforms";
 
 export default function Home() {
-	return (
-		<MainLayout>
-			<Hero />
-			<Stats />
-			<TickerTape></TickerTape>
-			<WhyChooseUs />
-			<Features />
-			<AssetsYouCanTrade />
-			<TradeWithUs />
-			<Steps />
-			<Plans />
-			<Platforms />
-		</MainLayout>
-	);
+  return (
+    <MainLayout>
+      <Hero />
+      <Stats />
+      <TickerTape></TickerTape>
+      <WhyChooseUs />
+      <Features />
+      <AssetsYouCanTrade />
+      <TradeWithUs />
+      <Steps />
+      <Plans />
+      <Platforms />
+    </MainLayout>
+  );
 }
