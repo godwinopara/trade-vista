@@ -12,7 +12,7 @@ export default function MoreThan() {
         <h2 className="text-2xl xl:text-4xl text-center font-semibold mb-16">
           More than a forex trading platform
         </h2>
-        <div className="grid xl:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
           <TradingOptionsCard
             img={forex}
             title="We've got your pair"

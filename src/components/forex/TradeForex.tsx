@@ -5,7 +5,7 @@ type Props = {};
 
 export const TradeForex = (props: Props) => {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white py-16 xl:py-0">
       <section className=" xl:mb-0 min-h-[80vh] max-w-7xl mx-auto px-6  xl:flex xl:justify-between xl:items-center xl:gap-x-10 ">
         <div className="text-center mb-20 xl:text-left xl:mb-0 flex-1">
           <h1 className="text-3xl xl:text-6xl font-bold mb-5 tracking-wide leading-[120%]">
