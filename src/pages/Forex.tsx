@@ -5,6 +5,7 @@ import MoreThan from "../components/forex/MoreThan";
 import { MoreFx } from "../components/forex/MoreFx";
 import { TradeForex } from "../components/forex/TradeForex";
 import { PowerfulTrading } from "../components/forex/PowerfulTrading";
+import { ForexFaq } from "../components/forex/ForexFaq";
 
 type Props = {};
 
@@ -16,6 +17,7 @@ const Forex = (props: Props) => {
       <MoreFx />
       <TradeForex />
       <PowerfulTrading />
+      <ForexFaq />
     </MainLayout>
   );
 };
