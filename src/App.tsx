@@ -7,6 +7,7 @@ const Forex = lazy(() => import("./pages/Forex"));
 const Commodities = lazy(() => import("./pages/Commodities"));
 const Indices = lazy(() => import("./pages/Indices"));
 const Shares = lazy(() => import("./pages/Shares"));
+const Treasures = lazy(() => import("./pages/Treasures"));
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/shares",
     element: <Shares />,
+  },
+  {
+    path: "/treasuries",
+    element: <Treasures />,
   },
 ]);
 
