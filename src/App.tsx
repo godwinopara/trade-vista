@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Forex = lazy(() => import("./pages/Forex"));
+const Commodities = lazy(() => import("./pages/Commodities"));
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/forex",
     element: <Forex />,
+  },
+  {
+    path: "/commodities",
+    element: <Commodities />,
   },
 ]);
 

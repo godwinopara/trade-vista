@@ -1,58 +1,58 @@
-export default function MoreThan() {
+export default function MoreThanCommodity() {
   return (
     <div className="bg-black text-white py-16">
       <section className="max-w-7xl mx-auto my-24 px-6">
         <h2 className="text-2xl xl:text-4xl text-center font-semibold mb-16">
-          More than a forex trading platform
+          More than a commodity trading platform
         </h2>
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
           <TradingOptionsCard
             img={
-              "https://assets.cmcmarkets.com/web_redesign/icon_comp_fx_pairs_white.svg"
+              "https://assets.cmcmarkets.com/web_redesign/icon_comp_commoditites_white.svg"
             }
-            title="We've got your pair"
-            description="More forex pairs than any other broker*. If you want it, we've probably got it."
+            title="Over 100 cash and forward commodities"
+            description="Including all the favourites as well as lesser-traded instruments like Palladium."
             url="/forex"
           />
           <TradingOptionsCard
             img={
-              "https://assets.cmcmarkets.com/web_redesign/icon_comp_accurate_pricing_white.svg"
+              "https://assets.cmcmarkets.com/web_redesign/icon_comp_out-of-hours-23hrs_white.svg"
             }
-            title="Precision pricing"
-            description="We combine 8 feeds from tier-one banks, to get you our most accurate price."
+            title="Trade out of hours"
+            description="Favourites like Brent and West Texas oil trade up to 23 hours a day, so you don't have to stop when the markets do."
             url="/indices"
-          />
-          <TradingOptionsCard
-            img={
-              "https://assets.cmcmarkets.com/web_redesign/icon_comp_no_slippage_white.svg"
-            }
-            title="Minimal slippage"
-            description="With fully automated, lightning-fast execution in 0.0045 seconds**.
-          "
-            url="/crypto"
-          />
-          <TradingOptionsCard
-            img={
-              "https://assets.cmcmarkets.com/web_redesign/icon_comp_confirmed_white.svg"
-            }
-            title="99.7% fill rate^"
-            description="No dealer intervention, regardless of your trading size."
-            url="/commodities"
-          />
-          <TradingOptionsCard
-            img={
-              "https://assets.cmcmarkets.com/web_redesign/icon_comp_24hr_uk_support_white.svg"
-            }
-            title="UK-based client services"
-            description="Award-winning service*, online 24/5, whenever you're trading."
-            url="/shares"
           />
           <TradingOptionsCard
             img={
               "	https://assets.cmcmarkets.com/web_redesign/icon_comp_no_partial_fills_white.svg"
             }
             title="No partial fills"
-            description="Get the trade you want – we don’t reject or partially fill trades based on size."
+            description="And never any dealer intervention, regardless of your trading size.
+          "
+            url="/crypto"
+          />
+          <TradingOptionsCard
+            img={
+              "https://assets.cmcmarkets.com/web_redesign/icon_comp_accurate_pricing_white.svg"
+            }
+            title="'Cash' markets"
+            description="Tighter spreads, no rollovers and charting back as far as 1992 to help your analysis."
+            url="/commodities"
+          />
+          <TradingOptionsCard
+            img={
+              "https://assets.cmcmarkets.com/web_redesign/icon_comp_24hr_uk_support_white.svg"
+            }
+            title="Dedicated customer service"
+            description="Award-winning service*, online 24/5, whenever you're trading."
+            url="/shares"
+          />
+          <TradingOptionsCard
+            img={
+              "https://assets.cmcmarkets.com/web_redesign/icon_comp_commodities-indices_white.svg"
+            }
+            title="Trade the whole sector"
+            description="Take a view across a whole commodity sector from a single position, with our bespoke commodity indices​."
             url="/treasuries"
           />
         </div>
