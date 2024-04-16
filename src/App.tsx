@@ -8,6 +8,7 @@ const Commodities = lazy(() => import("./pages/Commodities"));
 const Indices = lazy(() => import("./pages/Indices"));
 const Shares = lazy(() => import("./pages/Shares"));
 const Treasures = lazy(() => import("./pages/Treasures"));
+const Cryptocurrencies = lazy(() => import("./pages/Cryptocurrencies"));
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/treasuries",
     element: <Treasures />,
+  },
+  {
+    path: "/crypto",
+    element: <Cryptocurrencies />,
   },
 ]);
 
