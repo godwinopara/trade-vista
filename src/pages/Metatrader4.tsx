@@ -98,8 +98,8 @@ const Metatrader4 = (props: Props) => {
         </div>
       </div>
       <Who />
-      <div className="lg:w-5/6 mx-auto flex flex-col gap-5 py-24 px-6">
-        <h2 className="text-3xl font-bold  tracking-wide leading-[120%]  mx-auto">
+      <div className=" mx-auto flex flex-col gap-5 py-24 ">
+        <h2 className="text-4xl font-bold  tracking-wide leading-[120%]  mx-auto">
           Key features and benefits
         </h2>
         <div className="grid lg:grid-cols-2 gap-8 mt-8">
