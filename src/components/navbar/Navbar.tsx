@@ -121,12 +121,12 @@ export default function Navbar() {
 							onMouseLeave={() => handlePlatformMenuHover(false)}
 						>
 							<li>
-								<Link className="hover:text-primary-hover" to="/platform/meta4">
+								<Link className="hover:text-primary-hover" to="/platforms/meta4">
 									Metatrader 4
 								</Link>
 							</li>
 							<li>
-								<Link className="hover:text-primary-hover" to="/platform/meta5">
+								<Link className="hover:text-primary-hover" to="/platforms/meta5">
 									Metatrader 5
 								</Link>
 							</li>

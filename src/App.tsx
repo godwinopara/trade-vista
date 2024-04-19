@@ -9,6 +9,8 @@ const Indices = lazy(() => import("./pages/Indices"));
 const Shares = lazy(() => import("./pages/Shares"));
 const Treasures = lazy(() => import("./pages/Treasures"));
 const Cryptocurrencies = lazy(() => import("./pages/Cryptocurrencies"));
+const Metatrader4 = lazy(() => import("./pages/Metatrader4"));
+const Metatrader5 = lazy(() => import("./pages/Metatrader5"));
 
 const router = createBrowserRouter([
 	{
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
 	{
 		path: "market/crypto",
 		element: <Cryptocurrencies />,
+	},
+	{
+		path: "platforms/meta4",
+		element: <Metatrader4 />,
+	},
+	{
+		path: "platforms/meta5",
+		element: <Metatrader5 />,
 	},
 ]);
 
