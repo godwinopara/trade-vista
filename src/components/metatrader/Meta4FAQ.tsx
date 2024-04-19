@@ -50,7 +50,7 @@ export const Meta4FAQ = (props: Props) => {
           collapsible
           className=" flex flex-col gap-5 w-full mx-auto "
         >
-          <h1 className="text-3xl font-bold  tracking-wide leading-[120%] lg:mx-auto">
+          <h1 className="text-4xl font-bold  tracking-wide leading-[120%] lg:mx-auto">
             MetaTrader 4 FAQs
           </h1>
           {faq1?.map((item) => (
