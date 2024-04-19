@@ -11,46 +11,46 @@ const Treasures = lazy(() => import("./pages/Treasures"));
 const Cryptocurrencies = lazy(() => import("./pages/Cryptocurrencies"));
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/forex",
-    element: <Forex />,
-  },
-  {
-    path: "/commodities",
-    element: <Commodities />,
-  },
-  {
-    path: "/indices",
-    element: <Indices />,
-  },
-  {
-    path: "/shares",
-    element: <Shares />,
-  },
-  {
-    path: "/treasuries",
-    element: <Treasures />,
-  },
-  {
-    path: "/crypto",
-    element: <Cryptocurrencies />,
-  },
+	{
+		path: "/",
+		element: <Home />,
+	},
+	{
+		path: "company/about",
+		element: <About />,
+	},
+	{
+		path: "market/forex",
+		element: <Forex />,
+	},
+	{
+		path: "market/commodities",
+		element: <Commodities />,
+	},
+	{
+		path: "market/indices",
+		element: <Indices />,
+	},
+	{
+		path: "market/shares",
+		element: <Shares />,
+	},
+	{
+		path: "market/treasuries",
+		element: <Treasures />,
+	},
+	{
+		path: "market/crypto",
+		element: <Cryptocurrencies />,
+	},
 ]);
 
 function App() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<RouterProvider router={router} />
+		</Suspense>
+	);
 }
 
 export default App;
