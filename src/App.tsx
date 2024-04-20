@@ -17,6 +17,7 @@ const LearnShares = lazy(() => import("./pages/LearnShares"));
 const TradingGuides = lazy(() => import("./pages/TradingGuides"));
 
 const router = createBrowserRouter([
+<<<<<<< HEAD
   {
     path: "/",
     element: <Home />,
@@ -73,6 +74,48 @@ const router = createBrowserRouter([
     path: "education/trading-guides",
     element: <TradingGuides />,
   },
+=======
+	{
+		path: "/",
+		element: <Home />,
+	},
+	{
+		path: "company/about",
+		element: <About />,
+	},
+	{
+		path: "market/forex",
+		element: <Forex />,
+	},
+	{
+		path: "market/commodities",
+		element: <Commodities />,
+	},
+	{
+		path: "market/indices",
+		element: <Indices />,
+	},
+	{
+		path: "market/shares",
+		element: <Shares />,
+	},
+	{
+		path: "market/treasures",
+		element: <Treasures />,
+	},
+	{
+		path: "market/cryptocurrency",
+		element: <Cryptocurrencies />,
+	},
+	{
+		path: "platforms/meta4",
+		element: <Metatrader4 />,
+	},
+	{
+		path: "platforms/meta5",
+		element: <Metatrader5 />,
+	},
+>>>>>>> 3b6a8199dfd1c1553bb8d56a773a49c779e9a60e
 ]);
 
 function App() {
