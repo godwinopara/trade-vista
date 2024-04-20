@@ -3,53 +3,31 @@ import footerLogo from "../../images/LOGO.svg";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
-	const accountSubLinks = [
-		{ link: "/compareaccount", text: "Compare Our Account" },
-		{ link: "/accountfunding", text: "Account Funding / Withdrawal" },
-		{ link: "/spread", text: "Spreads" },
-		{ link: "/referral", text: "Referral Program" },
-		// { link: "/affiliate", text: "Affiliate" },
-		{ link: "/support", text: "Quick Support" },
-		{ link: "/holiday-trading", text: "Holiday Trading Hour" },
+	const companySubLinks = [
+		{ link: "company/about", text: "About Us" },
+		{ link: "company/contact", text: "Contact Us" },
 	];
 
-	const aboutSubLinks = [
-		{ link: "/about", text: "About Us" },
-		{ link: "/document", text: "Legal Documents" },
-		{ link: "/contact", text: "Contact Us" },
-		// { link: "/privacy-policy", text: "Privacy Policy" },
-		// { link: "/terms", text: "Terms and Condition" },
-		// { link: "/statements", text: "Disclosure Statements" },
+	const marketSubLinks = [
+		{ link: "market/forex", text: "Forex" },
+		{ link: "market/commodities", text: "Commodities" },
+		{ link: "market/indices", text: "Indices" },
+		{ link: "market/shares", text: "Shares" },
+		{ link: "market/tresures", text: "Treasures" },
+		{ link: "market/cryptocurreny", text: "Cryptocurrencies" },
 	];
 
-	const tradingSubLinks = [
-		{ link: "/product", text: "Product Overview" },
-		// { link: "/forex", text: "Forex CFDs" },
-		// { link: "/share", text: "Share CFDs" },
-		// { link: "/index", text: "Index CFDs" },
-		// { link: "/metal", text: "Metal CFDs" },
-		// { link: "/commodity", text: "Commodity CFDs" },
-	];
 	const platformSubLinks = [
-		{ link: "/platforms", text: "Platforms Overview" },
-		// { link: "/metatrader4", text: "MetaTrader 4" },
-		// { link: "/metatrader5", text: "MetaTrader 5" },
-		// { link: "/mobile-trading", text: "Mobile trading platforms" },
-		// { link: "/webtrader", text: "Web Trader" },
+		{ link: "platforms/meta4", text: "MetaTrader 4" },
+		{ link: "platforms/meta5", text: "MetaTrader 5" },
 	];
-	// const toolsSubLinks = [
-	// 	{ link: "/autochartist", text: "Autochartist" },
-	// 	{ link: "genesis", text: "Genesis" },
-	// 	{ link: "/vps", text: "VPS" },
-	// 	{ link: "/trading-central", text: "Trading Central" },
-	// 	{ link: "/a-quant", text: "A-Quant" },
-	// 	{ link: "/fxbook", text: "MyFxBook" },
-	// ];
-	// const newsSubLinks = [
-	// 	{ link: "/news-analysis", text: "News & Analysis" },
-	// 	{ link: "/education-hub", text: "Education Hub" },
-	// 	{ link: "/economic-calendar", text: "Economic Calendar" },
-	// ];
+
+	const educationSubLinks = [
+		{ link: "#", text: "Learn to trade CFDS" },
+		{ link: "#", text: "Learn to trade Forex" },
+		{ link: "#", text: "Learn to trade Shares" },
+		{ link: "#", text: "Trading guides" },
+	];
 
 	return (
 		<>
@@ -96,12 +74,10 @@ export default function Footer() {
 						</div>
 
 						<div className="md:grid md:grid-cols-3 xl:flex lg:justify-between lg:flex-wrap pb-10 lg:gap-5 xl:text-base flex-1">
-							<FooterNavWrapper title="Account" links={accountSubLinks} />
-							<FooterNavWrapper title="About" links={aboutSubLinks} />
-							<FooterNavWrapper title="Trading" links={tradingSubLinks} />
+							<FooterNavWrapper title="Company" links={companySubLinks} />
+							<FooterNavWrapper title="Market" links={marketSubLinks} />
 							<FooterNavWrapper title="Platforms" links={platformSubLinks} />
-							{/* <FooterNavWrapper title="Tools" links={toolsSubLinks} />
-							<FooterNavWrapper title="News & Education" links={newsSubLinks} /> */}
+							<FooterNavWrapper title="Education" links={educationSubLinks} />
 						</div>
 					</div>
 					<hr />
