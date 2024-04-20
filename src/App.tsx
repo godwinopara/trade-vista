@@ -38,11 +38,11 @@ const router = createBrowserRouter([
 		element: <Shares />,
 	},
 	{
-		path: "market/treasuries",
+		path: "market/treasures",
 		element: <Treasures />,
 	},
 	{
-		path: "market/crypto",
+		path: "market/cryptocurrency",
 		element: <Cryptocurrencies />,
 	},
 	{
