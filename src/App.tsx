@@ -17,7 +17,6 @@ const LearnShares = lazy(() => import("./pages/LearnShares"));
 const TradingGuides = lazy(() => import("./pages/TradingGuides"));
 
 const router = createBrowserRouter([
-
   {
     path: "/",
     element: <Home />,
@@ -74,7 +73,6 @@ const router = createBrowserRouter([
     path: "education/trading-guides",
     element: <TradingGuides />,
   },
-
 ]);
 
 function App() {
