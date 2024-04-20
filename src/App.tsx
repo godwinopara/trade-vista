@@ -12,6 +12,10 @@ const Treasures = lazy(() => import("./pages/Treasures"));
 const Cryptocurrencies = lazy(() => import("./pages/Cryptocurrencies"));
 const Metatrader4 = lazy(() => import("./pages/Metatrader4"));
 const Metatrader5 = lazy(() => import("./pages/Metatrader5"));
+const LearnCfds = lazy(() => import("./pages/LearnCfds"));
+const LearnForex = lazy(() => import("./pages/LearnForex"));
+const LearnShares = lazy(() => import("./pages/LearnShares"));
+const TradingGuides = lazy(() => import("./pages/TradingGuides"));
 
 const router = createBrowserRouter([
 	{
@@ -54,10 +58,21 @@ const router = createBrowserRouter([
 		path: "platforms/meta5",
 		element: <Metatrader5 />,
 	},
-
 	{
-		path: "auth/signup",
-		element: <SignUp />,
+		path: "education/learn-cfds",
+		element: <LearnCfds />,
+	},
+	{
+		path: "education/learn-forex",
+		element: <LearnForex />,
+	},
+	{
+		path: "education/learn-shares",
+		element: <LearnShares />,
+	},
+	{
+		path: "education/trading-guides",
+		element: <TradingGuides />,
 	},
 ]);
 

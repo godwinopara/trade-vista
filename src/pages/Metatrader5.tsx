@@ -62,8 +62,8 @@ const differencies = [
 const Metatrader5 = (props: Props) => {
   return (
     <MainLayout>
-      <div className=" xl:mb-0  py-24 xl:my-0 max-w-7xl mx-auto px-6 ">
-        <div className="lg:w-5/6 mx-auto flex flex-col gap-5">
+      <div className=" xl:mb-0  py-28 xl:my-0 max-w-7xl mx-auto px-6 ">
+        <div className=" flex flex-col gap-5">
           <h2 className="text-4xl font-bold  tracking-wide leading-[120%]  mx-auto">
             MetaTrader 5
           </h2>
