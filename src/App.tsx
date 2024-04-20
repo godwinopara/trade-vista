@@ -11,56 +11,76 @@ const Treasures = lazy(() => import("./pages/Treasures"));
 const Cryptocurrencies = lazy(() => import("./pages/Cryptocurrencies"));
 const Metatrader4 = lazy(() => import("./pages/Metatrader4"));
 const Metatrader5 = lazy(() => import("./pages/Metatrader5"));
+const LearnCfds = lazy(() => import("./pages/LearnCfds"));
+const LearnForex = lazy(() => import("./pages/LearnForex"));
+const LearnShares = lazy(() => import("./pages/LearnShares"));
+const TradingGuides = lazy(() => import("./pages/TradingGuides"));
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Home />,
-	},
-	{
-		path: "company/about",
-		element: <About />,
-	},
-	{
-		path: "market/forex",
-		element: <Forex />,
-	},
-	{
-		path: "market/commodities",
-		element: <Commodities />,
-	},
-	{
-		path: "market/indices",
-		element: <Indices />,
-	},
-	{
-		path: "market/shares",
-		element: <Shares />,
-	},
-	{
-		path: "market/treasures",
-		element: <Treasures />,
-	},
-	{
-		path: "market/cryptocurrency",
-		element: <Cryptocurrencies />,
-	},
-	{
-		path: "platforms/meta4",
-		element: <Metatrader4 />,
-	},
-	{
-		path: "platforms/meta5",
-		element: <Metatrader5 />,
-	},
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "company/about",
+    element: <About />,
+  },
+  {
+    path: "market/forex",
+    element: <Forex />,
+  },
+  {
+    path: "market/commodities",
+    element: <Commodities />,
+  },
+  {
+    path: "market/indices",
+    element: <Indices />,
+  },
+  {
+    path: "market/shares",
+    element: <Shares />,
+  },
+  {
+    path: "market/treasures",
+    element: <Treasures />,
+  },
+  {
+    path: "market/cryptocurrency",
+    element: <Cryptocurrencies />,
+  },
+  {
+    path: "platforms/meta4",
+    element: <Metatrader4 />,
+  },
+  {
+    path: "platforms/meta5",
+    element: <Metatrader5 />,
+  },
+  {
+    path: "education/learn-cfds",
+    element: <LearnCfds />,
+  },
+  {
+    path: "education/learn-forex",
+    element: <LearnForex />,
+  },
+  {
+    path: "education/learn-shares",
+    element: <LearnShares />,
+  },
+  {
+    path: "education/trading-guides",
+    element: <TradingGuides />,
+  },
 ]);
 
 function App() {
-	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			<RouterProvider router={router} />
-		</Suspense>
-	);
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;
