@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignUp from "./pages/SignUp";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
 	{
 		path: "platforms/meta5",
 		element: <Metatrader5 />,
+	},
+
+	{
+		path: "auth/signup",
+		element: <SignUp />,
 	},
 ]);
 
