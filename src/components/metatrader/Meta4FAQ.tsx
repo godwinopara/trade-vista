@@ -44,7 +44,7 @@ type Props = {};
 export const Meta4FAQ = (props: Props) => {
   return (
     <section className=" xl:mb-0  xl:my-0 max-w-7xl mx-auto px-6 pb-24">
-      <div className="lg:w-5/6 mx-auto flex flex-col gap-5">
+      <div className=" flex flex-col gap-5">
         <Accordion
           type="single"
           collapsible
