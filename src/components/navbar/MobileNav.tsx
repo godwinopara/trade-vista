@@ -26,7 +26,7 @@ export default function MobileNav() {
 	}, [isNavOpen]);
 
 	return (
-		<header className="px-6 py-6">
+		<header className="px-6 py-6 xl:hidden">
 			<nav className="flex items-center justify-between">
 				<div className="w-[50%]">
 					<Link to="/">

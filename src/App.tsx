@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SignUp from "./pages/SignUp";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -16,6 +15,8 @@ const LearnCfds = lazy(() => import("./pages/LearnCfds"));
 const LearnForex = lazy(() => import("./pages/LearnForex"));
 const LearnShares = lazy(() => import("./pages/LearnShares"));
 const TradingGuides = lazy(() => import("./pages/TradingGuides"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const SignIn = lazy(() => import("./pages/SignIn"));
 
 const router = createBrowserRouter([
 	{
@@ -73,6 +74,14 @@ const router = createBrowserRouter([
 	{
 		path: "education/trading-guides",
 		element: <TradingGuides />,
+	},
+	{
+		path: "/signup",
+		element: <SignUp />,
+	},
+	{
+		path: "/signin",
+		element: <SignIn />,
 	},
 ]);
 

@@ -116,68 +116,11 @@ export default function SignUp() {
 	return (
 		<section className="grid grid-cols-2">
 			<div className="w-[85%] min-h-screen bg-authImg bg-cover"></div>
-			<div className="w-[85%] my-10">
+			<div className="w-[75%] my-20">
 				<Link to="/" className="flex justify-center items-center mb-16 cursor-pointer">
-					<img src={logo} alt="" className="w-[40%]" />
+					<img src={logo} alt="" className="w-[50%]" />
 				</Link>
 				<form onSubmit={handleSubmitSignUp}>
-					<div className="mb-4 xl:flex gap-x-3">
-						<div>
-							<label className="mb-2.5 block font-medium text-black">First Name</label>
-							<div className="relative">
-								<input
-									type="text"
-									name="firstname"
-									onChange={handleInputChange}
-									required
-									placeholder="Enter your First Name"
-									className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none"
-								/>
-							</div>
-						</div>
-						<div>
-							<label className="mb-2.5 block font-medium text-black">Last Name</label>
-							<div className="relative">
-								<input
-									type="text"
-									required
-									name="lastname"
-									onChange={handleInputChange}
-									placeholder="Enter your Last Name"
-									className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none"
-								/>
-							</div>
-						</div>
-					</div>
-					<div className="mb-4 xl:flex gap-x-3">
-						<div className="w-full">
-							<label className="mb-2.5 block font-medium text-black">Username</label>
-							<div className="relative">
-								<input
-									type="text"
-									name="username"
-									onChange={handleInputChange}
-									required
-									placeholder="Enter your Username"
-									className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none"
-								/>
-							</div>
-						</div>
-						<div className="w-full relative z-20 bg-transparent mb-4">
-							<label className="mb-2.5 block text-black dark:text-white">Gender</label>
-							<select
-								name="gender"
-								onChange={handleInputChange}
-								required
-								className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-meta-3 active:border-meta-3"
-							>
-								<option value="">Select Gender</option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
-						</div>
-					</div>
-
 					<div className="mb-4">
 						<label className="mb-2.5 block font-medium text-black ">Email</label>
 						<div className="relative">
@@ -210,37 +153,7 @@ export default function SignUp() {
 						</div>
 					</div>
 
-					<div className="mb-6 xl:flex gap-x-3">
-						<div>
-							<label className="mb-2.5 block font-medium text-black">Mobile Number</label>
-							<div className="relative">
-								<input
-									type="text"
-									required
-									name="mobile"
-									onChange={handleInputChange}
-									placeholder="Mobile (Whatsapp Preferred)"
-									className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none"
-								/>
-							</div>
-						</div>
-						<div className="relative z-20 bg-transparent mb-4">
-							<label className="mb-2.5 block text-black dark:text-white">Select Country</label>
-							<select
-								name="country"
-								onChange={handleInputChange}
-								required
-								className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-meta-3 active:border-meta-3"
-							>
-								<option value="">Select Country</option>
-								{countries?.map((country, key) => {
-									return <option key={key}>{country.name}</option>;
-								})}
-							</select>
-						</div>
-					</div>
-
-					<div className="mb-6 xl:flex gap-x-3">
+					<div className="mb-6 w-full">
 						<div>
 							<label className="mb-2.5 block font-medium text-black">Password</label>
 							<div className="relative">
@@ -254,19 +167,6 @@ export default function SignUp() {
 								/>
 							</div>
 						</div>
-						<div>
-							<label className="mb-2.5 block font-medium text-black">Re-type Password</label>
-							<div className="relative">
-								<input
-									type="password"
-									name="confirmPassword"
-									onChange={handleInputChange}
-									required
-									placeholder="Re-type Password"
-									className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none"
-								/>
-							</div>
-						</div>
 					</div>
 
 					<div className="mb-5">
@@ -274,7 +174,7 @@ export default function SignUp() {
 							type="submit"
 							className="flex justify-center items-center gap-x-2 w-full cursor-pointer rounded-lg border border-meta-3 bg-primary hover:bg-primary-hover p-4 text-white transition hover:bg-opacity-90"
 						>
-							Create Account
+							Sign In
 							{/* {loading && (
 							<Image className="border" src={loader} alt="loading icon" height={20} width={20} />
 						)} */}
@@ -315,14 +215,14 @@ export default function SignUp() {
 								</defs>
 							</svg>
 						</span>
-						Sign up with Google
+						Sign in with Google
 					</button>
 
 					<div className="mt-6 text-center">
 						<p>
 							Don’t have any account?{"  "}
-							<Link to="/signin" className="text-primary">
-								Sign in
+							<Link to="/signup" className="text-primary">
+								Sign up
 							</Link>
 						</p>
 					</div>

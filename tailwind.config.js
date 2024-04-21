@@ -22,8 +22,8 @@ module.exports = {
 				"primary-hover": "#0052cc",
 			},
 			backgroundImage: {
-				gradient: "linear-gradient(to bottom,var(--white),var(--primary-50))",
-				authImg: "../src/images/logoImg.webp",
+				// gradient: "linear-gradient(to bottom,var(--white),var(--primary-50))",
+				authImg: "url('/src/images/authImg.jpg')",
 			},
 			colors: {
 				gray1: "#f7f6fe",

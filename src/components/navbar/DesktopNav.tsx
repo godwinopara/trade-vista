@@ -23,7 +23,7 @@ export default function DesktopNav() {
 	};
 
 	return (
-		<nav className="hidden px-6 shadow-sm fixed top-0 z-50 bg-white w-full xl:block">
+		<nav className="hidden px-6 shadow-sm fixed top-0 z-50 bg-white w-full xl:block border border-red">
 			<div className="flex justify-between items-center max-w-7xl mx-auto">
 				<div className="w-[30%]">
 					<Link to="/">
