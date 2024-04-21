@@ -8,10 +8,15 @@ type Props = {
 };
 
 export const LearnCard = ({ item }: Props) => {
+  const truncatedDesc = item.desc.substring(0, 50);
+
   return (
-    <Link to={`/education/${item.title}`} className="flex flex-col group duration-200 w-full  ">
+    <Link
+      to={`/education/${item.title}`}
+      className="flex flex-col group duration-200 w-full transform hover:-translate-y-2"
+    >
       <img src={item?.img} alt="forex" className="w-full h-40 object-cover" />
-      <div className="flex flex-col gap-5 p-8 border-t-4 border-t-[#06af85] bg-white shadow rounded-sm">
+      <div className="flex flex-col gap-5 p-8 border-t-4 border-t-[#06af85] bg-white shadow rounded-sm h-[350px]">
         <Button
           btnText={item.cat}
           className={`text-xs rounded-sm px-4 ${
@@ -22,7 +27,8 @@ export const LearnCard = ({ item }: Props) => {
           {item.title}
         </h2>
         <span className=" text-base font-medium tracking-wider leading-[120%] text-gray-600">
-          {item.desc}
+          {truncatedDesc}
+          {item.desc.length > 50 && "..."}
         </span>
         <div className="flex items-center gap-x-6 text-primary font-bold  mt-auto">
           <Link to={"/"}>Read More</Link>
