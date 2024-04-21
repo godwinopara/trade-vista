@@ -12,7 +12,7 @@ export const LearnCard = ({ item }: Props) => {
 
   return (
     <Link
-      to={`/education/${item.title}`}
+      to={`/education/${item?.title}`}
       className="flex flex-col group duration-200 w-full transform hover:-translate-y-2"
     >
       <img src={item?.img} alt="forex" className="w-full h-40 object-cover" />
