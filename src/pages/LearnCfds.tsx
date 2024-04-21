@@ -2,6 +2,7 @@ import React from "react";
 import MainLayout from "../components/layouts/MainLayout";
 import { Question } from "../components/educations/Question";
 import { Contents } from "../components/educations/Contents";
+import { ReadyToTrade } from "../components/sharedUi/ReadyToTrade";
 
 type Props = {};
 
@@ -24,9 +25,7 @@ const LearnCfds = (props: Props) => {
         </div>
         <div className="flex flex-col gap-3">
           <Question title="What is leverage?" />
-          <Contents
-            desc="When trading CFDs, you’ll be asked to put down a percentage of the full market value of the position, known as its exposure. This means you can achieve a sizeable market exposure with a small initial capital outlay, known as margin or deposit. It’s this idea of leverage, or gearing, that enables traders the opportunity to trade markets they simply wouldn’t otherwise have been able to."
-          />
+          <Contents desc="When trading CFDs, you’ll be asked to put down a percentage of the full market value of the position, known as its exposure. This means you can achieve a sizeable market exposure with a small initial capital outlay, known as margin or deposit. It’s this idea of leverage, or gearing, that enables traders the opportunity to trade markets they simply wouldn’t otherwise have been able to." />
           <Contents desc="Leverage means a small capital outlay can go further, but this can also result in increased swings in profit and loss within your portfolio. As with all financial products, if the market moves against you, you'll lose money. But because CFD trading involves leverage, there's a much greater risk that you could lose substantially more than the capital you invested. Therefore, trading CFDs requires closer attention than unleveraged investments, such as physical shares." />
         </div>
         <div className="flex flex-col gap-3">
@@ -45,6 +44,7 @@ const LearnCfds = (props: Props) => {
           <Contents desc="Because CFDs are leveraged products, it's possible for you to either gain or lose much larger amounts compared to your initial capital outlay, and your losses can exceed your deposits." />
           <Contents desc="For this reason, risk management is a core consideration for all successful CFD traders, and we recommend you watch one of our many webinars on the subject of managing risk to help you harness this discipline. We also offer a range of stop-loss orders that will close your trade at a specific level." />
         </div>
+        <ReadyToTrade />
       </section>
     </MainLayout>
   );
