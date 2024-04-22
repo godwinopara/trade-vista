@@ -11,10 +11,12 @@ import { Risk } from "../components/educations/Risk";
 
 type Props = {};
 
-const LearnForexDetails = (props: Props) => {
+const LearnGuideDetails = (props: Props) => {
   const params = useParams();
+  console.log(params, "sgyd");
 
   const details = forexData?.find((data) => data?.title === params.id);
+  console.log(details, "detauk");
 
   return (
     <MainLayout>
@@ -22,16 +24,29 @@ const LearnForexDetails = (props: Props) => {
         {details?.symbol === "fundamental" && (
           <FundamentalAnalysis details={details} />
         )}
-        {details?.symbol === "stock" && <StockExchanges details={details} />}
-        {details?.symbol === "pattern" && <PricePatterns details={details} />}
-        {details?.symbol === "correlation" && (
+        {details?.symbol ===
+          "stock" && (
+          <StockExchanges details={details} />
+        )}
+        {details?.symbol ===
+          "pattern" && (
+          <PricePatterns details={details} />
+        )}
+        {details?.symbol ===
+          "correlation" && (
           <CurrencyCorrelation details={details} />
         )}
-        {details?.symbol === "purpose" && <Stocks details={details} />}
-        {details?.symbol === "risk" && <Risk details={details} />}
+        {details?.symbol ===
+          "purpose" && (
+          <Stocks details={details} />
+        )}
+        {details?.symbol ===
+          "risk" && (
+          <Risk details={details} />
+        )}
       </section>
     </MainLayout>
   );
 };
 
-export default LearnForexDetails;
+export default LearnGuideDetails;

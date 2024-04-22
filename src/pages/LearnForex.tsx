@@ -5,9 +5,12 @@ import { Contents } from "../components/educations/Contents";
 import { LearnCard } from "../components/educations/LearnCard";
 import { forexData } from "../components/educations/data";
 
+
 type Props = {};
 
 const LearnForex = (props: Props) => {
+  
+  
   return (
     <MainLayout>
       <section className="max-w-7xl mx-auto px-6 py-10 flex flex-col gap-10">
