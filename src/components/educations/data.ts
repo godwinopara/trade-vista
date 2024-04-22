@@ -79,3 +79,39 @@ export const forexData = [
   //   img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt1730144ec17e5333/656454c390f1a8040aebc61d/oil_barrels_gold_bars.jpg?&width=626&quality=100",
   // },
 ];
+
+export const shareCFData = [
+  {
+    id: 1,
+    title: "Learning to trade Share CFDs",
+    symbol: "share",
+    desc: "Stock trading has been around for centuries and is still the most common way for traders, banks and funds to buy and sell a company’s shares. The first actual stock exchange started trading in London in 1773 and today the market capitalisation of traded stocks worldwide is estimated at more than $70 trillion.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt42aa905adac62d89/5f20c38dee8504335e704803/american-stock-exchange-picture-id157403595.jpg",
+  },
+  {
+    id: 2,
+    title: "How to short an IPO",
+    symbol: "short",
+    desc: "Short selling is a strategy used by investors and traders to take advantage of what they perceive to be an imminent decline in value in a company’s share price. You may anticipate that upcoming economic events and news may adversely affect their bottom line and therefore their share price. You might not be convinced that a company’s fundamentals are as good as they look. Or you might just think the company is not trading at its fair value and is due for a depreciation.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blta1167aad35767781/61012b4abc767c65981b3848/PEP_IPOArtwork_210728_v05_JH_00001_RocketRow.png",
+  },
+  {
+    id: 3,
+    title: "How can I find out about upcoming IPOs",
+    symbol: "upcoming",
+    desc: "IPOs happen every day on exchanges all around the world. There’d be too many for us to list out all that may be of interest, but one way to find out is by checking the website of a major exchange. For example, the ASX in Australia lists the upcoming floats and listings that are confirmed on its website here, and the SEC has a list of companies that have filed for IPOs here. Trusted new sources such as Bloomberg and Reuters will often post up to date articles on new IPOs.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt26e4a2385677b212/60f8f41c138d416455fdb83a/iStock-1145882183.jpeg",
+  },
+  {
+    id: 4,
+    title: "Who determines the IPO share price",
+    symbol: "determines",
+
+    desc: "The company’s IPO share price is determined by the underwriters it selects. An underwriter is the investment bank(s) that goes out and sells the company’s new shares to investors, typically institutional and high net worth individuals and family offices.    ",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/bltc5bfdecefc34c90a/5fab7e42de11f61ec5f02e18/iStock-1141466414_meitu_1.jpg",
+  },
+];

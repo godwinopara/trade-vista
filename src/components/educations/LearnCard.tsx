@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 type Props = {
@@ -8,11 +8,12 @@ type Props = {
 };
 
 export const LearnCard = ({ item }: Props) => {
+  const path = useLocation()
   const truncatedDesc = item.desc.substring(0, 50);
 
   return (
     <Link
-      to={`/education/${item?.title}`}
+      to={`${path.pathname}/${item?.title}`}
       className="flex flex-col group duration-200 w-full transform hover:-translate-y-2"
     >
       <img src={item?.img} alt="forex" className="w-full h-40 object-cover" />
