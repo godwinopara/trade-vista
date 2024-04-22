@@ -51,31 +51,31 @@ export const forexData = [
     cat: "Beginner",
     img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt90cb9141f7a4a0ec/5e1e633204695c0f4472b0be/metatrader5-forex-trading.jpg?&width=626&quality=100",
   },
-  {
-    id: 7,
-    title: "CFD explainer: Share CFDs vs Direct Shares",
-    symbol: "cfd",
+  // {
+  //   id: 7,
+  //   title: "CFD explainer: Share CFDs vs Direct Shares",
+  //   symbol: "cfd",
 
-    desc: "With share CFDs, you are making an agreement with the broker to cash settle the difference between the opening and closing price, but you never own the shares directly. You are simply trading on the direction of the price.",
-    cat: "Beginner",
-    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/bltb0d34ea396f89f10/64ef1fb778778679319ad11b/trading_charts_on_multiple_monitors.jpg?&width=626&quality=100",
-  },
-  {
-    id: 8,
-    title: "Trading other instruments",
-    symbol: "instrument",
+  //   desc: "With share CFDs, you are making an agreement with the broker to cash settle the difference between the opening and closing price, but you never own the shares directly. You are simply trading on the direction of the price.",
+  //   cat: "Beginner",
+  //   img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/bltb0d34ea396f89f10/64ef1fb778778679319ad11b/trading_charts_on_multiple_monitors.jpg?&width=626&quality=100",
+  // },
+  // {
+  //   id: 8,
+  //   title: "Trading other instruments",
+  //   symbol: "instrument",
 
-    desc: "We offer a wide range of energy, soft commodities and precious metals, each with different minimum trade and margin requirements, spreads and contract sizes. There are also different session times, so it's important to understand these when you start trading commodities.",
-    cat: "Beginner",
-    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blta9d3a4d1bb78bd66/5e7ae994456135521344819c/sb-test-us.jpg?&width=626&quality=100",
-  },
-  {
-    id: 9,
-    title: "An Analysis on Currencies Most Impacted By Gold And Oil Prices",
-    symbol: "analysis",
+  //   desc: "We offer a wide range of energy, soft commodities and precious metals, each with different minimum trade and margin requirements, spreads and contract sizes. There are also different session times, so it's important to understand these when you start trading commodities.",
+  //   cat: "Beginner",
+  //   img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blta9d3a4d1bb78bd66/5e7ae994456135521344819c/sb-test-us.jpg?&width=626&quality=100",
+  // },
+  // {
+  //   id: 9,
+  //   title: "An Analysis on Currencies Most Impacted By Gold And Oil Prices",
+  //   symbol: "analysis",
 
-    desc: "Explore currency correlations, the relationship between the US dollar, gold, and oil prices, stock market interdependencies, and key economic events influencing forex markets.",
-    cat: "Beginner",
-    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt1730144ec17e5333/656454c390f1a8040aebc61d/oil_barrels_gold_bars.jpg?&width=626&quality=100",
-  },
+  //   desc: "Explore currency correlations, the relationship between the US dollar, gold, and oil prices, stock market interdependencies, and key economic events influencing forex markets.",
+  //   cat: "Beginner",
+  //   img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt1730144ec17e5333/656454c390f1a8040aebc61d/oil_barrels_gold_bars.jpg?&width=626&quality=100",
+  // },
 ];
