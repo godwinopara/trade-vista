@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import { FundamentalAnalysis } from "../components/educations/FundamentalAnalysis";
 import { StockExchanges } from "../components/educations/StockExchanges";
 import { PricePatterns } from "../components/educations/PricePatterns";
+import { CurrencyCorrelation } from "../components/educations/CurrencyCorrelation";
+import { Stocks } from "../components/educations/Stocks";
+import { Risk } from "../components/educations/Risk";
 
 type Props = {};
 
@@ -28,6 +31,18 @@ const LearnForexDetails = (props: Props) => {
         {details?.symbol ===
           "pattern" && (
           <PricePatterns details={details} />
+        )}
+        {details?.symbol ===
+          "correlation" && (
+          <CurrencyCorrelation details={details} />
+        )}
+        {details?.symbol ===
+          "purpose" && (
+          <Stocks details={details} />
+        )}
+        {details?.symbol ===
+          "risk" && (
+          <Risk details={details} />
         )}
       </section>
     </MainLayout>
