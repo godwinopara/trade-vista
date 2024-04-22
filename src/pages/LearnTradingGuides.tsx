@@ -1,28 +1,32 @@
 import React from "react";
 import MainLayout from "../components/layouts/MainLayout";
-import { Question } from "../components/educations/Question";
-import { Contents } from "../components/educations/Contents";
-import { LearnCard } from "../components/educations/LearnCard";
 import { forexData } from "../components/educations/data";
+import { useParams } from "react-router-dom";
+import { PricePatterns } from "../components/educations/PricePatterns";
+import { Risk } from "../components/educations/Risk";
+import { Stocks } from "../components/educations/Stocks";
+import { Awareness } from "../components/educations/Awareness";
+
 
 
 type Props = {};
 
 const LearnTradingGuides = (props: Props) => {
+  const params = useParams();
+
+  const details = forexData?.find((data) => data?.title === params.id);
   
   
   return (
     <MainLayout>
-      <section className="max-w-7xl mx-auto px-6 py-10 flex flex-col gap-10">
-        <div className="flex flex-col gap-3 ">
-          <Question title="Learn to Trade Forex" />
-          <Contents desc="New to trading? You'll find all the trading basics you need to know to get started on your journey here." />
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-5">
-          {forexData?.map((item) => (
-            <LearnCard key={item.id} item={item} />
-          ))}
-        </div>
+      <section className="max-w-4xl mx-auto px-6 py-16 ">
+        {details?.symbol === "aware" && (
+          <Awareness details={details} />
+        )}
+        {details?.symbol === "price" && <PricePatterns details={details} />}
+        
+        {details?.symbol === "purpose" && <Stocks details={details} />}
+        {details?.symbol === "risk" && <Risk details={details} />}
       </section>
     </MainLayout>
   );

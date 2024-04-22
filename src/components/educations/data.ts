@@ -115,3 +115,39 @@ export const shareCFData = [
     img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/bltc5bfdecefc34c90a/5fab7e42de11f61ec5f02e18/iStock-1141466414_meitu_1.jpg",
   },
 ];
+
+export const tradingGuidesData = [
+  {
+    id: 1,
+    title: "Introduction to Price Patterns in Trading",
+    symbol: "price",
+    desc: "A price pattern is a distinct, recognisable formation created by the fluctuations of an asset's price on a chart. It's like a secret language spoken by the market.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt90728bc660e64eb8/65b246e649fff5040a13aa21/Price_Patterns_in_Trading.jpg",
+  },
+  // {
+  //   id: 2,
+  //   title: "What should I be aware of when using an EA with a broker",
+  //   symbol: "aware",
+  //   desc: "While most EAs and strategies are allowed to be used at the discretion of the trader, it’s important to be mindful of some EA etiquette and to be aware of the types of strategies that are not allowed.",
+  //   cat: "Beginner",
+  //   img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt4ee8de969293b80e/5eddabb513f1be4078a648c9/stock-market-exchange-on-a-skyscraper-in-dubai-background-picture-id924212036.jpg",
+  // },
+  {
+    id: 3,
+    title: "Risk management",
+    symbol: "risk",
+    desc: "If there’s one thing all successful traders have in common it's ensuring they take a structured approach to managing risk as part of their trading plan.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt90cb9141f7a4a0ec/5e1e633204695c0f4472b0be/metatrader5-forex-trading.jpg?&width=626&quality=100",
+  },
+  {
+    id: 4,
+    title: "Stock Exchanges: Definition, Purpose, and Impact on Global Economy",
+    symbol: "purpose",
+
+    desc: "The main purpose of stock exchanges is to facilitate the exchange of securities between buyers and sellers, providing a marketplace (either physical or virtual) where stock prices are determined in a fair, transparent manner.",
+    cat: "Beginner",
+    img: "https://eu-images.contentstack.com/v3/assets/bltaec35894448c7261/blt20786c867c34e22d/656db1e543753004070b893b/major_stock_exchanges_around_the_world.jpg?&width=626&quality=100",
+  },
+];
