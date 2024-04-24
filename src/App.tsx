@@ -21,6 +21,7 @@ const LearnSharesDetails = lazy(() => import("./pages/LearnSharesDetails"));
 const LearnGuideDetails = lazy(() => import("./pages/LearnGuideDetails"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
 const router = createBrowserRouter([
 	{
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
 	{
 		path: "signin",
 		element: <SignIn />,
+	},
+  {
+		path: "dashboard",
+		element: <Dashboard />,
 	},
 ]);
 
