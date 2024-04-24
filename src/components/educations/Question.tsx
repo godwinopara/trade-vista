@@ -6,6 +6,6 @@ type Props = {
 
 export const Question = ({title}: Props) => {
   return (
-    <h1 className=' text-3xl xl:text-4xl font-bold tracking-wide leading-[120%] text-gray-600'>{title}</h1>
+    <h1 className=' text-4xl text-black/85 font-bold tracking-wide leading-[120%] '>{title}</h1>
   )
 }

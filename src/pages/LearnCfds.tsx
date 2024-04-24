@@ -1,13 +1,14 @@
 import MainLayout from "../components/layouts/MainLayout";
 import { Question } from "../components/educations/Question";
 import { Contents } from "../components/educations/Contents";
+import { ReadyToTrade } from "../components/sharedUi/ReadyToTrade";
 
 type Props = {};
 
 const LearnCfds = (props: Props) => {
 	return (
 		<MainLayout>
-			<section className="max-w-4xl mx-auto px-6 py-10 flex flex-col gap-10 mt-20">
+			<section className="max-w-4xl mx-auto px-6 py-10 flex flex-col gap-10">
 				<div className="flex flex-col gap-3 ">
 					<Question title="How to Trade CFDs" />
 					<Contents desc="A contract for difference (CFD) is a vehicle for speculating on the price of financial markets, including forex, equity indices, commodities and shares." />
@@ -42,6 +43,7 @@ const LearnCfds = (props: Props) => {
 					<Contents desc="Because CFDs are leveraged products, it's possible for you to either gain or lose much larger amounts compared to your initial capital outlay, and your losses can exceed your deposits." />
 					<Contents desc="For this reason, risk management is a core consideration for all successful CFD traders, and we recommend you watch one of our many webinars on the subject of managing risk to help you harness this discipline. We also offer a range of stop-loss orders that will close your trade at a specific level." />
 				</div>
+				<ReadyToTrade />
 			</section>
 		</MainLayout>
 	);
