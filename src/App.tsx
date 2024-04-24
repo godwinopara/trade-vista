@@ -19,6 +19,8 @@ const TradingGuides = lazy(() => import("./pages/TradingGuides"));
 const LearnForexDetails = lazy(() => import("./pages/LearnForexDetails"));
 const LearnSharesDetails = lazy(() => import("./pages/LearnSharesDetails"));
 const LearnGuideDetails = lazy(() => import("./pages/LearnGuideDetails"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const SignIn = lazy(() => import("./pages/SignIn"));
 
 const router = createBrowserRouter([
 	{
@@ -92,6 +94,14 @@ const router = createBrowserRouter([
 	{
 		path: "education/trading-guides/:id",
 		element: <LearnGuideDetails />,
+	},
+	{
+		path: "signup",
+		element: <SignUp />,
+	},
+	{
+		path: "signin",
+		element: <SignIn />,
 	},
 ]);
 
