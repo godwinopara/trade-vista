@@ -1,5 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -106,6 +107,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			<RouterProvider router={router} />

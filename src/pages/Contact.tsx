@@ -6,6 +6,7 @@ import map from "../images/mapImg.webp";
 export default function Contact() {
 	return (
 		<MainLayout>
+			<header></header>
 			<section className="max-w-7xl mx-auto my-10 px-6 xl:py-32 xl:grid xl:grid-cols-2 xl:items-center xl:gap-x-20">
 				<div>
 					<div className="text-lg mb-8">

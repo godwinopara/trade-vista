@@ -4,29 +4,29 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
 	const companySubLinks = [
-		{ link: "company/about", text: "About Us" },
-		{ link: "company/contact", text: "Contact Us" },
+		{ link: "/company/about", text: "About Us" },
+		{ link: "/company/contact", text: "Contact Us" },
 	];
 
 	const marketSubLinks = [
-		{ link: "market/forex", text: "Forex" },
-		{ link: "market/commodities", text: "Commodities" },
-		{ link: "market/indices", text: "Indices" },
-		{ link: "market/shares", text: "Shares" },
-		{ link: "market/tresures", text: "Treasures" },
-		{ link: "market/cryptocurreny", text: "Cryptocurrencies" },
+		{ link: "/market/forex", text: "Forex" },
+		{ link: "/market/commodities", text: "Commodities" },
+		{ link: "/market/indices", text: "Indices" },
+		{ link: "/market/shares", text: "Shares" },
+		{ link: "/market/tresures", text: "Treasures" },
+		{ link: "/market/cryptocurreny", text: "Cryptocurrencies" },
 	];
 
 	const platformSubLinks = [
-		{ link: "platforms/meta4", text: "MetaTrader 4" },
-		{ link: "platforms/meta5", text: "MetaTrader 5" },
+		{ link: "/platforms/meta4", text: "MetaTrader 4" },
+		{ link: "/platforms/meta5", text: "MetaTrader 5" },
 	];
 
 	const educationSubLinks = [
-		{ link: "#", text: "Learn to trade CFDS" },
-		{ link: "#", text: "Learn to trade Forex" },
-		{ link: "#", text: "Learn to trade Shares" },
-		{ link: "#", text: "Trading guides" },
+		{ link: "/education/learn-cfds", text: "Learn to trade CFDS" },
+		{ link: "/education/learn-forex", text: "Learn to trade Forex" },
+		{ link: "/education/learn-shares", text: "Learn to trade Shares" },
+		{ link: "/education/trading-guides", text: "Trading guides" },
 	];
 
 	return (
