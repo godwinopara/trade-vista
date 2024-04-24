@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 const Forex = lazy(() => import("./pages/Forex"));
 const Commodities = lazy(() => import("./pages/Commodities"));
 const Indices = lazy(() => import("./pages/Indices"));
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
 	{
 		path: "company/about",
 		element: <About />,
+	},
+	{
+		path: "company/contact",
+		element: <Contact />,
 	},
 	{
 		path: "market/forex",
