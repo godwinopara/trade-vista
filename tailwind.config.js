@@ -42,7 +42,11 @@ module.exports = {
         current: "currentColor",
         strokedark: "#2E3A47",
         "meta-3": "#10B981",
-		lightblack: "#1C2434",
+        lightblack: "#1C2434",
+        success: "#219653",
+				danger: "#D34053",
+				warning: "#FFA70B",
+        "gray-2": "#F7F9FC",
       },
       boxShadow: {
         default: "0px 8px 13px -3px rgba(0, 0, 0, 0.07)",
