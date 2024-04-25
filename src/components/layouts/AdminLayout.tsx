@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
-import { AdminSidebar } from "../admin/AdminSidebar";
-import { AdminHeader } from "../admin/AdminHeader";
+import { AdminSidebar } from "../dashboards/AdminSidebar";
+import { AdminHeader } from "../dashboards/AdminHeader";
 
 type Props = {
   children: ReactNode;

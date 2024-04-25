@@ -22,6 +22,7 @@ const LearnGuideDetails = lazy(() => import("./pages/LearnGuideDetails"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
+const UserDashboard = lazy(() => import("./pages/UserDashboard"));
 
 const router = createBrowserRouter([
 	{
@@ -105,8 +106,12 @@ const router = createBrowserRouter([
 		element: <SignIn />,
 	},
 	{
-		path: "dashboard",
+		path: "admin/dashboard",
 		element: <Dashboard />,
+	},
+	{
+		path: "user/dashboard",
+		element: <UserDashboard />,
 	},
 ]);
 
