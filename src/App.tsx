@@ -104,7 +104,7 @@ const router = createBrowserRouter([
 		path: "signin",
 		element: <SignIn />,
 	},
-  {
+	{
 		path: "dashboard",
 		element: <Dashboard />,
 	},
