@@ -9,6 +9,7 @@ import { TbChartCandle } from "react-icons/tb";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { IoIosNotifications } from "react-icons/io";
 import { HamburgerIcon } from "../ui/HamburgerIcon";
+import { CircleMinus, CirclePlus, CopyPlus } from "lucide-react";
 
 type Props = {
   sidebarOpen: boolean;
@@ -130,7 +131,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >
-                  <FaMoneyBillAlt />
+                  <CopyPlus />
                   Assets
                 </Link>
               </li>
@@ -143,7 +144,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >
-                  <FaMoneyBillAlt />
+                  <CirclePlus />
                   Deposits
                 </Link>
               </li>
@@ -156,7 +157,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >
-                  <BiMoneyWithdraw />
+                  <CircleMinus />
                   Withdrawals
                 </Link>
               </li>

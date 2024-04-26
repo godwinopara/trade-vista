@@ -25,6 +25,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const UserDashboard = lazy(() => import("./pages/UserDashboard"));
 const Deposit = lazy(() => import("./pages/Deposit"));
 const Withdrawal = lazy(() => import("./pages/Withdrawal"));
+const Asset = lazy(() => import("./pages/Asset"));
 
 const router = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
   {
     path: "user/withdrawal",
     element: <Withdrawal />,
+  },
+  {
+    path: "user/assets",
+    element: <Asset />,
   },
 ]);
 
