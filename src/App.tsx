@@ -1,5 +1,10 @@
 import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
+import { UserProvider, UserState, useUserContext } from "./context/UserContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "./lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -28,117 +33,143 @@ const Withdrawal = lazy(() => import("./pages/Withdrawal"));
 const Asset = lazy(() => import("./pages/Asset"));
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "company/about",
-    element: <About />,
-  },
-  {
-    path: "company/contact",
-    element: <Contact />,
-  },
-  {
-    path: "market/forex",
-    element: <Forex />,
-  },
-  {
-    path: "market/commodities",
-    element: <Commodities />,
-  },
-  {
-    path: "market/indices",
-    element: <Indices />,
-  },
-  {
-    path: "market/shares",
-    element: <Shares />,
-  },
-  {
-    path: "market/treasures",
-    element: <Treasures />,
-  },
-  {
-    path: "market/cryptocurrency",
-    element: <Cryptocurrencies />,
-  },
-  {
-    path: "platforms/meta4",
-    element: <Metatrader4 />,
-  },
-  {
-    path: "platforms/meta5",
-    element: <Metatrader5 />,
-  },
-  {
-    path: "education/learn-cfds",
-    element: <LearnCfds />,
-  },
-  {
-    path: "education/learn-forex",
-    element: <LearnForex />,
-  },
-  {
-    path: "education/learn-shares",
-    element: <LearnShares />,
-  },
-  {
-    path: "education/trading-guides",
-    element: <TradingGuides />,
-  },
-  {
-    path: "education/learn-forex/:id",
-    element: <LearnForexDetails />,
-  },
-  {
-    path: "education/learn-shares/:id",
-    element: <LearnSharesDetails />,
-  },
-  {
-    path: "education/trading-guides/:id",
-    element: <LearnGuideDetails />,
-  },
-  {
-    path: "signup",
-    element: <SignUp />,
-  },
-  {
-    path: "signin",
-    element: <SignIn />,
-  },
-  {
-    path: "admin/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "user/dashboard",
-    element: <UserDashboard />,
-  },
-  {
+	{
+		path: "/",
+		element: <Home />,
+	},
+	{
+		path: "company/about",
+		element: <About />,
+	},
+	{
+		path: "company/contact",
+		element: <Contact />,
+	},
+	{
+		path: "market/forex",
+		element: <Forex />,
+	},
+	{
+		path: "market/commodities",
+		element: <Commodities />,
+	},
+	{
+		path: "market/indices",
+		element: <Indices />,
+	},
+	{
+		path: "market/shares",
+		element: <Shares />,
+	},
+	{
+		path: "market/treasures",
+		element: <Treasures />,
+	},
+	{
+		path: "market/cryptocurrency",
+		element: <Cryptocurrencies />,
+	},
+	{
+		path: "platforms/meta4",
+		element: <Metatrader4 />,
+	},
+	{
+		path: "platforms/meta5",
+		element: <Metatrader5 />,
+	},
+	{
+		path: "education/learn-cfds",
+		element: <LearnCfds />,
+	},
+	{
+		path: "education/learn-forex",
+		element: <LearnForex />,
+	},
+	{
+		path: "education/learn-shares",
+		element: <LearnShares />,
+	},
+	{
+		path: "education/trading-guides",
+		element: <TradingGuides />,
+	},
+	{
+		path: "education/learn-forex/:id",
+		element: <LearnForexDetails />,
+	},
+	{
+		path: "education/learn-shares/:id",
+		element: <LearnSharesDetails />,
+	},
+	{
+		path: "education/trading-guides/:id",
+		element: <LearnGuideDetails />,
+	},
+	{
+		path: "signup",
+		element: <SignUp />,
+	},
+	{
+		path: "signin",
+		element: <SignIn />,
+	},
+	{
+		element: <ProtectedRoutes />,
+		children: [
+			{
+				path: "admin/dashboard",
+				element: <Dashboard />,
+			},
+			{
+				path: "user/dashboard",
+				element: <UserDashboard />,
+			},
+        {
     path: "user/deposit",
     element: <Deposit />,
-  },
-  {
+    },
+    {
     path: "user/withdrawal",
     element: <Withdrawal />,
-  },
-  {
+    },
+    {
     path: "user/assets",
     element: <Asset />,
-  },
+    },
+		],
+	},
 ]);
 
 function App() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+	const { updateUser, dispatch } = useUserContext();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	useEffect(() => {
+		const unSub = onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				const docRef = doc(db, "users", user.uid);
+				const docSnap = await getDoc(docRef);
+				if (docSnap.exists()) {
+					dispatch({ type: "UPDATEUSER", payload: docSnap.data() as UserState });
+				}
+			}
+		});
+
+		return () => {
+			unSub();
+		};
+	}, [auth.currentUser]);
+
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<UserProvider>
+				<RouterProvider router={router} />
+			</UserProvider>
+		</Suspense>
+	);
 }
 
 export default App;

@@ -4,6 +4,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import signUpImg from "../images/authImg.jpg";
 
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
 interface Country {
 	name: string;
 	Iso2: string;
@@ -28,6 +33,8 @@ export default function SignUp() {
 		confirmPassword: "",
 	});
 
+	const navigate = useNavigate();
+
 	// const { signUp } = useAuthContext();
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -40,7 +47,7 @@ export default function SignUp() {
 
 	const handleSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setLoading(true);
+		console.log(formData);
 
 		if (formData.password !== formData.confirmPassword) {
 			setError("Password Mismatch: Password and Confirm Password not the same");
@@ -48,54 +55,50 @@ export default function SignUp() {
 			return;
 		}
 
-		// try {
-		// 	const signup = await signUp(formData.email, formData.password);
-		// 	if (signup) {
-		// 		const userRef = collection(db, "userData");
-		// 		await setDoc(doc(userRef, signup.user.uid), {
-		// 			totalBalance: "0.000",
-		// 			totalProfit: "0.000",
-		// 			totalBonus: "0.000",
-		// 			tradingSession: [],
-		// 			depositHistory: [],
-		// 			withdrawalHistory: [],
-		// 			userId: signup.user.uid,
-		// 			subscription: {},
-		// 			verification: {},
-		// 			imgUrl: "",
-		// 			user: {
-		// 				firstname: formData.firstname[0].toUpperCase() + formData.firstname.slice(1),
-		// 				lastname: formData.lastname[0].toUpperCase() + formData.lastname.slice(1),
-		// 				email: formData.email,
-		// 				password: formData.password,
-		// 				country: formData.country,
-		// 				mobile: formData.mobile,
-		// 				status: "Pending",
-		// 				username: formData.username,
-		// 				gender: formData.gender,
-		// 				joinedDate: new Date().toDateString(),
-		// 			},
-		// 		});
-		// 		setError(null);
-		// 		setFormData({
-		// 			firstname: "",
-		// 			lastname: "",
-		// 			username: "",
-		// 			gender: "",
-		// 			email: "",
-		// 			country: "",
-		// 			mobile: "",
-		// 			password: "",
-		// 			confirmPassword: "",
-		// 		});
-		// 		setLoading(false);
-		// 		localStorage.setItem("userToken", JSON.stringify(signup.user.stsTokenManager));
-		// 		router.push("/user");
-		// 	}
-		// } catch (error: any) {
-		// 	const errorMessage = error.message.replace("Firebase: ", "");
-		// 	setError(errorMessage);
-		// }
+		try {
+			const res = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+
+			localStorage.setItem("token", res.user.refreshToken);
+
+			await setDoc(doc(db, "users", res.user.uid), {
+				username: formData.username,
+				email: formData.email,
+				firstname: formData.firstname,
+				lastname: formData.lastname,
+				mobile: formData.mobile,
+				country: formData.country,
+				password: formData.password,
+				gender: formData.gender,
+			});
+
+			await setDoc(doc(db, "deposits", res.user.uid), {
+				deposits: [],
+			});
+
+			await setDoc(doc(db, "withdrawals", res.user.uid), {
+				withdrawals: [],
+			});
+
+			await setDoc(doc(db, "subscriptions", res.user.uid), {
+				subscriptions: [],
+			});
+
+			await setDoc(doc(db, "verifications", res.user.uid), {
+				verifications: {},
+			});
+
+			await setDoc(doc(db, "accounts", res.user.uid), {
+				accounts: { balance: 0, profit: 0, bonus: 0 },
+			});
+
+			await setDoc(doc(db, "trades", res.user.uid), {
+				trades: [],
+			});
+
+			navigate("/user/dashboard");
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
