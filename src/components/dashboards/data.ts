@@ -272,3 +272,21 @@ export const usersData = [
     totalBonus: "0.000",
   },
 ];
+
+export const depositData = [
+  {
+    method: "Bitcoin Address",
+    amount: 199,
+    status: "Completed",
+    date: "Mon, 18-Dec-2023"
+  }
+]
+
+export const withdrawalData = [
+  {
+    method: "Bitcoin Address",
+    amount: 199,
+    status: "Completed",
+    date: "Mon, 18-Dec-2023"
+  }
+]

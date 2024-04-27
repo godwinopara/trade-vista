@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/LOGO.svg";
@@ -8,6 +9,7 @@ import { TbChartCandle } from "react-icons/tb";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { IoIosNotifications } from "react-icons/io";
 import { HamburgerIcon } from "../ui/HamburgerIcon";
+import { CircleMinus, CirclePlus, CopyPlus } from "lucide-react";
 
 type Props = {
   sidebarOpen: boolean;
@@ -17,8 +19,8 @@ type Props = {
 export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
   const location = useLocation();
   const pathname = location.pathname;
-  console.log(pathname.split('/')[1], "path");
-  const currentPath = pathname.split('/')[1]
+  console.log(pathname.split("/")[1], "path");
+  const currentPath = pathname.split("/")[1];
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -89,9 +91,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
         <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-white">
-              MENU
-            </h3>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-white">MENU</h3>
 
             <ul className="mb-6 flex flex-col gap-3.5 text-lg">
               {/* <!-- Menu Item Dashboard --> */}
@@ -99,7 +99,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                 <Link
                   to={pathname}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-                    pathname === `/${currentPath}/dashboard`  &&
+                    pathname === `/${currentPath}/dashboard` &&
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >
@@ -125,30 +125,42 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 
               <li>
                 <Link
+                  to={`/${currentPath}/assets`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+                    pathname.includes("assets") &&
+                    "bg-primary-hover dark:bg-meta-4"
+                  }`}
+                >
+                  <CopyPlus />
+                  Assets
+                </Link>
+              </li>
+
+              <li>
+                <Link
                   to={`/${currentPath}/deposit`}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
                     pathname.includes("deposit") &&
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >
-                  <FaMoneyBillAlt />
+                  <CirclePlus />
                   Deposits
                 </Link>
               </li>
-              {pathname.includes("admin") && (
-                <li>
-                  <Link
-                    to={`/${currentPath}/withdrawals`}
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-                      pathname.includes("withdrawals") &&
-                      "bg-primary-hover dark:bg-meta-4"
-                    }`}
-                  >
-                    <BiMoneyWithdraw />
-                    Withdrawals
-                  </Link>
-                </li>
-              )}
+
+              <li>
+                <Link
+                  to={`/${currentPath}/withdrawal`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+                    pathname.includes("withdrawal") &&
+                    "bg-primary-hover dark:bg-meta-4"
+                  }`}
+                >
+                  <CircleMinus />
+                  Withdrawals
+                </Link>
+              </li>
 
               {pathname.includes("user") && (
                 <li>
