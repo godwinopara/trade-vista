@@ -1,9 +1,10 @@
 import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
-import { UserProvider, useUserContext } from "./context/UserContext";
+import { UserProvider, UserState, useUserContext } from "./context/UserContext";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./lib/firebase";
+import { auth, db } from "./lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -125,23 +126,27 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	const { updateUser } = useUserContext();
+	const { updateUser, dispatch } = useUserContext();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
 	useEffect(() => {
-		const unSub = onAuthStateChanged(auth, (user) => {
+		const unSub = onAuthStateChanged(auth, async (user) => {
 			if (user) {
-				updateUser(user?.uid);
+				const docRef = doc(db, "users", user.uid);
+				const docSnap = await getDoc(docRef);
+				if (docSnap.exists()) {
+					dispatch({ type: "UPDATEUSER", payload: docSnap.data() as UserState });
+				}
 			}
 		});
 
 		return () => {
 			unSub();
 		};
-	}, []);
+	}, [auth.currentUser]);
 
 	return (
 		<Suspense fallback={<div>Loading...</div>}>

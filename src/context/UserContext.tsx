@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { db } from "../lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-interface UserState {
+export interface UserState {
 	username: string;
 	email: string;
 	firstname: string;
@@ -16,6 +16,7 @@ interface UserState {
 interface UserContextType {
 	state: UserState;
 	updateUser: (uid: string) => void;
+	dispatch: React.Dispatch<Action>;
 }
 
 const initialState: UserState = {
@@ -35,6 +36,7 @@ type Action = { type: "UPDATEUSER"; payload: UserState };
 const UserContext = createContext<UserContextType>({
 	state: initialState,
 	updateUser: () => null,
+	dispatch: () => null,
 });
 
 const userReducer = (state: UserState, action: Action): UserState => {
@@ -49,19 +51,13 @@ const userReducer = (state: UserState, action: Action): UserState => {
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, dispatch] = useReducer(userReducer, initialState);
 
-	const updateUser = async (uid: string) => {
-		if (!uid) return; // If no uid is provided, just
-		console.log(uid, "id");
-		try {
-			const docRef = doc(db, "users", uid);
-			const docSnap = await getDoc(docRef);
-			if (docSnap.exists()) {
-				console.log("Document data", docSnap.data());
-			}
-		} catch (error) {}
+	const updateUser = (uid: string) => {
+		console.log(uid);
 	};
 
-	return <UserContext.Provider value={{ state, updateUser }}>{children}</UserContext.Provider>;
+	return (
+		<UserContext.Provider value={{ state, updateUser, dispatch }}>{children}</UserContext.Provider>
+	);
 };
 
 export function useUserContext() {
