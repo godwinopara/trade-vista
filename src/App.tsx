@@ -1,5 +1,9 @@
 import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
+import { UserProvider, useUserContext } from "./context/UserContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./lib/firebase";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -106,22 +110,44 @@ const router = createBrowserRouter([
 		element: <SignIn />,
 	},
 	{
-		path: "admin/dashboard",
-		element: <Dashboard />,
-	},
-	{
-		path: "user/dashboard",
-		element: <UserDashboard />,
+		element: <ProtectedRoutes />,
+		children: [
+			{
+				path: "admin/dashboard",
+				element: <Dashboard />,
+			},
+			{
+				path: "user/dashboard",
+				element: <UserDashboard />,
+			},
+		],
 	},
 ]);
 
 function App() {
+	const { updateUser } = useUserContext();
+
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+
+	useEffect(() => {
+		const unSub = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				updateUser(user?.uid);
+			}
+		});
+
+		return () => {
+			unSub();
+		};
+	}, []);
+
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
-			<RouterProvider router={router} />
+			<UserProvider>
+				<RouterProvider router={router} />
+			</UserProvider>
 		</Suspense>
 	);
 }

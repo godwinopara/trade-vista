@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../images/LOGO-DARK.svg";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import signUpImg from "../images/authImg.jpg";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import { useUserContext } from "../context/UserContext";
 
 interface Country {
 	name: string;
@@ -10,25 +13,13 @@ interface Country {
 	Iso3: string;
 }
 
-export default function SignUp() {
-	const [countries, setCountries] = useState<Country[] | null>(null);
+export default function SignIn() {
 	const [error, setError] = useState<string | null>(null);
-
 	const [loading, setLoading] = useState(false);
 
-	const [formData, setFormData] = useState({
-		firstname: "",
-		lastname: "",
-		username: "",
-		gender: "",
-		email: "",
-		country: "",
-		mobile: "",
-		password: "",
-		confirmPassword: "",
-	});
+	const [formData, setFormData] = useState({ email: "", password: "" });
 
-	// const { signUp } = useAuthContext();
+	const navigate = useNavigate();
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		const { name, value } = e.target;
@@ -38,80 +29,19 @@ export default function SignUp() {
 		}));
 	};
 
-	const handleSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
+	const handleSubmitSignIn = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setLoading(true);
 
-		if (formData.password !== formData.confirmPassword) {
-			setError("Password Mismatch: Password and Confirm Password not the same");
-			setLoading(false);
-			return;
-		}
-
-		// try {
-		// 	const signup = await signUp(formData.email, formData.password);
-		// 	if (signup) {
-		// 		const userRef = collection(db, "userData");
-		// 		await setDoc(doc(userRef, signup.user.uid), {
-		// 			totalBalance: "0.000",
-		// 			totalProfit: "0.000",
-		// 			totalBonus: "0.000",
-		// 			tradingSession: [],
-		// 			depositHistory: [],
-		// 			withdrawalHistory: [],
-		// 			userId: signup.user.uid,
-		// 			subscription: {},
-		// 			verification: {},
-		// 			imgUrl: "",
-		// 			user: {
-		// 				firstname: formData.firstname[0].toUpperCase() + formData.firstname.slice(1),
-		// 				lastname: formData.lastname[0].toUpperCase() + formData.lastname.slice(1),
-		// 				email: formData.email,
-		// 				password: formData.password,
-		// 				country: formData.country,
-		// 				mobile: formData.mobile,
-		// 				status: "Pending",
-		// 				username: formData.username,
-		// 				gender: formData.gender,
-		// 				joinedDate: new Date().toDateString(),
-		// 			},
-		// 		});
-		// 		setError(null);
-		// 		setFormData({
-		// 			firstname: "",
-		// 			lastname: "",
-		// 			username: "",
-		// 			gender: "",
-		// 			email: "",
-		// 			country: "",
-		// 			mobile: "",
-		// 			password: "",
-		// 			confirmPassword: "",
-		// 		});
-		// 		setLoading(false);
-		// 		localStorage.setItem("userToken", JSON.stringify(signup.user.stsTokenManager));
-		// 		router.push("/user");
-		// 	}
-		// } catch (error: any) {
-		// 	const errorMessage = error.message.replace("Firebase: ", "");
-		// 	setError(errorMessage);
-		// }
-	};
-
-	useEffect(() => {
-		setError(null);
-
-		const getCountries = async () => {
-			try {
-				const res = await axios.get("https://countriesnow.space/api/v0.1/countries/iso");
-				const data = res.data;
-				setCountries(data.data);
-			} catch (error: any) {
-				setError(error.message);
+		try {
+			const data = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+			if (data.user.uid) {
+				localStorage.setItem("token", data.user.refreshToken);
+				navigate("/user/dashboard");
 			}
-		};
-		getCountries();
-	}, []);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<section className="grid grid-cols-2">
@@ -120,7 +50,7 @@ export default function SignUp() {
 				<Link to="/" className="flex justify-center items-center mb-16 cursor-pointer">
 					<img src={logo} alt="" className="w-[50%]" />
 				</Link>
-				<form onSubmit={handleSubmitSignUp}>
+				<form onSubmit={handleSubmitSignIn}>
 					<div className="mb-4">
 						<label className="mb-2.5 block font-medium text-black ">Email</label>
 						<div className="relative">

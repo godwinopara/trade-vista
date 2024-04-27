@@ -71,7 +71,7 @@ export default function Plans() {
 							CHF
 						</li>
 					</ul>
-					<Link to="https://universalcryptospheredashboard.vercel.app/auth/login">
+					<Link to="/user/dashboard">
 						<Button
 							btnText="Start Earning"
 							className="border border-primary-hover text-primary hover:text-white hover:bg-primary-hover text-lg py-4 rounded-md w-full"
@@ -134,7 +134,7 @@ export default function Plans() {
 							CHF
 						</li>
 					</ul>
-					<Link to="https://universalcryptospheredashboard.vercel.app/auth/login">
+					<Link to="/user/dashboard">
 						<Button
 							btnText="Start Earning"
 							className="border border-primary-hover text-primary hover:text-white hover:bg-primary-hover text-lg py-4 rounded-md w-full"
