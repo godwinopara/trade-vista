@@ -124,18 +124,18 @@ const router = createBrowserRouter([
 				path: "user/dashboard",
 				element: <UserDashboard />,
 			},
-        {
-    path: "user/deposit",
-    element: <Deposit />,
-    },
-    {
-    path: "user/withdrawal",
-    element: <Withdrawal />,
-    },
-    {
-    path: "user/assets",
-    element: <Asset />,
-    },
+			{
+				path: "user/deposit",
+				element: <Deposit />,
+			},
+			{
+				path: "user/withdrawal",
+				element: <Withdrawal />,
+			},
+			{
+				path: "user/assets",
+				element: <Asset />,
+			},
 		],
 	},
 ]);
@@ -146,22 +146,6 @@ function App() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-
-	useEffect(() => {
-		const unSub = onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				const docRef = doc(db, "users", user.uid);
-				const docSnap = await getDoc(docRef);
-				if (docSnap.exists()) {
-					dispatch({ type: "UPDATEUSER", payload: docSnap.data() as UserState });
-				}
-			}
-		});
-
-		return () => {
-			unSub();
-		};
-	}, [auth.currentUser]);
 
 	return (
 		<Suspense fallback={<div>Loading...</div>}>

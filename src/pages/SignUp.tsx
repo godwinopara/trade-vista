@@ -84,11 +84,11 @@ export default function SignUp() {
 			});
 
 			await setDoc(doc(db, "verifications", res.user.uid), {
-				verifications: {},
+				verification: {},
 			});
 
 			await setDoc(doc(db, "accounts", res.user.uid), {
-				accounts: { balance: 0, profit: 0, bonus: 0 },
+				account: { balance: 0, profit: 0, bonus: 0 },
 			});
 
 			await setDoc(doc(db, "trades", res.user.uid), {
