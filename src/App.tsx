@@ -1,5 +1,10 @@
 import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
+import { UserProvider, UserState, useUserContext } from "./context/UserContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "./lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -112,46 +117,75 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
-    path: "admin/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "user/dashboard",
-    element: <UserDashboard />,
-  },
-  {
-    path: "user/deposit",
-    element: <Deposit />,
-  },
-  {
-    path: "user/withdrawal",
-    element: <Withdrawal />,
-  },
-  {
-    path: "user/assets",
-    element: <Asset />,
-  },
-  {
-    path: "user/subscriptions",
-    element: <Subscription />,
-  },
-  {
-    path: "user/user-verify",
-    element: <Verify />,
-  },
-  {
-    path: "user/buy-bitcoin",
-    element: <BuyBitcoin />,
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "admin/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "user/dashboard",
+        element: <UserDashboard />,
+      },
+      {
+        path: "user/deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "user/withdrawal",
+        element: <Withdrawal />,
+      },
+      {
+        path: "user/assets",
+        element: <Asset />,
+      },
+      {
+        path: "user/subscriptions",
+        element: <Subscription />,
+      },
+      {
+        path: "user/user-verify",
+        element: <Verify />,
+      },
+      {
+        path: "user/buy-bitcoin",
+        element: <BuyBitcoin />,
+      },
+    ],
   },
 ]);
 
 function App() {
+  const { updateUser, dispatch } = useUserContext();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const unSub = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          dispatch({
+            type: "UPDATEUSER",
+            payload: docSnap.data() as UserState,
+          });
+        }
+      }
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
     </Suspense>
   );
 }
