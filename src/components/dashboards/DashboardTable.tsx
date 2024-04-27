@@ -10,7 +10,7 @@ const DashboardTable = () => {
           <div className="max-w-full overflow-x-auto">
             <table className="w-full table-auto">
               <thead>
-                <tr className=" text-left bg-meta-4 whitespace-nowrap">
+                <tr className=" text-left bg-primary whitespace-nowrap">
                   <th className="min-w-[100px] py-4 px-4 font-semibold text-white text-lg ">
                     Options
                   </th>
