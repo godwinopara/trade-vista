@@ -5,6 +5,7 @@ type Asset = {
   logo: any;
   abbr: string;
   name: string;
+  value: string;
 };
 
 const AssetData: Asset[] = [
@@ -12,16 +13,19 @@ const AssetData: Asset[] = [
     logo: <FaBitcoin />,
     abbr: "BTC",
     name: "Bitcoin",
+    value: "$301,360.00",
   },
   {
     logo: <FaEthereum />,
     abbr: "ETH",
+    value: "$301,360.00",
     name: "Ethereum",
   },
   {
     logo: <FaGg />,
     abbr: "LTH",
     name: "Litcoin",
+    value: "$301,360.00",
   },
 ];
 
@@ -38,6 +42,9 @@ export default function AssetsTable() {
               </th>
               <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white">
                 Name
+              </th>
+              <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-white">
+                Value
               </th>
 
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
@@ -57,6 +64,11 @@ export default function AssetsTable() {
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <h5 className="font-medium text-black dark:text-white">
                     {assetItem.name}
+                  </h5>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <h5 className="font-medium text-black dark:text-white">
+                    {assetItem.value}
                   </h5>
                 </td>
 

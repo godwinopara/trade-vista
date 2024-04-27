@@ -167,7 +167,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                   <Link
                     to={`/${currentPath}/buy-bitcoin`}
                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-                      pathname.includes("withdrawals") &&
+                      pathname.includes("buy-bitcoin") &&
                       "bg-primary-hover dark:bg-meta-4"
                     }`}
                   >
@@ -219,9 +219,9 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
               )}
               <li>
                 <Link
-                  to={`/${currentPath}/accounts`}
+                  to={`/${currentPath}/user-verify`}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-                    pathname.includes("accounts") &&
+                    pathname.includes("user-verify") &&
                     "bg-primary-hover dark:bg-meta-4"
                   }`}
                 >

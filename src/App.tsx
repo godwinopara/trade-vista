@@ -26,6 +26,9 @@ const UserDashboard = lazy(() => import("./pages/UserDashboard"));
 const Deposit = lazy(() => import("./pages/Deposit"));
 const Withdrawal = lazy(() => import("./pages/Withdrawal"));
 const Asset = lazy(() => import("./pages/Asset"));
+const Subscription = lazy(() => import("./pages/Subscription"));
+const Verify = lazy(() => import("./pages/Verify"));
+const BuyBitcoin = lazy(() => import("./pages/BuyBitcoin"));
 
 const router = createBrowserRouter([
   {
@@ -127,6 +130,18 @@ const router = createBrowserRouter([
   {
     path: "user/assets",
     element: <Asset />,
+  },
+  {
+    path: "user/subscriptions",
+    element: <Subscription />,
+  },
+  {
+    path: "user/user-verify",
+    element: <Verify />,
+  },
+  {
+    path: "user/buy-bitcoin",
+    element: <BuyBitcoin />,
   },
 ]);
 
