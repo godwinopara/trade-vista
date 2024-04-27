@@ -19,7 +19,6 @@ type Props = {
 export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
   const location = useLocation();
   const pathname = location.pathname;
-  console.log(pathname.split("/")[1], "path");
   const currentPath = pathname.split("/")[1];
 
   const trigger = useRef<any>(null);
@@ -97,7 +96,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
               {/* <!-- Menu Item Dashboard --> */}
               <li>
                 <Link
-                  to={pathname}
+                  to={`/${currentPath}/dashboard`}
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
                     pathname === `/${currentPath}/dashboard` &&
                     "bg-primary-hover dark:bg-meta-4"
