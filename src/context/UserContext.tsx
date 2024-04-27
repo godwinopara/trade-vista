@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 export interface UserState {
+<<<<<<< HEAD
 	username: string;
 	email: string;
 	firstname: string;
@@ -19,15 +20,26 @@ export interface AccountState {
 	balance: string;
 	profit: string;
 	bonus: string;
+=======
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  mobile: string;
+  country: string;
+  password: string;
+  gender: string;
+>>>>>>> 73ebd627c3a835f9f80800aecd80989fd1c384d3
 }
 
 interface UserContextType {
-	state: UserState;
-	updateUser: (uid: string) => void;
-	dispatch: React.Dispatch<Action>;
+  state: UserState;
+  updateUser: (uid: string) => void;
+  dispatch: React.Dispatch<Action>;
 }
 
 const initialState: UserState = {
+<<<<<<< HEAD
 	username: "",
 	email: "",
 	firstname: "",
@@ -37,6 +49,16 @@ const initialState: UserState = {
 	password: "",
 	gender: "",
 	account: { balance: "0", profit: "0", bonus: "0" },
+=======
+  username: "",
+  email: "",
+  firstname: "",
+  lastname: "",
+  mobile: "",
+  country: "",
+  password: "",
+  gender: "",
+>>>>>>> 73ebd627c3a835f9f80800aecd80989fd1c384d3
 };
 
 // Step 3: Define Action Types
@@ -47,12 +69,13 @@ type Action =
 	| { type: "SET_ERROR"; payload: string };
 
 const UserContext = createContext<UserContextType>({
-	state: initialState,
-	updateUser: () => null,
-	dispatch: () => null,
+  state: initialState,
+  updateUser: () => null,
+  dispatch: () => null,
 });
 
 const userReducer = (state: UserState, action: Action): UserState => {
+<<<<<<< HEAD
 	switch (action.type) {
 		case "UPDATE_USER":
 			return action.payload;
@@ -116,12 +139,30 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		},
 		[dispatch]
 	);
+=======
+  switch (action.type) {
+    case "UPDATEUSER":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
-	return (
-		<UserContext.Provider value={{ state, updateUser, dispatch }}>{children}</UserContext.Provider>
-	);
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [state, dispatch] = useReducer(userReducer, initialState);
+
+  const updateUser = (uid: string) => {
+    console.log(uid);
+  };
+>>>>>>> 73ebd627c3a835f9f80800aecd80989fd1c384d3
+
+  return (
+    <UserContext.Provider value={{ state, updateUser, dispatch }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export function useUserContext() {
-	return useContext(UserContext);
+  return useContext(UserContext);
 }
