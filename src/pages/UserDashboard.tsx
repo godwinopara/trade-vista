@@ -11,8 +11,8 @@ type Props = {};
 
 const UserDashboard = (props: Props) => {
 	const { state } = useUserContext();
+	console.log(state);
 
-	console.log(state.account.balance, "summary");
 	return (
 		<AdminLayout>
 			<div className="flex flex-col gap-6">
@@ -23,19 +23,16 @@ const UserDashboard = (props: Props) => {
 								title="Total Balance"
 								totalUsd={`${state.account.balance}`}
 								totalBtc={`4.74585966 BTC`}
-								totalEth={`0.00000000 ETH`}
 							/>
 							<CardDataStats
 								title="Total Profit"
 								totalUsd={`${state.account.profit}`}
 								totalBtc={`4.74585966 BTC`}
-								totalEth={`0.00000000 ETH`}
 							/>
 							<CardDataStats
 								title="Total Bonus"
 								totalUsd={`${state.account.bonus}`}
 								totalBtc={`4.74585966 BTC`}
-								totalEth={`0.00000000 ETH`}
 							/>
 						</div>
 						<StockMarket colorTheme="dark" height={600} width="100%" showChart></StockMarket>
