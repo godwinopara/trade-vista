@@ -156,8 +156,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	const { updateUser, dispatch } = useUserContext();
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
