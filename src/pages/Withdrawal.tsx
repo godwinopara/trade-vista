@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import { CardDataStats } from "../components/dashboards/CardDataStats";
 import WithdrawalTable from "../components/Tables/WithdrawalTable";
 import { useUserContext } from "../context/UserContext";
+import { v4 as uuidv4 } from "uuid";
 
 type Props = {};
 
@@ -16,6 +17,8 @@ const Withdrawal = (props: Props) => {
 		accountNumber: "",
 	});
 
+	const [loading, setLoading] = useState(false);
+
 	const { addWithdrawal } = useUserContext();
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -24,6 +27,35 @@ const Withdrawal = (props: Props) => {
 			...prevData,
 			[name]: value,
 		}));
+	};
+
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setLoading(true);
+
+		const payload = {
+			method: formData.paymentMethod,
+			amount: formData.amount,
+			status: "Pending",
+			date: new Date().toDateString(),
+			id: uuidv4(),
+		};
+
+		try {
+			addWithdrawal(payload);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+			setFormData({
+				paymentMethod: "",
+				amount: "",
+				walletAddress: "",
+				bankName: "",
+				accountName: "",
+				accountNumber: "",
+			});
+		}
 	};
 
 	return (
@@ -43,7 +75,7 @@ const Withdrawal = (props: Props) => {
 						made into.
 					</p>
 				</div>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="">
 						<div className="mb-5">
 							<label className="mb-3 block text-black dark:text-white">
@@ -141,7 +173,7 @@ const Withdrawal = (props: Props) => {
 						)} */}
 
 						<button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-white hover:bg-primary-hover">
-							Withdraw
+							{loading ? "Loading.........." : "Withdraw"}
 						</button>
 					</div>
 				</form>

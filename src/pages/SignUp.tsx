@@ -61,6 +61,7 @@ export default function SignUp() {
 			localStorage.setItem("token", res.user.refreshToken);
 
 			await setDoc(doc(db, "users", res.user.uid), {
+				uid: res.user.uid,
 				username: formData.username,
 				email: formData.email,
 				firstname: formData.firstname,

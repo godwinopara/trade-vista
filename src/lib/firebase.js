@@ -4,14 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: "AIzaSyAhtrf2D-UNtxfBhGmlNUrdbZXy-PBXy28",
-	authDomain: "tradevista-17bab.firebaseapp.com",
-	projectId: "tradevista-17bab",
-	storageBucket: "tradevista-17bab.appspot.com",
-	messagingSenderId: "278940050290",
-	appId: "1:278940050290:web:c7184e81e082a828ca33eb",
+	apiKey: "AIzaSyDSH7s_vN63klijoB0e7ivAb8jyx5F5LPE",
+	authDomain: "investinspire-3b5e4.firebaseapp.com",
+	projectId: "investinspire-3b5e4",
+	storageBucket: "investinspire-3b5e4.appspot.com",
+	messagingSenderId: "861782288484",
+	appId: "1:861782288484:web:101c77644ccafe960ed771",
 };
 
 // Initialize Firebase

@@ -4,8 +4,6 @@ import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/modal/Modal";
 import { FaTimes } from "react-icons/fa";
 import DepositTable from "../components/Tables/DepositTable";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../lib/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { useUserContext } from "../context/UserContext";
 import upload from "../lib/upload";

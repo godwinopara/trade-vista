@@ -4,6 +4,7 @@ import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 export interface UserState {
+	uid: string;
 	username: string;
 	email: string;
 	firstname: string;
@@ -29,6 +30,7 @@ interface User {
 	country: string;
 	password: string;
 	gender: string;
+	uid: string;
 }
 
 export interface AccountState {
@@ -85,6 +87,7 @@ interface UserContextType {
 }
 
 const initialState: UserState = {
+	uid: "",
 	username: "",
 	email: "",
 	firstname: "",
@@ -129,6 +132,8 @@ const userReducer = (state: UserState, action: Action): UserState => {
 			return { ...state, ...action.payload };
 		case "GET_ACCOUNT":
 			return { ...state, account: action.payload };
+		case "GET_WITHDRAWALS":
+			return { ...state, withdrawals: action.payload };
 		case "GET_DEPOSITS":
 			return { ...state, deposits: action.payload };
 		case "ADD_DEPOSIT":
@@ -147,13 +152,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string | null>(null);
 
-	const [currentUser, setCurrentUser] = useState<string | null>(null);
+	const currentUser = state.uid;
 
 	useEffect(() => {
 		const unSub = onAuthStateChanged(auth, async (user) => {
 			if (user) {
 				fetchUserData(user.uid);
-				setCurrentUser(user.uid);
 			}
 		});
 
@@ -162,11 +166,23 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		};
 	}, []);
 
+	const addDeposit = useCallback(async (payload: DepositState) => {
+		if (payload) {
+			try {
+				const addDepositRef = doc(db, "deposits", currentUser);
+				await updateDoc(addDepositRef, { deposits: arrayUnion(payload) });
+				dispatch({ type: "ADD_DEPOSIT", payload });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	}, []);
+
 	const fetchUserData = useCallback(async (uid: string) => {
 		const userDocRef = doc(db, "users", uid);
 		const accountDocRef = doc(db, "accounts", uid);
-		const depositDocRef = doc(db, "GET_deposits", uid);
-		const withdrawalDocRef = doc(db, "GET_withdrawals", uid);
+		const depositDocRef = doc(db, "deposits", uid);
+		const withdrawalDocRef = doc(db, "withdrawals", uid);
 		const verificationDocRef = doc(db, "verifications", uid);
 		const subscriptionDocRef = doc(db, "subscriptions", uid);
 		const tradeDocRef = doc(db, "trades", uid);
@@ -183,7 +199,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		if (accountDocSnap.exists())
 			dispatch({ type: "GET_ACCOUNT", payload: accountDocSnap.data().account as AccountState });
 		if (depositDocSnap.exists())
-			dispatch({ type: "GET_DEPOSITS", payload: depositDocSnap.data().deposits as DepositState[] });
+			dispatch({
+				type: "GET_DEPOSITS",
+				payload: depositDocSnap.data().deposits as DepositState[],
+			});
+
 		if (withdrawalDocSnap.exists())
 			dispatch({
 				type: "GET_WITHDRAWALS",
@@ -203,22 +223,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			dispatch({ type: "TRADES", payload: tradeDocSnap.data().trades as TradeState[] });
 	}, []);
 
-	const addDeposit = async (payload: DepositState) => {
-		if (payload && currentUser) {
-			try {
-				const addDepositRef = doc(db, "GET_deposits", currentUser);
-				await updateDoc(addDepositRef, { deposits: arrayUnion(payload) });
-				dispatch({ type: "ADD_DEPOSIT", payload });
-			} catch (error) {
-				console.log(error);
-			}
-		}
-	};
-
 	const addWithdrawal = async (payload: WithdrawalState) => {
-		if (payload && currentUser) {
+		if (payload) {
 			try {
-				const addWithdrawalRef = doc(db, "GET_withdrawals", currentUser);
+				const addWithdrawalRef = doc(db, "withdrawals", currentUser);
 				await updateDoc(addWithdrawalRef, { withdrawals: arrayUnion(payload) });
 				dispatch({ type: "ADD_WITHDRAWAL", payload });
 			} catch (error) {
