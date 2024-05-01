@@ -122,18 +122,34 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                 </li>
               )}
 
-              <li>
-                <Link
-                  to={`/${currentPath}/assets`}
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-                    pathname.includes("assets") &&
-                    "bg-primary-hover dark:bg-meta-4"
-                  }`}
-                >
-                  <CopyPlus />
-                  Assets
-                </Link>
-              </li>
+              {pathname.includes("admin") && (
+                <li>
+                  <Link
+                    to={`/${currentPath}/account`}
+                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+                      pathname.includes("account") &&
+                      "bg-primary-hover dark:bg-meta-4"
+                    }`}
+                  >
+                    <FaUsers />
+                    Account
+                  </Link>
+                </li>
+              )}
+              {!pathname.includes("admin") && (
+                <li>
+                  <Link
+                    to={`/${currentPath}/assets`}
+                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+                      pathname.includes("assets") &&
+                      "bg-primary-hover dark:bg-meta-4"
+                    }`}
+                  >
+                    <CopyPlus />
+                    Assets
+                  </Link>
+                </li>
+              )}
 
               <li>
                 <Link
