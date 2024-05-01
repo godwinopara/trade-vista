@@ -122,7 +122,7 @@ const Stat1 = () => {
 							y2="27.0583"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<linearGradient
@@ -133,7 +133,7 @@ const Stat1 = () => {
 							y2="48.895"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<clipPath id="clip0_1155_32106">
@@ -250,7 +250,7 @@ const Stat2 = () => {
 							y2="27.0584"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<linearGradient
@@ -261,7 +261,7 @@ const Stat2 = () => {
 							y2="48.8951"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<clipPath id="clip0_1155_32111">
@@ -378,7 +378,7 @@ const Stat3 = () => {
 							y2="27.0584"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<linearGradient
@@ -389,7 +389,7 @@ const Stat3 = () => {
 							y2="48.8951"
 							gradientUnits="userSpaceOnUse"
 						>
-							<stop stop-color="white" stop-opacity="0.2"></stop>
+							<stop stop-color="white" stopOpacity="0.2"></stop>
 							<stop offset="1" stop-color="white"></stop>
 						</linearGradient>
 						<clipPath id="clip0_1155_32117">
