@@ -34,6 +34,7 @@ const Asset = lazy(() => import("./pages/Asset"));
 const Subscription = lazy(() => import("./pages/Subscription"));
 const Verify = lazy(() => import("./pages/Verify"));
 const BuyBitcoin = lazy(() => import("./pages/BuyBitcoin"));
+const Users = lazy(() => import("./pages/Users"));
 
 const router = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: "admin/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "admin/users",
+        element: <Users />,
       },
       {
         path: "user/dashboard",
