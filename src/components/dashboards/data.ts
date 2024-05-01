@@ -290,3 +290,45 @@ export const withdrawalData = [
     date: "Mon, 18-Dec-2023"
   }
 ]
+
+export const usersInfo = [
+  {
+    userId: 1,
+    firstname: "John",
+    lastname: "Doe",
+    username: "jonnycrane",
+    mobile: "08162435269",
+    password: "ysgdyydsgysd",
+    country: "Nigeria",
+    status: "Active",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "john@gmail.com"
+  },
+  {
+    userId: 2,
+    firstname: "Johndef",
+    lastname: "Doeeey",
+    username: "jonnycranexvr",
+    mobile: "08162435269",
+    password: "ysgdyydsgysd",
+    country: "Nigeria",
+    status: "Active",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "johndef@gmail.com"
+  },
+  {
+    userId: 3,
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "ysgdyydsgysd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com"
+  },
+];
