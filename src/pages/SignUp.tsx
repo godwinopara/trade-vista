@@ -61,6 +61,7 @@ export default function SignUp() {
 			localStorage.setItem("token", res.user.refreshToken);
 
 			await setDoc(doc(db, "users", res.user.uid), {
+				uid: res.user.uid,
 				username: formData.username,
 				email: formData.email,
 				firstname: formData.firstname,
@@ -84,7 +85,11 @@ export default function SignUp() {
 			});
 
 			await setDoc(doc(db, "verifications", res.user.uid), {
-				verification: {},
+				verification: {
+					document: null,
+					status: "not-verified",
+				},
+
 			});
 
 			await setDoc(doc(db, "accounts", res.user.uid), {

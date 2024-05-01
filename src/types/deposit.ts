@@ -4,3 +4,12 @@ export type Deposit = {
 	status: string;
 	date: string;
 };
+
+export type DepositState = {
+	amount: string;
+	date: string;
+	method: string;
+	status: string;
+	id: string | null;
+	screenshot: string | null;
+};

@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import { StockMarket } from "react-ts-tradingview-widgets";
 import DashboardTable from "../components/dashboards/DashboardTable";
@@ -11,7 +10,6 @@ type Props = {};
 
 const UserDashboard = (props: Props) => {
 	const { state } = useUserContext();
-	console.log(state);
 
 	return (
 		<AdminLayout>

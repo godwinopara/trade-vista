@@ -17,7 +17,7 @@ export default function SignIn() {
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
-	const { updateUser } = useUserContext();
+	const { fetchUserData } = useUserContext();
 
 	const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -38,7 +38,7 @@ export default function SignIn() {
 			const data = await signInWithEmailAndPassword(auth, formData.email, formData.password);
 			if (data.user.uid) {
 				localStorage.setItem("token", data.user.refreshToken);
-				updateUser(data.user.uid);
+				fetchUserData(data.user.uid);
 				navigate("/user/dashboard");
 			}
 		} catch (error) {
