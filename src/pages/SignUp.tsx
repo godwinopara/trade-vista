@@ -85,7 +85,10 @@ export default function SignUp() {
 			});
 
 			await setDoc(doc(db, "verifications", res.user.uid), {
-				verification: {},
+				verification: {
+					document: null,
+					status: "not-verified",
+				},
 			});
 
 			await setDoc(doc(db, "accounts", res.user.uid), {

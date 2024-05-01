@@ -84,6 +84,8 @@ interface UserContextType {
 	fetchUserData: (uid: string) => void;
 	addDeposit: (payload: DepositState) => void;
 	addWithdrawal: (payload: WithdrawalState) => void;
+	updateSubscription: (payload: SubscriptionState) => void;
+	updateVerification: (payload: VerificationState) => void;
 }
 
 const initialState: UserState = {
@@ -114,8 +116,9 @@ type Action =
 	| { type: "ADD_WITHDRAWAL"; payload: WithdrawalState }
 	| { type: "TRADES"; payload: TradeState[] }
 	| { type: "ADD_TRADE"; payload: TradeState }
-	| { type: "VERIFICATION"; payload: VerificationState }
+	| { type: "VERIFICATION_STATUS"; payload: VerificationState }
 	| { type: "SUBSCRIPTION"; payload: SubscriptionState }
+	| { type: "UPDATE_SUBSCRIPTION"; payload: SubscriptionState }
 	| { type: "SET_LOADING"; payload: boolean }
 	| { type: "SET_ERROR"; payload: string };
 
@@ -124,6 +127,8 @@ const UserContext = createContext<UserContextType>({
 	fetchUserData: () => null,
 	addDeposit: () => null,
 	addWithdrawal: () => null,
+	updateSubscription: () => null,
+	updateVerification: () => null,
 });
 
 const userReducer = (state: UserState, action: Action): UserState => {
@@ -142,6 +147,10 @@ const userReducer = (state: UserState, action: Action): UserState => {
 			return { ...state, withdrawals: [...state.withdrawals, action.payload] };
 		case "ADD_TRADE":
 			return { ...state, trades: [...state.trades, action.payload] };
+		case "VERIFICATION_STATUS":
+			return { ...state, ...action.payload };
+		case "SUBSCRIPTION":
+			return { ...state, subscription: action.payload };
 		default:
 			return state;
 	}
@@ -164,18 +173,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			unSub();
 		};
-	}, []);
-
-	const addDeposit = useCallback(async (payload: DepositState) => {
-		if (payload) {
-			try {
-				const addDepositRef = doc(db, "deposits", currentUser);
-				await updateDoc(addDepositRef, { deposits: arrayUnion(payload) });
-				dispatch({ type: "ADD_DEPOSIT", payload });
-			} catch (error) {
-				console.log(error);
-			}
-		}
 	}, []);
 
 	const fetchUserData = useCallback(async (uid: string) => {
@@ -211,7 +208,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 		if (verificationDocSnap.exists())
 			dispatch({
-				type: "VERIFICATION",
+				type: "VERIFICATION_STATUS",
 				payload: verificationDocSnap.data().verification as VerificationState,
 			});
 		if (subscriptionDocSnap.exists())
@@ -221,6 +218,18 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 		if (tradeDocSnap.exists())
 			dispatch({ type: "TRADES", payload: tradeDocSnap.data().trades as TradeState[] });
+	}, []);
+
+	const addDeposit = useCallback(async (payload: DepositState) => {
+		if (payload) {
+			try {
+				const addDepositRef = doc(db, "deposits", currentUser);
+				await updateDoc(addDepositRef, { deposits: arrayUnion(payload) });
+				dispatch({ type: "ADD_DEPOSIT", payload });
+			} catch (error) {
+				console.log(error);
+			}
+		}
 	}, []);
 
 	const addWithdrawal = async (payload: WithdrawalState) => {
@@ -235,8 +244,41 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	};
 
+	const updateSubscription = async (payload: SubscriptionState) => {
+		if (payload) {
+			try {
+				const addSubscriptionRef = doc(db, "subscriptions", currentUser);
+				await setDoc(addSubscriptionRef, { subscription: payload });
+				dispatch({ type: "SUBSCRIPTION", payload });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	const updateVerification = async (payload: VerificationState) => {
+		if (payload) {
+			try {
+				const addVerificationRef = doc(db, "verifications", currentUser);
+				await setDoc(addVerificationRef, payload);
+				dispatch({ type: "VERIFICATION_STATUS", payload });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
 	return (
-		<UserContext.Provider value={{ state, fetchUserData, addDeposit, addWithdrawal }}>
+		<UserContext.Provider
+			value={{
+				state,
+				fetchUserData,
+				addDeposit,
+				addWithdrawal,
+				updateSubscription,
+				updateVerification,
+			}}
+		>
 			{children}
 		</UserContext.Provider>
 	);

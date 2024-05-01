@@ -1,39 +1,11 @@
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { storage } from "./firebase";
 
 const upload = async (file) => {
-	const storage = getStorage();
-	const storageRef = ref(storage, file.name);
 	const date = new Date();
-	const uploadTask = uploadBytesResumable(storageRef, `image/${date + file.name}`);
-
-	return new Promise((resolve, reject) => {
-		uploadTask.on(
-			"state_changed",
-			(snapshot) => {
-				const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-				console.log("Upload is " + progress + "% done");
-				switch (snapshot.state) {
-					case "paused":
-						console.log("Upload is paused");
-						break;
-					case "running":
-						console.log("Upload is running");
-						break;
-					case "success":
-						console.log("Upload Successful");
-				}
-			},
-			(error) => {
-				// Handle unsuccessful uploads
-				reject("Something went wrong!" + error.code);
-			},
-			() => {
-				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-					resolve(downloadURL);
-				});
-			}
-		);
-	});
+	const storageRef = ref(storage, `images/${date + file.name}`);
+	await uploadBytes(storageRef, file);
+	return await getDownloadURL(storageRef);
 };
 
 export default upload;

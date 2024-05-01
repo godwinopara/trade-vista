@@ -5,6 +5,7 @@ import { UserProvider, UserState, useUserContext } from "./context/UserContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Loader from "./components/ui/Loader";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -161,7 +162,7 @@ function App() {
 	}, []);
 
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<Suspense fallback={<Loader />}>
 			<UserProvider>
 				<RouterProvider router={router} />
 			</UserProvider>
