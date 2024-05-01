@@ -37,7 +37,6 @@ export interface AccountState {
 	balance: string;
 	profit: string;
 	bonus: string;
-
 }
 
 interface DepositState {
@@ -78,7 +77,6 @@ interface SubscriptionState {
 interface VerificationState {
 	document: string;
 	status: string;
-
 }
 
 interface UserContextType {
@@ -91,6 +89,7 @@ interface UserContextType {
 }
 
 const initialState: UserState = {
+	uid: "",
 	username: "",
 	email: "",
 	firstname: "",
@@ -105,12 +104,10 @@ const initialState: UserState = {
 	deposits: [],
 	verification: { document: "", status: "" },
 	subscription: { plan: "", amount: "", duration: "", date: "" },
-
 };
 
 // Step 3: Define Action Types
 type Action =
-
 	| { type: "GET_USER"; payload: User }
 	| { type: "GET_ACCOUNT"; payload: AccountState }
 	| { type: "GET_DEPOSITS"; payload: DepositState[] }
@@ -122,7 +119,6 @@ type Action =
 	| { type: "VERIFICATION_STATUS"; payload: VerificationState }
 	| { type: "SUBSCRIPTION"; payload: SubscriptionState }
 	| { type: "UPDATE_SUBSCRIPTION"; payload: SubscriptionState }
-
 	| { type: "SET_LOADING"; payload: boolean }
 	| { type: "SET_ERROR"; payload: string };
 
@@ -133,7 +129,6 @@ const UserContext = createContext<UserContextType>({
 	addWithdrawal: () => null,
 	updateSubscription: () => null,
 	updateVerification: () => null,
-
 });
 
 const userReducer = (state: UserState, action: Action): UserState => {
@@ -286,7 +281,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		>
 			{children}
 		</UserContext.Provider>
-
 	);
 };
 
