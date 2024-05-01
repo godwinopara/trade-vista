@@ -18,7 +18,7 @@ export const TradingSession = (props: Props) => {
   };
 
   return (
-    <div className="bg-primary rounded-lg">
+    <div className="bg-white rounded-lg">
       <div className="px-3 py-5 text-white border-b border-b-white">
         <h3 className="uppercase text-lg font-semibold">trading session</h3>
       </div>
@@ -35,7 +35,7 @@ export const TradingSession = (props: Props) => {
               value={tradeOption}
               onChange={(e) => setTradeOption(e.target.value)}
               required
-              className="relative text-sm z-20 w-full appearance-none rounded border border-stroke bg-primary py-3 px-5 outline-none transition focus:border-white active:border-white text-white"
+              className="relative text-sm z-20 w-full appearance-none rounded border border-stroke bg-white py-3 px-5 outline-none transition focus:border-white active:border-white "
             >
               <option value="">Select Trading Option</option>
               <option value="BUY">BUY</option>
