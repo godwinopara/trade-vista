@@ -89,6 +89,7 @@ export default function SignUp() {
 					document: null,
 					status: "not-verified",
 				},
+
 			});
 
 			await setDoc(doc(db, "accounts", res.user.uid), {
