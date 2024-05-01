@@ -1,5 +1,10 @@
 import React, { ReactNode } from "react";
-import { FaBitcoin, FaEthereum, FaMoneyCheckAlt } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaBitcoin,
+  FaEthereum,
+  FaMoneyCheckAlt,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 interface CardDataStatsProps {
@@ -65,7 +70,7 @@ export const SummaryCardDataStats: React.FC<CardDataStatsProps> = ({
   desc,
   action,
   url,
-  verify
+  verify,
 }) => {
   return (
     <div className="flex justify-between items-center px-3 py-6 border-b border-b-white">
@@ -77,9 +82,42 @@ export const SummaryCardDataStats: React.FC<CardDataStatsProps> = ({
       </div>
       <Link
         to={`${url}`}
-        className={` py-2 px-4 ${verify && "bg-[#10B981]"} bg-primary-hover rounded-[6px] text-white`}
+        className={` py-2 px-4 ${
+          verify && "bg-[#10B981]"
+        } bg-primary-hover rounded-[6px] text-white`}
       >
         {action}
+      </Link>
+    </div>
+  );
+};
+
+export const AdminCardDataStats: React.FC<CardDataStatsProps> = ({
+  title,
+  icon,
+  desc,
+  action,
+  url,
+  verify,
+}) => {
+  return (
+    <div className="flex flex-col justify-between  bg-primary text-white rounded-lg hover:scale-105 duration-300">
+      <div className="flex items-center justify-between px-3 py-5">
+        <div className="flex flex-col  text-white">
+          <p className="text-3xl font-semibold block">{desc}</p>
+          <p className="text-lg font-medium block">{title}</p>
+        </div>
+        <div className="">{icon}</div>
+      </div>
+
+      <Link
+        to={`${url}`}
+        className="flex justify-end mt-7 bg-primary-hover py-1 px-2.5"
+      >
+        <div className="flex items-center gap-2">
+          <span>{action}</span>
+          <FaArrowRight />
+        </div>
       </Link>
     </div>
   );
