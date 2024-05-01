@@ -395,4 +395,36 @@ export const subscriptions = [
 		duration: "7days",
 		
 	  },
+    {
+      userId: "2",
+      date: "20th Apr, 2024",
+      plan: "Silver Plan",
+      status: "Pending",
+      fullname: "Johnyy Doese",
+      id: "2",
+      amount: "1,500",
+      duration: "7days",
+      
+      },
+]
+
+export const verifications = [
+	{
+		userId: "1",
+		date: "20th Apr, 2024",
+		document: "Silver Plan",
+		status: "Pending",
+		fullname: "Johnyy Doese",
+		id: "2",
+		
+	  },
+    {
+      userId: "2",
+      date: "20th Apr, 2024",
+      document: "Silver Plan",
+      status: "Verified",
+      fullname: "Johnyy Doese",
+      id: "2",
+      
+      },
 ]
