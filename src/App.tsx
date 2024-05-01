@@ -38,7 +38,6 @@ const BuyBitcoin = lazy(() => import("./pages/BuyBitcoin"));
 const Users = lazy(() => import("./pages/Users"));
 
 const router = createBrowserRouter([
-<<<<<<< HEAD
 	{
 		path: "/",
 		element: <Home />,
@@ -127,6 +126,10 @@ const router = createBrowserRouter([
 				element: <Dashboard />,
 			},
 			{
+				path: "admin/users",
+				element: <Users />,
+			},
+			{
 				path: "user/dashboard",
 				element: <UserDashboard />,
 			},
@@ -156,129 +159,6 @@ const router = createBrowserRouter([
 			},
 		],
 	},
-=======
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "company/about",
-    element: <About />,
-  },
-  {
-    path: "company/contact",
-    element: <Contact />,
-  },
-  {
-    path: "market/forex",
-    element: <Forex />,
-  },
-  {
-    path: "market/commodities",
-    element: <Commodities />,
-  },
-  {
-    path: "market/indices",
-    element: <Indices />,
-  },
-  {
-    path: "market/shares",
-    element: <Shares />,
-  },
-  {
-    path: "market/treasures",
-    element: <Treasures />,
-  },
-  {
-    path: "market/cryptocurrency",
-    element: <Cryptocurrencies />,
-  },
-  {
-    path: "platforms/meta4",
-    element: <Metatrader4 />,
-  },
-  {
-    path: "platforms/meta5",
-    element: <Metatrader5 />,
-  },
-  {
-    path: "education/learn-cfds",
-    element: <LearnCfds />,
-  },
-  {
-    path: "education/learn-forex",
-    element: <LearnForex />,
-  },
-  {
-    path: "education/learn-shares",
-    element: <LearnShares />,
-  },
-  {
-    path: "education/trading-guides",
-    element: <TradingGuides />,
-  },
-  {
-    path: "education/learn-forex/:id",
-    element: <LearnForexDetails />,
-  },
-  {
-    path: "education/learn-shares/:id",
-    element: <LearnSharesDetails />,
-  },
-  {
-    path: "education/trading-guides/:id",
-    element: <LearnGuideDetails />,
-  },
-  {
-    path: "signup",
-    element: <SignUp />,
-  },
-  {
-    path: "signin",
-    element: <SignIn />,
-  },
-  {
-    element: <ProtectedRoutes />,
-    children: [
-      {
-        path: "admin/dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "admin/users",
-        element: <Users />,
-      },
-      {
-        path: "user/dashboard",
-        element: <UserDashboard />,
-      },
-      {
-        path: "user/deposit",
-        element: <Deposit />,
-      },
-      {
-        path: "user/withdrawal",
-        element: <Withdrawal />,
-      },
-      {
-        path: "user/assets",
-        element: <Asset />,
-      },
-      {
-        path: "user/subscriptions",
-        element: <Subscription />,
-      },
-      {
-        path: "user/user-verify",
-        element: <Verify />,
-      },
-      {
-        path: "user/buy-bitcoin",
-        element: <BuyBitcoin />,
-      },
-    ],
-  },
->>>>>>> 7351377693d01865dccc026edde372fcf8d2b23b
 ]);
 
 function App() {
