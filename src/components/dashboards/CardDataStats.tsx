@@ -73,10 +73,10 @@ export const SummaryCardDataStats: React.FC<CardDataStatsProps> = ({
   verify,
 }) => {
   return (
-    <div className="flex justify-between items-center px-3 py-6 border-b border-b-white">
+    <div className="flex justify-between items-center px-3 py-6 border-b border-b-gray">
       <div className="w-20%">{icon}</div>
 
-      <div className="w-[50%] flex flex-col  text-white">
+      <div className="w-[50%] flex flex-col  ">
         <p className="text-lg font-medium block">{title}</p>
         <p className="text-sm font-medium block">{desc}</p>
       </div>
