@@ -43,6 +43,7 @@ const AdminDeposit = lazy(() => import("./pages/AdminDeposit"));
 const AdminWithdrawal = lazy(() => import("./pages/AdminWithdrawal"));
 const AdminTradingSession = lazy(() => import("./pages/AdminTradingSession"));
 const AdminSubscription = lazy(() => import("./pages/AdminSubscription"));
+const AdminVerifications = lazy(() => import("./pages/AdminVerifications"));
 
 const router = createBrowserRouter([
 	{
@@ -155,6 +156,10 @@ const router = createBrowserRouter([
 			{
 				path: "admin/subscriptions",
 				element: <AdminSubscription />,
+			},
+			{
+				path: "admin/trades",
+				element: <AdminTradingSession />,
 			},
 			{
 				path: "user/dashboard",

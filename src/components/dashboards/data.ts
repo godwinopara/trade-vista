@@ -328,6 +328,7 @@ export const withdrawalData = [
 ];
 
 export const usersInfo = [
+<<<<<<< HEAD
 	{
 		userId: 1,
 		firstname: "John",
@@ -376,6 +377,120 @@ export const usersInfo = [
 		totalProfit: "4,500",
 		totalBonus: "350",
 	},
+=======
+  {
+    userId: "1",
+    firstname: "John",
+    lastname: "Doe",
+    username: "jonnycrane",
+    mobile: "08162435269",
+    password: 'ttftf',
+    country: "Nigeria",
+    status: "Active",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "john@gmail.com",
+    totalBalance: "100",
+    totalProfit: "400",
+    totalBonus: "350",
+  },
+  {
+    userId: "2",
+    firstname: "Johndef",
+    lastname: "Doeeey",
+    username: "jonnycranexvr",
+    mobile: "08162435269",
+    password: "sdgygydsg",
+    country: "Nigeria",
+    status: "Active",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "johndef@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+  {
+    userId: "3",
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "svsdsdggsd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+  {
+    userId: "4",
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "svsdsdggsd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+  {
+    userId: "5",
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "svsdsdggsd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+  {
+    userId: "6",
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "svsdsdggsd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+  {
+    userId: "7",
+    firstname: "mary",
+    lastname: "jane",
+    username: "mj235",
+    mobile: "08162435269",
+    password: "svsdsdggsd",
+    country: "Nigeria",
+    status: "upgrade",
+    joinedDate: "30th Apr, 2024",
+    gender: "male",
+    email: "mary@gmail.com",
+    totalBalance: "1000",
+    totalProfit: "4,500",
+    totalBonus: "350",
+  },
+>>>>>>> dfb94c5949ab557d9ee32b994cdf985bb086527a
 ];
 
 export const history: any = [
@@ -429,5 +544,43 @@ export const subscriptions = [
 		id: "2",
 		amount: "1,500",
 		duration: "7days",
+<<<<<<< HEAD
 	},
 ];
+=======
+		
+	  },
+    {
+      userId: "2",
+      date: "20th Apr, 2024",
+      plan: "Silver Plan",
+      status: "Pending",
+      fullname: "Johnyy Doese",
+      id: "2",
+      amount: "1,500",
+      duration: "7days",
+      
+      },
+]
+
+export const verifications = [
+	{
+		userId: "1",
+		date: "20th Apr, 2024",
+		document: "Silver Plan",
+		status: "Pending",
+		fullname: "Johnyy Doese",
+		id: "2",
+		
+	  },
+    {
+      userId: "2",
+      date: "20th Apr, 2024",
+      document: "Silver Plan",
+      status: "Verified",
+      fullname: "Johnyy Doese",
+      id: "2",
+      
+      },
+]
+>>>>>>> dfb94c5949ab557d9ee32b994cdf985bb086527a

@@ -167,7 +167,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 								</Link>
 							</li>
 
-							{pathname.includes("user") && (
+							{pathname.includes("buy-bitcoin") && (
 								<li>
 									<Link
 										to={`/${currentPath}/buy-bitcoin`}
@@ -218,21 +218,24 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 									</Link>
 								</li>
 							)}
-							<li>
-								<Link
-									to={`/${currentPath}/user-verify`}
-									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-										pathname.includes("user-verify") && "bg-primary-hover dark:bg-meta-4"
-									}`}
-								>
-									<MdAccountBalance />
-									Verify Account
-								</Link>
-							</li>
+							{pathname.includes("user-verify") && (
+								<li>
+									<Link
+										to={`/user/user-verify`}
+										className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+											pathname.includes("user-verify") && "bg-primary-hover dark:bg-meta-4"
+										}`}
+									>
+										<MdAccountBalance />
+										Verify Account
+									</Link>
+								</li>
+							)}
+
 							{pathname.includes("admin") && (
 								<li>
 									<Link
-										to="/admin/notification"
+										to="/admin/dashboard"
 										className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
 											pathname.includes("/dashboard/notification") &&
 											"bg-primary-hover dark:bg-meta-4"
