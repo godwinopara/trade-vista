@@ -5,6 +5,8 @@ export default function VerificationCard() {
 	const { state } = useUserContext();
 	const verified = state.verification?.status === "verified" ? true : false;
 
+	console.log(state);
+
 	return (
 		<div className="w-full rounded-md border border-stroke  bg-primary text-white py-4 px-7 shadow-default ">
 			<div className="w-full my-2 flex items-end justify-between">
@@ -15,7 +17,7 @@ export default function VerificationCard() {
 						<span className={`${verified ? "text-meta-3" : "text-warning"} text-2xl`}>
 							<MdVerified />
 						</span>
-						Not Verified
+						{state.verification.status[0].toUpperCase() + state.verification.status.slice(1)}
 					</h4>
 				</div>
 			</div>

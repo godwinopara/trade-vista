@@ -1,5 +1,5 @@
 import { useUserContext } from "../../context/UserContext";
-import { DepositState } from "../../types/deposit";
+import { DepositState } from "../../types/types";
 import { depositData } from "../dashboards/data";
 
 const DepositTable = () => {

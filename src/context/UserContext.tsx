@@ -26,6 +26,7 @@ export interface UserState {
 	subscription: SubscriptionState;
 	trades: TradeState[];
 	bitcoin: number;
+	joinedDate: string;
 }
 
 interface Asset {
@@ -53,6 +54,7 @@ interface User {
 	gender: string;
 	uid: string;
 	photoUrl: string;
+	joinedDate: string;
 }
 
 export interface AccountState {
@@ -132,10 +134,11 @@ const initialState: UserState = {
 	trades: [],
 	withdrawals: [],
 	deposits: [],
-	verification: { document: null, status: "not verified" },
+	verification: { document: null, status: "not-verified" },
 	subscription: { plan: "", amount: "", duration: "", date: "" },
 	bitcoin: 0,
 	assets: [],
+	joinedDate: "",
 };
 
 // Step 3: Define Action Types

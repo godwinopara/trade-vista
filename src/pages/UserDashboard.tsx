@@ -6,7 +6,6 @@ import { AccountSummary } from "../components/dashboards/AccountSummary";
 import { CardDataStats } from "../components/dashboards/CardDataStats";
 import { useUserContext } from "../context/UserContext";
 import VerificationCard from "../components/dashboards/VerificationCard";
-import { DepositState } from "../types/deposit";
 
 type Props = {};
 

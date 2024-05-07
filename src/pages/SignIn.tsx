@@ -70,7 +70,8 @@ export default function SignIn() {
 						country: "",
 						password: "",
 						gender: "",
-						// 	// Other user data you may want to save
+						joinedDate: new Date().toDateString(),
+						status: "Active",
 					});
 
 					await setDoc(doc(db, "deposits", user.uid), {

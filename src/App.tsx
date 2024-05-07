@@ -1,13 +1,12 @@
 import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
-import { UserProvider, UserState, useUserContext } from "./context/UserContext";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "./lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { UserProvider } from "./context/UserContext";
 import Loader from "./components/ui/Loader";
 import Settings from "./pages/Settings";
 import { Toaster } from "react-hot-toast";
+import AdminProtectedRoutes from "./AdminProtectedRoutes";
+import AdminProvider from "./context/AdminContext";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -127,7 +126,7 @@ const router = createBrowserRouter([
 		element: <SignIn />,
 	},
 	{
-		element: <ProtectedRoutes />,
+		element: <AdminProtectedRoutes />,
 		children: [
 			{
 				path: "admin/dashboard",
@@ -161,6 +160,15 @@ const router = createBrowserRouter([
 				path: "admin/trades",
 				element: <AdminTradingSession />,
 			},
+			{
+				path: "admin/verification",
+				element: <AdminVerifications />,
+			},
+		],
+	},
+	{
+		element: <ProtectedRoutes />,
+		children: [
 			{
 				path: "user/dashboard",
 				element: <UserDashboard />,
@@ -205,8 +213,10 @@ function App() {
 	return (
 		<Suspense fallback={<Loader />}>
 			<UserProvider>
-				<Toaster position="top-right" reverseOrder={false} />
-				<RouterProvider router={router} />
+				<AdminProvider>
+					<Toaster position="top-right" reverseOrder={false} />
+					<RouterProvider router={router} />
+				</AdminProvider>
 			</UserProvider>
 		</Suspense>
 	);

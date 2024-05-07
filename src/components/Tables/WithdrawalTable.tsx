@@ -1,5 +1,4 @@
 import { useUserContext } from "../../context/UserContext";
-import { Deposit, DepositState } from "../../types/deposit";
 import { WithdrawalState } from "../../types/types";
 // import { withdrawalData } from "../dashboards/data";
 

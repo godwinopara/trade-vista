@@ -8,12 +8,19 @@ import capitalizeFirstLetter from "../../lib/capitalize";
 
 const DropdownAdmin = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [status, setStatus] = useState("not-verified");
 	const navigate = useNavigate();
 
 	const trigger = useRef<any>(null);
 	const dropdown = useRef<any>(null);
 
 	const { state } = useUserContext();
+
+	useEffect(() => {
+		if (state.verification.status) {
+			setStatus(state.verification.status);
+		}
+	}, [state.verification.status]);
 
 	// close on click outside
 	useEffect(() => {
@@ -57,12 +64,10 @@ const DropdownAdmin = () => {
 					</span>
 					<span
 						className={`block text-xs  font-medium text-black rounded-md py-1 px-2 text-center ${
-							state.verification.status === "verified"
-								? "text-success bg-success"
-								: "text-white bg-warning"
+							status === "verified" ? "text-white bg-success" : "text-white bg-warning"
 						}`}
 					>
-						{state.verification.status[0].toUpperCase() + state.verification.status.slice(1)}
+						{status[0]?.toUpperCase() + status?.slice(1)}
 					</span>
 				</div>
 				<div className="relative w-[50px] h-[50px] bg-boxdark-2 rounded-full overflow-hidden flex items-center justify-center">

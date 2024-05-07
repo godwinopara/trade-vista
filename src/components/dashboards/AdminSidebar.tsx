@@ -167,7 +167,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 								</Link>
 							</li>
 
-							{pathname.includes("buy-bitcoin") && (
+							{!pathname.includes("admin") && (
 								<li>
 									<Link
 										to={`/${currentPath}/buy-bitcoin`}
@@ -205,6 +205,17 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 									Subscriptions
 								</Link>
 							</li>
+							{/* <li>
+								<Link
+									to="/user/user-verify"
+									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
+										pathname.includes("verification") && "bg-primary-hover dark:bg-meta-4"
+									}`}
+								>
+									<PiIdentificationBadge />
+									Verifications
+								</Link>
+							</li> */}
 							{pathname.includes("admin") && (
 								<li>
 									<Link
@@ -214,11 +225,11 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 										}`}
 									>
 										<PiIdentificationBadge />
-										Identity Verification
+										ID Verifications
 									</Link>
 								</li>
 							)}
-							{pathname.includes("user-verify") && (
+							{!pathname.includes("admin") && (
 								<li>
 									<Link
 										to={`/user/user-verify`}
