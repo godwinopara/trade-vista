@@ -67,7 +67,7 @@ const DropdownAdmin = () => {
 							status === "verified" ? "text-white bg-success" : "text-white bg-warning"
 						}`}
 					>
-						{status[0]?.toUpperCase() + status?.slice(1)}
+						{capitalizeFirstLetter(status)}
 					</span>
 				</div>
 				<div className="relative w-[50px] h-[50px] bg-boxdark-2 rounded-full overflow-hidden flex items-center justify-center">

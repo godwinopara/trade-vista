@@ -1,18 +1,23 @@
-import { ReactNode, createContext, useContext, useEffect, useReducer } from "react";
+import { ReactNode, createContext, useContext, useEffect, useReducer, useState } from "react";
 import {
 	AccountState,
 	DepositState,
 	SubscriptionState,
+	TradePayload,
 	TradeState,
 	User,
 	VerificationState,
 	WithdrawalState,
 } from "../types/types";
 import { db } from "../lib/firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import toast from "react-hot-toast";
 
 interface AdminContextType {
 	state: AdminState;
+	updateVerificationStatus: (id: string) => void;
+	updateSubscription: (id: string) => void;
+	updateTrade: (id: string, uid: string, payload: { profit: string; status: string }) => void;
 }
 
 interface AdminState {
@@ -32,7 +37,8 @@ type Action =
 	| { type: "GET_ALL_WITHDRAWALS"; payload: WithdrawalState[] }
 	| { type: "GET_ALL_SUBSCRIPTIONS"; payload: SubscriptionState[] }
 	| { type: "GET_ALL_TRADES"; payload: TradeState[] }
-	| { type: "GET_ALL_VERIFICATIONS"; payload: VerificationState[] };
+	| { type: "GET_ALL_VERIFICATIONS"; payload: VerificationState[] }
+	| { type: "UPDATE_VERIFICATIONS"; payload: VerificationState };
 
 const initialState: AdminState = {
 	users: [],
@@ -46,6 +52,9 @@ const initialState: AdminState = {
 
 const AdminContext = createContext<AdminContextType>({
 	state: initialState,
+	updateVerificationStatus: () => null,
+	updateSubscription: () => null,
+	updateTrade: () => null,
 });
 
 const adminReducer = (state: AdminState, action: Action): AdminState => {
@@ -64,6 +73,8 @@ const adminReducer = (state: AdminState, action: Action): AdminState => {
 			return { ...state, trades: action.payload };
 		case "GET_ALL_VERIFICATIONS":
 			return { ...state, verifications: action.payload };
+		case "UPDATE_VERIFICATIONS":
+			return { ...state };
 		default:
 			return state;
 	}
@@ -71,6 +82,7 @@ const adminReducer = (state: AdminState, action: Action): AdminState => {
 
 export default function AdminProvider({ children }: { children: ReactNode }) {
 	const [state, dispatch] = useReducer(adminReducer, initialState);
+	const [refresh, setRefresh] = useState(false);
 
 	useEffect(() => {
 		fetchAllUsers();
@@ -81,8 +93,8 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 		fetchAllVerifications();
 		fetchAllSubscription();
 
-		console.log(state);
-	}, []);
+		setRefresh(false);
+	}, [refresh]);
 
 	const fetchAllUsers = async () => {
 		try {
@@ -108,7 +120,7 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				const userDoc = await getDoc(doc(db, "users", acct.id));
 				const userData = userDoc.data();
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
-				const acctData = { fullname, ...acct.data().account };
+				const acctData = { fullname, uid: userData?.uid, ...acct.data().account };
 				accounts.push(acctData as AccountState);
 			});
 
@@ -160,7 +172,8 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
 				withdrawalData.data().withdrawals.forEach((withdrawal: WithdrawalState) => {
-					const withdrawalEntry = { fullname, ...withdrawal };
+					const withdrawalEntry = { fullname, uid: userData?.uid, ...withdrawal };
+
 					withdrawals.push(withdrawalEntry);
 				});
 			});
@@ -179,13 +192,13 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 			const trades: TradeState[] = [];
 			const data = await getDocs(collection(db, "trades"));
 
-			const tradePromises = data.docs.map(async (tradeData) => {
+			const tradePromises = data.docs.map(async (tradeData: any) => {
 				const userDoc = await getDoc(doc(db, "users", tradeData.id));
 				const userData = userDoc.data();
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
 				tradeData.data().trades.forEach((trade: TradeState) => {
-					const tradeEntry = { fullname, ...trade };
+					const tradeEntry = { fullname, ...trade, uid: tradeData.id };
 					trades.push(tradeEntry);
 				});
 			});
@@ -202,18 +215,24 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 		const subscriptions: SubscriptionState[] = [];
 		try {
 			const data = await getDocs(collection(db, "subscriptions"));
-			const subscriptionPromises = data.docs.map(async (subscriptionData) => {
+			const subscriptionPromises = data.docs.map(async (subscriptionData: any) => {
 				const userDoc = await getDoc(doc(db, "users", subscriptionData.id));
 				const userData = userDoc.data();
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
-				subscriptionData.data().trades.forEach((sub: SubscriptionState) => {
-					const subscriptionEntry = { fullname, ...sub };
+				const subData = subscriptionData?.data().subscription;
+				if (subData?.plan) {
+					const subscriptionEntry = {
+						fullname,
+						uid: userData?.uid,
+						...subscriptionData.data().subscription,
+					};
 					subscriptions.push(subscriptionEntry);
-				});
+				}
 			});
 
 			await Promise.all(subscriptionPromises);
+			dispatch({ type: "GET_ALL_SUBSCRIPTIONS", payload: subscriptions });
 		} catch (error) {
 			console.error("Error fetching users:", error);
 			return [];
@@ -224,24 +243,119 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 		const verifications: VerificationState[] = [];
 		try {
 			const data = await getDocs(collection(db, "verifications"));
-			const verificationPromises = data.docs.map(async (verificationData) => {
+			const verificationPromises = data.docs.map(async (verificationData: any) => {
 				const userDoc = await getDoc(doc(db, "users", verificationData.id));
 				const userData = userDoc.data();
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
-				verificationData.data().verifications.forEach((verification: VerificationState) => {
-					const verificationEntry = { fullname, ...verification };
+				const verifyData = verificationData.data().verification;
+				if (verifyData.document) {
+					const verificationEntry = { fullname, uid: userData?.uid, ...verifyData };
 					verifications.push(verificationEntry);
-				});
+				}
 			});
 			await Promise.all(verificationPromises);
+			dispatch({ type: "GET_ALL_VERIFICATIONS", payload: verifications });
 		} catch (error) {
 			console.error("Error fetching users:", error);
 			return [];
 		}
 	};
 
-	return <AdminContext.Provider value={{ state }}>{children}</AdminContext.Provider>;
+	const updateVerificationStatus = async (id: string) => {
+		try {
+			const docRef = doc(db, "verifications", id);
+			const docSnap = await getDoc(docRef);
+
+			const updateStatus = updateDoc(docRef, {
+				verification: {
+					document: docSnap.data()?.verification.document,
+					status: "verified",
+				},
+			});
+			await toast.promise(updateStatus, {
+				loading: "Updating Verification Status",
+				success: "Verification Status Updated Successfully",
+				error: "Error Occurred, Try Again",
+			});
+
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error fetching users:", error);
+			return [];
+		}
+	};
+
+	const updateSubscription = async (id: string) => {
+		try {
+			const subscriptionRef = doc(db, "subscriptions", id);
+
+			const subData = setDoc(subscriptionRef, {
+				subscriptions: {},
+			});
+
+			await toast.promise(subData, {
+				loading: "Terminating Subscription",
+				success: "Subscription Terminated Successfully",
+				error: "Error Occurred Terminating Subscription",
+			});
+
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error Occurred Terminating Subscription:", error);
+			return [];
+		}
+	};
+
+	const updateTrade = async (id: string, uid: string, payload: TradePayload) => {
+		try {
+			const tradeRef = doc(db, "trades", uid);
+			const tradeSnap = await getDoc(tradeRef);
+
+			const updatedState: TradeState[] = [];
+
+			// Update the trade
+
+			const updatedTrade = tradeSnap.data()?.trades.map((trade: TradeState) => {
+				if (trade.id === id) {
+					updatedState.push({ ...trade, ...payload });
+					return { ...trade, ...payload };
+				}
+				updatedState.push(trade);
+				return trade;
+			});
+
+			const newTradeState = state.trades.map((trade: TradeState) => {
+				if (trade.id === id) {
+					return { ...trade, ...payload };
+				}
+				return trade;
+			});
+
+			const updatedTradePromise = updateDoc(tradeRef, {
+				trades: updatedTrade,
+			});
+
+			await toast.promise(updatedTradePromise, {
+				loading: "Updating Trade Result..",
+				success: "Trade Result Updated Successfully..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
+			dispatch({ type: "GET_ALL_TRADES", payload: newTradeState });
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	return (
+		<AdminContext.Provider
+			value={{ state, updateVerificationStatus, updateSubscription, updateTrade }}
+		>
+			{children}
+		</AdminContext.Provider>
+	);
 }
 
 export function useAdminContext() {

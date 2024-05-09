@@ -63,10 +63,10 @@ export default function WithdrawalTable() {
 								))}
 						</tbody>
 					</table>
-					{withdrawalData.length < 1 && (
-						<p className="text-center mt-5 text-xl">No Recent Withdrawal</p>
-					)}
 				</div>
+				{withdrawalData.length < 1 && (
+					<p className="text-center mt-5 py-4 text-xl">No Recent Withdrawal</p>
+				)}
 			</div>
 		</>
 	);

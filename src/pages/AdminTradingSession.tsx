@@ -40,7 +40,9 @@ const AdminTradingSession = (props: Props) => {
 	const [filteredUsers, setFilteredUsers] = useState<TradeState[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 
-	const { trades } = useAdminContext().state;
+	const { state, updateTrade } = useAdminContext();
+
+	const trades = state.trades;
 
 	useEffect(() => {
 		let results = trades;
@@ -77,10 +79,12 @@ const AdminTradingSession = (props: Props) => {
 		setUpdateTradeState((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleShowModal = (userId: string, id: string) => {
-		setShowModal(true);
-		setUserId(userId);
-		setTradeId(id);
+	const handleShowModal = (id: string, uid: string) => {
+		if (id) {
+			setShowModal(true);
+			setUserId(uid);
+			setTradeId(id);
+		}
 	};
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -90,17 +94,9 @@ const AdminTradingSession = (props: Props) => {
 			status: updateTradeStatus.status,
 		};
 
-		setLoading((prevLoading) => ({ ...prevLoading, [tradeId]: true }));
-
-		setTimeout(() => {
-			try {
-				alert("submitted");
-			} catch (error) {
-				console.log(error);
-			} finally {
-				setLoading((prevLoading) => ({ ...prevLoading, [tradeId]: false }));
-			}
-		}, 1000);
+		if (data.profit && data.status) {
+			updateTrade(tradeId, userId, data);
+		}
 
 		closeModal();
 	};
@@ -139,9 +135,9 @@ const AdminTradingSession = (props: Props) => {
 							className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-meta-3 active:border-meta-3"
 						>
 							<option value="">Trade Status</option>
-							<option value="Pending">Pending</option>
-							<option value="Win">Win</option>
-							<option value="Loss">Loss</option>
+							<option value="pending">Pending</option>
+							<option value="win">Win</option>
+							<option value="loss">Loss</option>
 						</select>
 					</div>
 
@@ -267,13 +263,12 @@ const AdminTradingSession = (props: Props) => {
 										</td>
 
 										<td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
-											{/* <UploadButton
-												approveBtnClick={handleShowModal}
-												userId={userHistory.userId}
-												id={userHistory.id}
-												loading={loading[userHistory.id] || false}
-												btnText="Update"
-											/> */}
+											<button
+												onClick={() => handleShowModal(trade.id, trade.uid)}
+												className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
+											>
+												Update
+											</button>
 										</td>
 									</tr>
 								))}

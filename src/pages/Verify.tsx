@@ -23,6 +23,8 @@ const Verify = (props: Props) => {
 
 	useEffect(() => {
 		const status = state.verification.status;
+
+		console.log(state.verification);
 		setVerificationStatus(status);
 
 		if (status === "verified") {
@@ -31,7 +33,7 @@ const Verify = (props: Props) => {
 		if (status !== "not-verified") {
 			setUploaded(true);
 		}
-	}, [state.verification.status]);
+	}, [state.verification]);
 
 	const onDrop = useCallback(async (acceptedFiles: any) => {
 		setLoading(true);
@@ -82,7 +84,7 @@ const Verify = (props: Props) => {
 						/>
 					</div>
 				)}
-				<div className="mb-20 text-center rounded-md border border-stroke  bg-white py-8 px-7.5 shadow-default">
+				<div className="mb-20 min-h-[70vh] text-center rounded-md border border-stroke  bg-white py-8 px-8 shadow-default">
 					<h2 className="font-bold mb-3 text-xl">Account Status</h2>
 					{verificationStatus === "not-verified" && (
 						<p>
@@ -103,12 +105,11 @@ const Verify = (props: Props) => {
 						</div>
 					)}
 					{verificationStatus === "verified" && (
-						<div className="flex flex-col text-center justify-center items-center text-xl mt-8 pb-8">
+						<div className="flex flex-col min-h-[50vh] text-center justify-center items-center text-xl mt-8 pb-8">
 							<div className="text-8xl mb-5 text-primary">
 								<MdVerified />
 							</div>
 							<br />
-
 							<div>
 								<h2 className="mb-3">Congratulations🎉🎉🎉 on your verified status!</h2>
 								<p className="mb-3">

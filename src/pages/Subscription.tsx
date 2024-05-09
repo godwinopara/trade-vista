@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import { FaCheckCircle } from "react-icons/fa";
 import { SubscriptionCard } from "../components/dashboards/SuscriptionCard";
@@ -8,7 +8,13 @@ import { SubscriptionState } from "../types/types";
 type Props = {};
 
 const Subscription = (props: Props) => {
+	const [subscription, setSubscriptions] = useState<SubscriptionState | null>(null);
+
 	const { state, updateSubscription } = useUserContext();
+
+	useEffect(() => {
+		setSubscriptions(state.subscription);
+	}, [state?.subscription]);
 
 	const subscribe = (plan: string, planAmount: string) => {
 		const payload: SubscriptionState = {
@@ -40,7 +46,7 @@ const Subscription = (props: Props) => {
 					</div>
 				</div>
 			</div>
-			{!state.subscription.plan && (
+			{!subscription && (
 				<div className="grid md:grid-cols-2 gap-10">
 					<SubscriptionCard plan="STANDARD" roi="10%" planAmount={"5920"} handleClick={subscribe} />
 					<SubscriptionCard plan="SILVER" roi="25%" planAmount={"7370"} handleClick={subscribe} />
@@ -49,7 +55,7 @@ const Subscription = (props: Props) => {
 				</div>
 			)}
 
-			{state.subscription.plan && (
+			{subscription?.plan && (
 				<div className="border-stroke  bg-white dark:bg-boxdark flex flex-col items-center justify-center text-center h-full py-20">
 					<div className="text-6xl text-primary mb-3">
 						<FaCheckCircle />

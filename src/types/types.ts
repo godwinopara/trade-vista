@@ -35,6 +35,7 @@ export interface AccountState {
 	profit: string;
 	bonus: string;
 	fullname?: string;
+	uid?: string;
 }
 
 export interface DepositState {
@@ -45,11 +46,7 @@ export interface DepositState {
 	id: string | null;
 	screenshot: string | null;
 	fullname?: string;
-}
-
-export interface AdminDepositState {
-	fullname: string;
-	deposits: DepositState[];
+	uid?: string;
 }
 
 export interface WithdrawalState {
@@ -58,6 +55,8 @@ export interface WithdrawalState {
 	method: string;
 	status: string;
 	fullname?: string;
+	id?: string | null;
+	uid?: string;
 }
 
 export interface TradeState {
@@ -73,16 +72,27 @@ export interface TradeState {
 	result: string;
 	date: string;
 	fullname?: string;
+	id: string;
+	uid: string;
+}
+
+export interface TradePayload {
+	status: string;
+	profit: string;
 }
 export interface SubscriptionState {
 	plan: string;
 	amount: string;
 	duration: string;
 	date: string;
+	fullname?: string;
+	uid?: string;
 }
 export interface VerificationState {
 	document: string;
 	status: string;
+	fullname?: string;
+	uid?: string;
 }
 
 // ADMIN TYPES

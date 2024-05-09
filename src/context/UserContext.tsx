@@ -1,10 +1,9 @@
-import { createContext, useCallback, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useReducer } from "react";
 import { auth, db } from "../lib/firebase";
 import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
-import { FaEthereum } from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export interface UserState {
 	uid: string;
@@ -216,8 +215,8 @@ const userReducer = (state: UserState, action: Action): UserState => {
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, dispatch] = useReducer(userReducer, initialState);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<string | null>(null);
+	// const [loading, setLoading] = useState<boolean>(false);
+	// const [error, setError] = useState<string | null>(null);
 
 	const currentUser = state.uid;
 
@@ -231,6 +230,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			unSub();
 		};
+		//eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -313,7 +313,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		if (verificationDocSnap.exists())
 			dispatch({
 				type: "VERIFICATION_STATUS",
-				payload: verificationDocSnap.data() as VerificationState,
+				payload: verificationDocSnap.data().verification as VerificationState,
 			});
 		if (subscriptionDocSnap.exists())
 			dispatch({
@@ -327,22 +327,25 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 			});
 	}, []);
 
-	const addDeposit = useCallback(async (payload: DepositState) => {
-		if (payload) {
-			try {
-				const addDepositRef = doc(db, "deposits", currentUser);
-				await toast.promise(updateDoc(addDepositRef, { deposits: arrayUnion(payload) }), {
-					loading: "Sending Payment Notification...",
-					success: "Payment Notification Sent Successfully",
-					error: "Error Occurred, Try Again",
-				});
+	const addDeposit = useCallback(
+		async (payload: DepositState) => {
+			if (payload) {
+				try {
+					const addDepositRef = doc(db, "deposits", currentUser);
+					await toast.promise(updateDoc(addDepositRef, { deposits: arrayUnion(payload) }), {
+						loading: "Sending Payment Notification...",
+						success: "Payment Notification Sent Successfully",
+						error: "Error Occurred, Try Again",
+					});
 
-				dispatch({ type: "ADD_DEPOSIT", payload });
-			} catch (error) {
-				console.log(error);
+					dispatch({ type: "ADD_DEPOSIT", payload });
+				} catch (error) {
+					console.log(error);
+				}
 			}
-		}
-	}, []);
+		},
+		[currentUser]
+	);
 
 	const addWithdrawal = async (payload: WithdrawalState) => {
 		if (payload) {

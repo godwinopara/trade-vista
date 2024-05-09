@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { cryptoPairs, forexPairs } from "./data";
 import { useUserContext } from "../../context/UserContext";
+import { v4 as uuidv4 } from "uuid";
 
 type Props = {};
 
@@ -29,6 +30,7 @@ export const TradingSession = (props: Props) => {
 			result: "progress",
 			profit: "0.00",
 			date: new Date().toDateString(),
+			id: uuidv4(),
 		};
 
 		addTrade(formData);

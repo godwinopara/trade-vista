@@ -1,11 +1,19 @@
 import { MdVerified } from "react-icons/md";
 import { useUserContext } from "../../context/UserContext";
+import { useEffect, useState } from "react";
 
 export default function VerificationCard() {
-	const { state } = useUserContext();
-	const verified = state.verification?.status === "verified" ? true : false;
+	const [verified, setVerified] = useState(false);
 
-	console.log(state);
+	const { verification } = useUserContext().state;
+	// const verified = state.verification?.status === "verified" ? true : false;
+
+	useEffect(() => {
+		setVerified(verification.status === "verified");
+		// eslint-disable-next-line
+	}, [verification.status]);
+
+	// console.log(state);
 
 	return (
 		<div className="w-full rounded-md border border-stroke  bg-primary text-white py-4 px-7 shadow-default ">
@@ -17,7 +25,7 @@ export default function VerificationCard() {
 						<span className={`${verified ? "text-meta-3" : "text-warning"} text-2xl`}>
 							<MdVerified />
 						</span>
-						{state.verification.status[0].toUpperCase() + state.verification.status.slice(1)}
+						{verification.status[0].toUpperCase() + verification.status.slice(1)}
 					</h4>
 				</div>
 			</div>
