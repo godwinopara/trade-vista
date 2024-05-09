@@ -43,8 +43,10 @@ const AdminWithdrawal = lazy(() => import("./pages/AdminWithdrawal"));
 const AdminTradingSession = lazy(() => import("./pages/AdminTradingSession"));
 const AdminSubscription = lazy(() => import("./pages/AdminSubscription"));
 const AdminVerifications = lazy(() => import("./pages/AdminVerifications"));
+const AdminNotification = lazy(() => import("./pages/AdminNotification"));
 
 const router = createBrowserRouter([
+<<<<<<< HEAD
 	{
 		path: "/",
 		element: <Home />,
@@ -203,13 +205,173 @@ const router = createBrowserRouter([
 			},
 		],
 	},
+=======
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "company/about",
+    element: <About />,
+  },
+  {
+    path: "company/contact",
+    element: <Contact />,
+  },
+  {
+    path: "market/forex",
+    element: <Forex />,
+  },
+  {
+    path: "market/commodities",
+    element: <Commodities />,
+  },
+  {
+    path: "market/indices",
+    element: <Indices />,
+  },
+  {
+    path: "market/shares",
+    element: <Shares />,
+  },
+  {
+    path: "market/treasures",
+    element: <Treasures />,
+  },
+  {
+    path: "market/cryptocurrency",
+    element: <Cryptocurrencies />,
+  },
+  {
+    path: "platforms/meta4",
+    element: <Metatrader4 />,
+  },
+  {
+    path: "platforms/meta5",
+    element: <Metatrader5 />,
+  },
+  {
+    path: "education/learn-cfds",
+    element: <LearnCfds />,
+  },
+  {
+    path: "education/learn-forex",
+    element: <LearnForex />,
+  },
+  {
+    path: "education/learn-shares",
+    element: <LearnShares />,
+  },
+  {
+    path: "education/trading-guides",
+    element: <TradingGuides />,
+  },
+  {
+    path: "education/learn-forex/:id",
+    element: <LearnForexDetails />,
+  },
+  {
+    path: "education/learn-shares/:id",
+    element: <LearnSharesDetails />,
+  },
+  {
+    path: "education/trading-guides/:id",
+    element: <LearnGuideDetails />,
+  },
+  {
+    path: "signup",
+    element: <SignUp />,
+  },
+  {
+    path: "signin",
+    element: <SignIn />,
+  },
+  {
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "admin/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "admin/users",
+        element: <Users />,
+      },
+      {
+        path: "admin/account",
+        element: <Account />,
+      },
+      {
+        path: "admin/deposit",
+        element: <AdminDeposit />,
+      },
+      {
+        path: "admin/withdrawal",
+        element: <AdminWithdrawal />,
+      },
+      {
+        path: "admin/trades",
+        element: <AdminTradingSession />,
+      },
+      {
+        path: "admin/subscriptions",
+        element: <AdminSubscription />,
+      },
+      {
+        path: "admin/trades",
+        element: <AdminTradingSession />,
+      },
+      {
+        path: "admin/verification",
+        element: <AdminVerifications />,
+      },
+      {
+        path: "admin/notifications",
+        element: <AdminNotification />,
+      },
+      {
+        path: "user/dashboard",
+        element: <UserDashboard />,
+      },
+      {
+        path: "user/deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "user/withdrawal",
+        element: <Withdrawal />,
+      },
+      {
+        path: "user/assets",
+        element: <Asset />,
+      },
+      {
+        path: "user/subscriptions",
+        element: <Subscription />,
+      },
+      {
+        path: "user/user-verify",
+        element: <Verify />,
+      },
+      {
+        path: "user/settings",
+        element: <Settings />,
+      },
+      {
+        path: "user/buy-bitcoin",
+        element: <BuyBitcoin />,
+      },
+    ],
+  },
+>>>>>>> e95fba681368f2f6d8fac0ac1262f6a9f13a532c
 ]);
 
 function App() {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
+<<<<<<< HEAD
 	return (
 		<Suspense fallback={<Loader />}>
 			<UserProvider>
@@ -220,6 +382,16 @@ function App() {
 			</UserProvider>
 		</Suspense>
 	);
+=======
+  return (
+    <Suspense fallback={<Loader />}>
+      <UserProvider>
+        <Toaster position="top-right" reverseOrder={false} />
+        <RouterProvider router={router} />
+      </UserProvider>
+    </Suspense>
+  );
+>>>>>>> e95fba681368f2f6d8fac0ac1262f6a9f13a532c
 }
 
 export default App;

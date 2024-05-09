@@ -62,7 +62,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 
 	return (
 		<aside
-			className={`absolute left-0 top-0 z-[9999] flex h-screen w-[16.125rem] flex-col overflow-y-hidden bg-primary duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+			className={`absolute left-0 top-0 z-[9999] flex h-screen  flex-col overflow-y-hidden bg-primary duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
 				sidebarOpen ? "translate-x-0" : "-translate-x-full"
 			}`}
 		>
@@ -167,7 +167,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 								</Link>
 							</li>
 
-							{!pathname.includes("admin") && (
+							{pathname.includes("buy-bitcoin") && (
 								<li>
 									<Link
 										to={`/${currentPath}/buy-bitcoin`}
@@ -205,17 +205,6 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 									Subscriptions
 								</Link>
 							</li>
-							{/* <li>
-								<Link
-									to="/user/user-verify"
-									className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-										pathname.includes("verification") && "bg-primary-hover dark:bg-meta-4"
-									}`}
-								>
-									<PiIdentificationBadge />
-									Verifications
-								</Link>
-							</li> */}
 							{pathname.includes("admin") && (
 								<li>
 									<Link
@@ -225,11 +214,11 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 										}`}
 									>
 										<PiIdentificationBadge />
-										ID Verifications
+										Identity Verification
 									</Link>
 								</li>
 							)}
-							{!pathname.includes("admin") && (
+							{pathname.includes("user-verify") && (
 								<li>
 									<Link
 										to={`/user/user-verify`}
@@ -246,10 +235,9 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 							{pathname.includes("admin") && (
 								<li>
 									<Link
-										to="/admin/dashboard"
+										to="/admin/notifications"
 										className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primary-hover dark:hover:bg-meta-4 ${
-											pathname.includes("/dashboard/notification") &&
-											"bg-primary-hover dark:bg-meta-4"
+											pathname.includes("/admin/notifications") && "bg-primary-hover dark:bg-meta-4"
 										}`}
 									>
 										<IoIosNotifications />
