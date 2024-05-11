@@ -332,9 +332,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	const addDeposit = useCallback(
 		async (payload: DepositState) => {
 			if (payload) {
+				const newPayload = { ...payload, uid: currentUser };
 				try {
 					const addDepositRef = doc(db, "deposits", currentUser);
-					await toast.promise(updateDoc(addDepositRef, { deposits: arrayUnion(payload) }), {
+					await toast.promise(updateDoc(addDepositRef, { deposits: arrayUnion(newPayload) }), {
 						loading: "Sending Payment Notification...",
 						success: "Payment Notification Sent Successfully",
 						error: "Error Occurred, Try Again",
@@ -351,9 +352,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const addWithdrawal = async (payload: WithdrawalState) => {
 		if (payload) {
+			const newPayload = { ...payload, uid: currentUser };
 			try {
 				const addWithdrawalRef = doc(db, "withdrawals", currentUser);
-				await toast.promise(updateDoc(addWithdrawalRef, { withdrawals: arrayUnion(payload) }), {
+				await toast.promise(updateDoc(addWithdrawalRef, { withdrawals: arrayUnion(newPayload) }), {
 					loading: "Sending Withdrawal Notification...",
 					success: "Withdrawal Request Sent Successfully",
 					error: "Error Occurred, Try Again",

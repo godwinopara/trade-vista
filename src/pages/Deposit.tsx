@@ -52,7 +52,7 @@ const Deposit = (props: Props) => {
 				const payload = {
 					method: formData.paymentMethod,
 					amount: formData.amount,
-					status: "Pending",
+					status: "pending",
 					id: uuidv4(),
 					screenshot: imgUrl,
 					date: new Date().toDateString(),
