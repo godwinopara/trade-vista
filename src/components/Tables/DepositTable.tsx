@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import { DepositState } from "../../types/types";
+import capitalizeFirstLetter from "../../lib/capitalize";
 
 const DepositTable = () => {
-	const [deposits, setDeposits] = useState<DepositState[]>([]);
+	const [deposits, setDeposits] = useState<any>([]);
 
 	const { state } = useUserContext();
 
 	useEffect(() => {
-		setDeposits(state.deposits);
+		if (state.deposits.length) {
+			setDeposits(state.deposits);
+		}
 	}, [state.deposits]);
 
 	return (
@@ -49,14 +52,14 @@ const DepositTable = () => {
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p
 												className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-													depositItem.status === "Completed"
+													depositItem.status === "completed"
 														? "text-success bg-success"
 														: depositItem.status === "UnCompleted"
 														? "text-danger bg-danger"
 														: "text-warning bg-warning"
 												}`}
 											>
-												{depositItem.status}
+												{capitalizeFirstLetter(depositItem.status)}
 											</p>
 										</td>
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">

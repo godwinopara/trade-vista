@@ -26,6 +26,7 @@ export interface UserState {
 	trades: TradeState[];
 	bitcoin: number;
 	joinedDate: string;
+	admin: boolean;
 }
 
 interface Asset {
@@ -138,6 +139,7 @@ const initialState: UserState = {
 	bitcoin: 0,
 	assets: [],
 	joinedDate: "",
+	admin: false,
 };
 
 // Step 3: Define Action Types

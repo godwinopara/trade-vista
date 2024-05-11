@@ -38,6 +38,12 @@ export default function SignIn() {
 			if (data.user.uid) {
 				localStorage.setItem("token", data.user.refreshToken);
 				fetchUserData(data.user.uid);
+
+				if (data.user.email === "godwinopara62@yahoo.com") {
+					localStorage.setItem("admin", "true");
+				} else {
+					localStorage.removeItem("admin");
+				}
 				navigate("/user/dashboard");
 			}
 		} catch (error) {

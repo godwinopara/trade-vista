@@ -47,6 +47,7 @@ const DropdownAdmin = () => {
 	const handleSignOut = async () => {
 		await signOut(auth);
 		localStorage.removeItem("token");
+		localStorage.removeItem("admin");
 		navigate("/signin");
 	};
 

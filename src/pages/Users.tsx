@@ -23,7 +23,7 @@ const Users = (props: Props) => {
 	const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 
-	const { state } = useAdminContext();
+	const { state, updateUser } = useAdminContext();
 
 	useEffect(() => {
 		setFilteredUsers(state.users);
@@ -39,7 +39,7 @@ const Users = (props: Props) => {
 		);
 
 		setFilteredUsers(results);
-	}, [searchTerm]);
+	}, [searchTerm, state.users]);
 
 	const pageSize = 5;
 
@@ -63,9 +63,10 @@ const Users = (props: Props) => {
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setLoading((prevLoading) => ({ ...prevLoading, [currentUserId]: true }));
-
-		closeModal();
+		if (currentUserId && userInput) {
+			updateUser(currentUserId, userInput);
+			closeModal();
+		}
 	};
 
 	const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -246,19 +247,30 @@ const Users = (props: Props) => {
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p className="text-black dark:text-white">{userItem?.gender}</p>
 										</td>
-										<td className="border-b min-w-fit border-[#eee] py-5 px-4 dark:border-strokedark">
+										{/* <td className="border-b min-w-fit border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p className="text-black min-w-fit dark:text-white">{userItem?.status}</p>
+										</td> */}
+										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+											<p
+												className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
+													userItem.status === "Active"
+														? "text-success bg-success"
+														: "text-warning bg-warning"
+												}`}
+											>
+												{userItem.status}
+											</p>
 										</td>
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p className="text-black dark:text-white">{userItem?.joinedDate}</p>
 										</td>
 										<td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
-											<UploadButton2
-												approveBtnClick={handleBillUser}
-												userId={userItem.userId}
-												loading={loading[userItem.userId] || false}
-												btnText="Bill User"
-											/>
+											<button
+												onClick={() => handleBillUser(userItem.uid)}
+												className="w-[100px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
+											>
+												Bill User
+											</button>
 											<button
 												onClick={() => handleDeleteUser(userItem.userId)}
 												className="w-[100px] rounded-md  bg-danger text-white py-2 px-3 flex items-center justify-center  gap-x-2"

@@ -218,7 +218,7 @@ export const AdminSidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
 									</Link>
 								</li>
 							)}
-							{pathname.includes("user-verify") && (
+							{pathname.includes("user") && (
 								<li>
 									<Link
 										to={`/user/user-verify`}

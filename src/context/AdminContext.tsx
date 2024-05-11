@@ -7,6 +7,7 @@ import {
 	TradeState,
 	User,
 	VerificationState,
+	Withdrawal,
 	WithdrawalState,
 } from "../types/types";
 import { db } from "../lib/firebase";
@@ -18,6 +19,11 @@ interface AdminContextType {
 	updateVerificationStatus: (id: string) => void;
 	updateSubscription: (id: string) => void;
 	updateTrade: (id: string, uid: string, payload: { profit: string; status: string }) => void;
+	updateWithdrawal: (id: string, uid: string) => void;
+	deleteWithdrawal: (id: string, uid: string) => void;
+	updateDeposit: (id: string, uid: string) => void;
+	updateAccount: (uid: string, payload: AccountState) => void;
+	updateUser: (uid: string, status: string) => void;
 }
 
 interface AdminState {
@@ -55,6 +61,11 @@ const AdminContext = createContext<AdminContextType>({
 	updateVerificationStatus: () => null,
 	updateSubscription: () => null,
 	updateTrade: () => null,
+	updateWithdrawal: () => null,
+	deleteWithdrawal: () => null,
+	updateDeposit: () => null,
+	updateAccount: () => null,
+	updateUser: () => null,
 });
 
 const adminReducer = (state: AdminState, action: Action): AdminState => {
@@ -75,6 +86,7 @@ const adminReducer = (state: AdminState, action: Action): AdminState => {
 			return { ...state, verifications: action.payload };
 		case "UPDATE_VERIFICATIONS":
 			return { ...state };
+
 		default:
 			return state;
 	}
@@ -83,6 +95,8 @@ const adminReducer = (state: AdminState, action: Action): AdminState => {
 export default function AdminProvider({ children }: { children: ReactNode }) {
 	const [state, dispatch] = useReducer(adminReducer, initialState);
 	const [refresh, setRefresh] = useState(false);
+
+	useEffect(() => {}, []);
 
 	useEffect(() => {
 		fetchAllUsers();
@@ -172,7 +186,7 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
 				withdrawalData.data().withdrawals.forEach((withdrawal: WithdrawalState) => {
-					const withdrawalEntry = { fullname, uid: userData?.uid, ...withdrawal };
+					const withdrawalEntry = { fullname, ...withdrawal, uid: userData?.uid };
 
 					withdrawals.push(withdrawalEntry);
 				});
@@ -325,13 +339,6 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				return trade;
 			});
 
-			const newTradeState = state.trades.map((trade: TradeState) => {
-				if (trade.id === id) {
-					return { ...trade, ...payload };
-				}
-				return trade;
-			});
-
 			const updatedTradePromise = updateDoc(tradeRef, {
 				trades: updatedTrade,
 			});
@@ -342,7 +349,143 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				error: "Error Occurred",
 			});
 			setRefresh(true);
-			dispatch({ type: "GET_ALL_TRADES", payload: newTradeState });
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	const updateWithdrawal = async (id: string, uid: string) => {
+		try {
+			const withdrawalRef = doc(db, "withdrawals", uid);
+			const withdrawalSnap = await getDoc(withdrawalRef);
+
+			// Update the trade
+
+			const updatedWithdrawal = withdrawalSnap.data()?.withdrawals.map((withdrawal: Withdrawal) => {
+				if (withdrawal.id === id) {
+					return { ...withdrawal, status: "completed" };
+				}
+				return withdrawal;
+			});
+
+			const updatedWithdrawalPromise = updateDoc(withdrawalRef, {
+				withdrawals: updatedWithdrawal,
+			});
+
+			await toast.promise(updatedWithdrawalPromise, {
+				loading: "Updating Withdrawal Request..",
+				success: "Withdrawal Request Approved..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	const deleteWithdrawal = async (id: string, uid: string) => {
+		try {
+			const withdrawalRef = doc(db, "withdrawals", uid);
+			const withdrawalSnap = await getDoc(withdrawalRef);
+
+			// Update the trade
+
+			const updatedWithdrawal = withdrawalSnap
+				.data()
+				?.withdrawals.filter((withdrawal: Withdrawal) => {
+					return withdrawal.id !== id;
+				});
+
+			const updatedWithdrawalPromise = updateDoc(withdrawalRef, {
+				withdrawals: updatedWithdrawal,
+			});
+
+			await toast.promise(updatedWithdrawalPromise, {
+				loading: "Deleting Withdrawal Request..",
+				success: "Withdrawal Request Deleted..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	const updateDeposit = async (id: string, uid: string) => {
+		try {
+			const depositRef = doc(db, "deposits", uid);
+			const depositSnap = await getDoc(depositRef);
+
+			// Update the trade
+
+			const updatedDeposit = depositSnap.data()?.deposits.map((deposit: DepositState) => {
+				if (deposit.id === id) {
+					return { ...deposit, status: "completed" };
+				}
+				return deposit;
+			});
+
+			const updateDepositPromise = updateDoc(depositRef, {
+				deposits: updatedDeposit,
+			});
+
+			await toast.promise(updateDepositPromise, {
+				loading: "Updating Deposit Approval Request..",
+				success: "Deposit Request Approved..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	const updateAccount = async (uid: string, payload: AccountState) => {
+		try {
+			const accountRef = doc(db, "accounts", uid);
+			const accountSnap = await getDoc(accountRef);
+
+			// Update the trade
+			const updatedAccount = payload;
+
+			const updateAccountPromise = updateDoc(accountRef, {
+				account: updatedAccount,
+			});
+
+			await toast.promise(updateAccountPromise, {
+				loading: "Updating your Account..",
+				success: "Account has been updated  Successfully..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
+		} catch (error) {
+			console.error("Error Occurred:", error);
+			return [];
+		}
+	};
+
+	const updateUser = async (uid: string, status: string) => {
+		try {
+			const userRef = doc(db, "users", uid);
+			const userSnap = await getDoc(userRef);
+
+			const userData = userSnap.data();
+			const userNewData = { ...userData, status };
+
+			const updateUserPromise = updateDoc(userRef, {
+				...userNewData,
+			});
+
+			await toast.promise(updateUserPromise, {
+				loading: "Updating User Status..",
+				success: "User Status has been updated Successfully..",
+				error: "Error Occurred",
+			});
+			setRefresh(true);
 		} catch (error) {
 			console.error("Error Occurred:", error);
 			return [];
@@ -351,7 +494,17 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 
 	return (
 		<AdminContext.Provider
-			value={{ state, updateVerificationStatus, updateSubscription, updateTrade }}
+			value={{
+				state,
+				updateVerificationStatus,
+				updateSubscription,
+				updateTrade,
+				updateWithdrawal,
+				deleteWithdrawal,
+				updateDeposit,
+				updateAccount,
+				updateUser,
+			}}
 		>
 			{children}
 		</AdminContext.Provider>

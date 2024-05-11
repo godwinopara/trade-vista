@@ -18,7 +18,8 @@ const AdminWithdrawal = () => {
 	const [filteredUsers, setFilteredUsers] = useState<WithdrawalState[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 
-	const { withdrawals } = useAdminContext().state;
+	const { state, updateWithdrawal, deleteWithdrawal } = useAdminContext();
+	const withdrawals = state.withdrawals;
 
 	useEffect(() => {
 		let results = withdrawals;
@@ -34,7 +35,7 @@ const AdminWithdrawal = () => {
 		}
 
 		setFilteredUsers(results);
-	}, [searchTerm]);
+	}, [searchTerm, withdrawals]);
 
 	const pageSize = 5;
 
@@ -46,16 +47,10 @@ const AdminWithdrawal = () => {
 		setCurrentPage(page);
 	};
 
-	const handleUpdateWithdrawalStatus = (userId: string, id: string) => {
-		let success = false;
-		setLoading((prevLoading) => ({ ...prevLoading, [id]: true }));
-
-		setTimeout(() => {}, 1000);
-		setTimeout(() => {
-			if (success) {
-				setLoading((prevLoading) => ({ ...prevLoading, [id]: false }));
-			}
-		}, 500);
+	const handleUpdateWithdrawalStatus = (uid: string, id: string) => {
+		if (uid && id) {
+			updateWithdrawal(id, uid);
+		}
 	};
 
 	const closeModal = () => {
@@ -69,18 +64,9 @@ const AdminWithdrawal = () => {
 	};
 
 	const handleRemoveWithdrawal = () => {
-		setTimeout(() => {
-			if (!userId) {
-				return;
-			}
-			try {
-				alert("remove");
-			} catch (error) {
-				console.log(error);
-			} finally {
-				setShowModal(false);
-			}
-		}, 1000);
+		if (userId && depositId) {
+			deleteWithdrawal(userId, depositId);
+		}
 	};
 
 	return (
@@ -183,22 +169,21 @@ const AdminWithdrawal = () => {
 										</td>
 										{withdrawal.status === "pending" && (
 											<td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
-												{/* <UploadButton
-													approveBtnClick={handleUpdateWithdrawalStatus}
-													userId={userHistory.userId}
-													id={userHistory.id}
-													loading={loading[userHistory.id] || false}
-													btnText="Approve"
-												/> */}
-												{/* <button
+												<button
 													onClick={() =>
-														showDeleteWithdrawalModal(userHistory.userId, userHistory.id)
+														handleUpdateWithdrawalStatus(withdrawal.uid, withdrawal.id)
 													}
+													className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
+												>
+													Approve
+												</button>
+												<button
+													onClick={() => showDeleteWithdrawalModal(withdrawal.uid, withdrawal.id)}
 													className="w-[110px] rounded-md  bg-danger text-white py-2 px-3 flex items-center justify-center  gap-x-2"
 												>
 													<MdDeleteForever />
 													Remove
-												</button> */}
+												</button>
 											</td>
 										)}
 									</tr>

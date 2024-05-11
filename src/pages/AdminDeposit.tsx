@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/Modals/Modal";
 import { history, usersInfo } from "../components/dashboards/data";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import UploadButton from "../components/sharedUi/UploadButton";
 import { SearchBar } from "../components/sharedUi/Searchbar";
 import { Pagination } from "../components/sharedUi/Pagination";
 import { useAdminContext } from "../context/AdminContext";
 import { DepositState } from "../types/types";
+import capitalizeFirstLetter from "../lib/capitalize";
 
 type Props = {};
-
-interface UserHistoryProps {
-	amount: number;
-	date: string;
-	method: string;
-	status: string;
-	fullname: string;
-	id: string;
-	userId: string;
-	screenshot: string;
-}
 
 const AdminDeposit = (props: Props) => {
 	const [loading, setLoading] = useState<{ [id: string]: boolean }>({});
@@ -38,7 +27,8 @@ const AdminDeposit = (props: Props) => {
 	const [filteredUsers, setFilteredUsers] = useState<DepositState[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 
-	const { deposits } = useAdminContext().state;
+	const { state, updateDeposit } = useAdminContext();
+	const deposits = state.deposits;
 
 	useEffect(() => {
 		let result = deposits;
@@ -53,7 +43,7 @@ const AdminDeposit = (props: Props) => {
 		}
 
 		setFilteredUsers(result);
-	}, [searchTerm]);
+	}, [searchTerm, deposits]);
 
 	const pageSize = 5;
 
@@ -65,16 +55,17 @@ const AdminDeposit = (props: Props) => {
 		setCurrentPage(page);
 	};
 
-	const handleUpdateDepositStatus = (userId: string, id: string) => {
-		setLoading((prevLoading) => ({ ...prevLoading, [id]: true }));
-
-		alert("update");
+	const handleUpdateDepositStatus = (depositId: string, userId: string) => {
+		updateDeposit(depositId, userId);
 	};
 
 	const handlePreviewImg = (img: string | null) => {
-		setShowModal(true);
+		console.log(img);
 		if (img) {
-			setViewImg(img);
+			setShowModal(true);
+			if (img) {
+				setViewImg(img);
+			}
 		}
 	};
 
@@ -117,7 +108,7 @@ const AdminDeposit = (props: Props) => {
 					width={400}
 				>
 					<div className="flex items-center justify-center">
-						<img src={viewImg} alt="user id" height={300} width={380} />
+						<img src={viewImg} alt="user id" className="h-[300px]" />
 					</div>
 				</Modal>
 			)}
@@ -216,30 +207,34 @@ const AdminDeposit = (props: Props) => {
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p
 												className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-													deposit.status === "Completed"
+													deposit.status === "completed"
 														? "text-success bg-success"
 														: "text-warning bg-warning"
 												}`}
 											>
-												{deposit.status}
+												{capitalizeFirstLetter(deposit.status)}
 											</p>
 										</td>
-										{deposit.status === "Pending" && (
+										{deposit.status === "pending" && (
 											<td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
-												{/* <UploadButton
-													approveBtnClick={handleUpdateDepositStatus}
-													userId={deposit.id}
-													id={userHistory.id}
-													loading={loading[userHistory.id] || false}
-													btnText="Approve"
-												/> */}
-												{/* <button
-													onClick={() => openRemoveDepositModal(deposit.id, userHistory.id)}
+												<button
+													onClick={() =>
+														handleUpdateDepositStatus(deposit.id || "", deposit.uid || "")
+													}
+													className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
+												>
+													Approve
+												</button>
+
+												<button
+													onClick={() =>
+														openRemoveDepositModal(deposit.id || "", deposit.uid || "")
+													}
 													className="w-[110px] rounded-md  bg-danger text-white py-2 px-3 flex items-center justify-center  gap-x-2"
 												>
 													<MdDeleteForever />
 													Remove
-												</button> */}
+												</button>
 											</td>
 										)}
 									</tr>

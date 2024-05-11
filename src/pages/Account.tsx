@@ -1,11 +1,9 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/Modals/Modal";
-import { usersInfo } from "../components/dashboards/data";
-import UploadButton3 from "../components/sharedUi/UploadButton3";
 import { SearchBar } from "../components/sharedUi/Searchbar";
 import { Pagination } from "../components/sharedUi/Pagination";
-import { AccountState, User } from "../types/types";
+import { AccountState } from "../types/types";
 import { useAdminContext } from "../context/AdminContext";
 
 type Props = {};
@@ -22,9 +20,8 @@ const Account = (props: Props) => {
 	const [searchTerm, setSearchTerm] = useState<string>("");
 	const [filteredAccount, setFilteredAccount] = useState<AccountState[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	// const [accounts, setAccounts] = useState<any>([]);
 
-	const { state } = useAdminContext();
+	const { state, updateAccount } = useAdminContext();
 
 	const accounts = state.accounts;
 
@@ -34,9 +31,10 @@ const Account = (props: Props) => {
 
 	useEffect(() => {
 		let results = accounts;
+		console.log(accounts);
 
 		// Check if there is a search term
-		if (searchTerm.length > 0) {
+		if (searchTerm.length) {
 			// Filter the results based on the search term
 			results = accounts.filter(
 				(acct) =>
@@ -49,7 +47,7 @@ const Account = (props: Props) => {
 
 		// Update the state with the filtered results
 		setFilteredAccount(results);
-	}, [searchTerm, state.accounts]);
+	}, [searchTerm, accounts]);
 
 	const pageSize = 5;
 
@@ -68,15 +66,16 @@ const Account = (props: Props) => {
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		setLoading((prevLoading) => ({ ...prevLoading, [userId]: true }));
+		if (userId && accountInput) {
+			updateAccount(userId, accountInput);
+		}
 
 		closeModal();
 	};
 
-	const handleClickToggleModal = (user: any, balance: string, profit: string, bonus: string) => {
+	const handleClickToggleModal = (uid: string, profit: string, balance: string, bonus: string) => {
 		setShowModal(true);
-		setUserId(user);
+		setUserId(uid);
 		setAccountInput((prev) => {
 			return { ...prev, balance, profit, bonus };
 		});
@@ -136,17 +135,17 @@ const Account = (props: Props) => {
 					</div>
 					<div className="flex gap-x-4 mt-8">
 						<button
-							className="bg-meta-3 flex justify-center items-center text-black rounded-md font-medium px-8 py-2"
+							className="bg-meta-3 flex justify-center items-center text-white rounded-md font-medium px-8 py-2"
 							type="submit"
 						>
 							Update
 						</button>
-						<button
-							onClick={closeModal}
-							className="bg-danger flex justify-center items-center text-black rounded-md font-medium px-8 py-2"
+						{/* <button
+							onClick={() => closeModal()}
+							className="bg-danger flex justify-center items-center text-white rounded-md font-medium px-8 py-2"
 						>
 							Close
-						</button>
+						</button> */}
 					</div>
 				</form>
 			</Modal>
@@ -203,15 +202,19 @@ const Account = (props: Props) => {
 										</td>
 
 										<td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
-											<UploadButton3
-												approveBtnClick={handleClickToggleModal}
-												userId={userItem.userId}
-												loading={loading[userItem.userId] || false}
-												btnText="Update Account"
-												balance={userItem.totalBalance}
-												profit={userItem.totalProfit}
-												bonus={userItem.totalBonus}
-											/>
+											<button
+												onClick={() =>
+													handleClickToggleModal(
+														userItem.uid || "",
+														userItem.profit,
+														userItem.balance,
+														userItem.bonus
+													)
+												}
+												className="w-[150px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
+											>
+												Update Account
+											</button>
 										</td>
 									</tr>
 								))}

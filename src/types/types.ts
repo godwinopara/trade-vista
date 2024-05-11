@@ -13,6 +13,7 @@ export interface UserState {
 	verification: VerificationState;
 	subscription: SubscriptionState;
 	trades: TradeState[];
+	admin: boolean;
 }
 
 export interface User {
@@ -36,6 +37,7 @@ export interface AccountState {
 	bonus: string;
 	fullname?: string;
 	uid?: string;
+	id?: string;
 }
 
 export interface DepositState {
@@ -43,9 +45,19 @@ export interface DepositState {
 	date: string;
 	method: string;
 	status: string;
-	id: string | null;
-	screenshot: string | null;
+	id: string;
+	screenshot: string;
 	fullname?: string;
+	uid: string;
+}
+
+export interface Deposit {
+	amount: string;
+	date: string;
+	method: string;
+	status: string;
+	id?: string;
+	screenshot: string | null;
 	uid?: string;
 }
 
@@ -55,7 +67,16 @@ export interface WithdrawalState {
 	method: string;
 	status: string;
 	fullname?: string;
-	id?: string | null;
+	id: string;
+	uid: string;
+}
+
+export interface Withdrawal {
+	amount: string;
+	date: string;
+	method: string;
+	status: string;
+	id?: string;
 	uid?: string;
 }
 

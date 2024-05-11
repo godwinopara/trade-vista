@@ -1,14 +1,19 @@
+import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/UserContext";
-import { WithdrawalState } from "../../types/types";
+import { Withdrawal, WithdrawalState } from "../../types/types";
 // import { withdrawalData } from "../dashboards/data";
 
 export default function WithdrawalTable() {
-	const { state } = useUserContext();
-	const withdrawalData = state.withdrawals;
+	const [withdrawalData, setWithdrawalData] = useState<Withdrawal[]>([]);
 
-	if (!withdrawalData) {
-		return null;
-	}
+	const { state } = useUserContext();
+	const withdrawals = state.withdrawals;
+
+	useEffect(() => {
+		if (withdrawals.length) {
+			setWithdrawalData(withdrawals);
+		}
+	}, [withdrawals]);
 
 	return (
 		<>
@@ -35,7 +40,7 @@ export default function WithdrawalTable() {
 						</thead>
 						<tbody>
 							{withdrawalData.length > 0 &&
-								withdrawalData.map((data: WithdrawalState, key: number) => (
+								withdrawalData.map((data: Withdrawal, key: number) => (
 									<tr key={key}>
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<h5 className="text-black  dark:text-white">{data.method}</h5>
@@ -46,10 +51,8 @@ export default function WithdrawalTable() {
 										<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p
 												className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-													data.status === "Completed"
+													data.status === "completed"
 														? "text-success bg-success"
-														: data.status === "UnCompleted"
-														? "text-danger bg-danger"
 														: "text-warning bg-warning"
 												}`}
 											>

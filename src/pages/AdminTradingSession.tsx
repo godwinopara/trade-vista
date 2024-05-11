@@ -58,7 +58,7 @@ const AdminTradingSession = (props: Props) => {
 		}
 
 		setFilteredUsers(results);
-	}, [searchTerm]);
+	}, [searchTerm, state.trades]);
 
 	const pageSize = 5;
 
