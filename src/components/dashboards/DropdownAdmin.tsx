@@ -5,10 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../lib/firebase";
 import { useUserContext } from "../../context/UserContext";
 import capitalizeFirstLetter from "../../lib/capitalize";
+import { verifications } from "./data";
 
 const DropdownAdmin = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [status, setStatus] = useState("not-verified");
+	const [count, setCount] = useState(0);
 	const navigate = useNavigate();
 
 	const trigger = useRef<any>(null);
@@ -17,9 +19,11 @@ const DropdownAdmin = () => {
 	const { state } = useUserContext();
 
 	useEffect(() => {
-		if (state.verification.status) {
+		if (state && state.verification && state.verification.status) {
 			setStatus(state.verification.status);
+			setCount(count + 1);
 		}
+		console.log(count);
 	}, [state.verification.status]);
 
 	// close on click outside

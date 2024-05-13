@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useReducer } from "react";
+import { createContext, useCallback, useContext, useEffect, useReducer, useState } from "react";
 import { auth, db } from "../lib/firebase";
 import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -116,6 +116,7 @@ interface UserContextType {
 	notify: (msg: string) => void;
 	notifyError: (msg: string) => void;
 	notifyPromise: (loading: string, success: string, error: string, promise: any) => void;
+	loading: boolean;
 }
 
 const initialState: UserState = {
@@ -178,6 +179,7 @@ const UserContext = createContext<UserContextType>({
 	notify: () => null,
 	notifyError: () => null,
 	notifyPromise: () => null,
+	loading: false,
 });
 
 const userReducer = (state: UserState, action: Action): UserState => {
@@ -217,7 +219,7 @@ const userReducer = (state: UserState, action: Action): UserState => {
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, dispatch] = useReducer(userReducer, initialState);
-	// const [loading, setLoading] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 	// const [error, setError] = useState<string | null>(null);
 
 	const currentUser = state.uid;
@@ -279,6 +281,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const fetchUserData = useCallback(async (uid: string) => {
+		setLoading(true);
+
 		const userDocRef = doc(db, "users", uid);
 		const accountDocRef = doc(db, "accounts", uid);
 		const depositDocRef = doc(db, "deposits", uid);
@@ -322,11 +326,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 				type: "SUBSCRIPTION",
 				payload: subscriptionDocSnap.data().subscription as SubscriptionState,
 			});
+
 		if (tradeDocSnap.exists())
 			dispatch({
 				type: "TRADES",
 				payload: tradeDocSnap.data().trades as TradeState[],
 			});
+
+		setLoading(false);
 	}, []);
 
 	const addDeposit = useCallback(
@@ -383,7 +390,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		if (payload) {
 			try {
 				const addVerificationRef = doc(db, "verifications", currentUser);
-				await toast.promise(setDoc(addVerificationRef, payload), {
+				const updatedVerification = {
+					verification: payload,
+				};
+
+				await toast.promise(setDoc(addVerificationRef, updatedVerification), {
 					loading: "Uploading Document...",
 					success: "Document Uploaded Successfully",
 					error: "Error Occurred, Try Again",
@@ -456,6 +467,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 				notify,
 				notifyError,
 				notifyPromise,
+				loading,
 			}}
 		>
 			{children}

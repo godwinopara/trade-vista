@@ -95,7 +95,7 @@ export default function SignUp() {
 					});
 
 					await setDoc(doc(db, "subscriptions", user.uid), {
-						subscriptions: [],
+						subscription: {},
 					});
 
 					await setDoc(doc(db, "verifications", user.uid), {
@@ -170,7 +170,7 @@ export default function SignUp() {
 				});
 
 				await setDoc(doc(db, "subscriptions", res.user.uid), {
-					subscriptions: {},
+					subscription: {},
 				});
 
 				await setDoc(doc(db, "verifications", res.user.uid), {

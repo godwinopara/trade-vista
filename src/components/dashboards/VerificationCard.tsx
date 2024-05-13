@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 
 export default function VerificationCard() {
 	const [verified, setVerified] = useState(false);
+	const [verificationStatus, setVerificationStatus] = useState("not-verified");
 
-	const { verification } = useUserContext().state;
-	// const verified = state.verification?.status === "verified" ? true : false;
+	// const { verification } = useUserContext().state;
+	// // const verified = state.verification?.status === "verified" ? true : false;
 
-	useEffect(() => {
-		setVerified(verification.status === "verified");
-		// eslint-disable-next-line
-	}, [verification.status]);
+	// useEffect(() => {
+	// 	setVerificationStatus(verification.status);
+	// 	setVerified(verification.status === "verified");
+	// 	// eslint-disable-next-line
+	// }, [verification.status]);
 
 	// console.log(state);
 
@@ -25,7 +27,7 @@ export default function VerificationCard() {
 						<span className={`${verified ? "text-meta-3" : "text-warning"} text-2xl`}>
 							<MdVerified />
 						</span>
-						{verification.status[0].toUpperCase() + verification.status.slice(1)}
+						{verificationStatus[0].toUpperCase() + verificationStatus.slice(1)}
 					</h4>
 				</div>
 			</div>

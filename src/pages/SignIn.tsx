@@ -89,7 +89,7 @@ export default function SignIn() {
 					});
 
 					await setDoc(doc(db, "subscriptions", user.uid), {
-						subscriptions: [],
+						subscription: {},
 					});
 
 					await setDoc(doc(db, "verifications", user.uid), {
@@ -184,9 +184,6 @@ export default function SignIn() {
 							className="flex justify-center items-center gap-x-2 w-full cursor-pointer rounded-lg border border-meta-3 bg-primary hover:bg-primary-hover p-4 text-white transition hover:bg-opacity-90"
 						>
 							Sign In
-							{/* {loading && (
-							<Image className="border" src={loader} alt="loading icon" height={20} width={20} />
-						)} */}
 						</button>
 					</div>
 				</form>

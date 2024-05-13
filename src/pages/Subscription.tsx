@@ -14,6 +14,13 @@ const Subscription = (props: Props) => {
 
 	useEffect(() => {
 		setSubscriptions(state.subscription);
+		const subscribed = state.subscription.plan;
+		if (subscribed) {
+			setSubscriptions(state.subscription);
+			return;
+		}
+
+		setSubscriptions(null);
 	}, [state?.subscription]);
 
 	const subscribe = (plan: string, planAmount: string) => {
