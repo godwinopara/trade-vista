@@ -31,7 +31,6 @@ const Account = (props: Props) => {
 
 	useEffect(() => {
 		let results = accounts;
-		console.log(accounts);
 
 		// Check if there is a search term
 		if (searchTerm.length) {

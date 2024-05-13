@@ -24,13 +24,12 @@ const Verify = (props: Props) => {
 	useEffect(() => {
 		const status = state.verification.status;
 
-		console.log(state.verification);
 		setVerificationStatus(status);
 
 		if (status === "verified") {
 			setShowCongratsUI(true);
 		}
-		if (status !== "not-verified") {
+		if (status === "verified") {
 			setUploaded(true);
 		}
 	}, [state.verification]);
@@ -84,7 +83,7 @@ const Verify = (props: Props) => {
 						/>
 					</div>
 				)}
-				<div className="mb-20 min-h-[70vh] text-center rounded-md border border-stroke  bg-white py-8 px-8 shadow-default">
+				<div className="mb-20 text-center rounded-md border border-stroke  bg-white py-8 px-8 shadow-default">
 					<h2 className="font-bold mb-3 text-xl">Account Status</h2>
 					{verificationStatus === "not-verified" && (
 						<p>

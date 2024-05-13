@@ -263,7 +263,6 @@ export default function AdminProvider({ children }: { children: ReactNode }) {
 				const fullname = `${userData?.firstname} ${userData?.lastname}`;
 
 				const verifyData = verificationData.data()?.verification;
-				console.log(verifyData, "==========verifydata");
 				if (verifyData.document) {
 					const verificationEntry = { fullname, uid: userData?.uid, ...verifyData };
 					verifications.push(verificationEntry);

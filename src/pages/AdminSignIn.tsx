@@ -9,8 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function AdminSignIn() {
-	const { notify, notifyError } = useUserContext();
-
 	const [formData, setFormData] = useState({ email: "", password: "" });
 
 	const navigate = useNavigate();
@@ -35,13 +33,13 @@ export default function AdminSignIn() {
 			if (userEmail === adminData?.email) {
 				localStorage.setItem("adminToken", data.user.refreshToken);
 				navigate("/admin/dashboard");
-				return "success";
+				return true;
+			} else {
+				throw new Error("Invalid Email or Password");
 			}
 		} catch (error) {
-			return error;
+			throw new Error("Invalid Email or Password");
 		}
-
-		throw new Error("Invalid Email or Password");
 	};
 
 	const handleSubmitSignIn = async (e: FormEvent<HTMLFormElement>) => {
@@ -49,7 +47,7 @@ export default function AdminSignIn() {
 		toast.promise(confirmAdmin(), {
 			loading: "Hold on, we're signing  you in!",
 			success: "Sign in Successful",
-			error: "Invalid Username or Password",
+			error: (error) => error.message,
 		});
 	};
 
