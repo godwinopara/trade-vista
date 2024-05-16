@@ -29,7 +29,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           className={`px-4 py-2 mx-2 rounded-md ${
             currentPage === 1
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 text-white"
+              : "bg-meta-3 text-white"
           }`}
         >
           Previous
@@ -40,7 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             key={page}
             onClick={() => onPageChange(page)}
             className={`px-4 py-2 mx-2 rounded-md ${
-              currentPage === page ? "bg-blue-500 text-white" : "bg-gray-200"
+              currentPage === page ? "bg-meta-3 text-white" : "bg-gray-200"
             }`}
           >
             {page}
@@ -52,7 +52,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           className={`px-4 py-2 mx-2 rounded-md ${
             currentPage === totalPages
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 text-white"
+              : "bg-meta-3 text-white"
           }`}
         >
           Next
