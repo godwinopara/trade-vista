@@ -47,218 +47,221 @@ const AdminNotification = lazy(() => import("./pages/AdminNotification"));
 const AdminSignIn = lazy(() => import("./pages/AdminSignIn"));
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Home />,
-	},
-	{
-		path: "company/about",
-		element: <About />,
-	},
-	{
-		path: "company/contact",
-		element: <Contact />,
-	},
-	{
-		path: "market/forex",
-		element: <Forex />,
-	},
-	{
-		path: "market/commodities",
-		element: <Commodities />,
-	},
-	{
-		path: "market/indices",
-		element: <Indices />,
-	},
-	{
-		path: "market/shares",
-		element: <Shares />,
-	},
-	{
-		path: "market/treasures",
-		element: <Treasures />,
-	},
-	{
-		path: "market/cryptocurrency",
-		element: <Cryptocurrencies />,
-	},
-	{
-		path: "platforms/meta4",
-		element: <Metatrader4 />,
-	},
-	{
-		path: "platforms/meta5",
-		element: <Metatrader5 />,
-	},
-	{
-		path: "education/learn-cfds",
-		element: <LearnCfds />,
-	},
-	{
-		path: "education/learn-forex",
-		element: <LearnForex />,
-	},
-	{
-		path: "education/learn-shares",
-		element: <LearnShares />,
-	},
-	{
-		path: "education/trading-guides",
-		element: <TradingGuides />,
-	},
-	{
-		path: "education/learn-forex/:id",
-		element: <LearnForexDetails />,
-	},
-	{
-		path: "education/learn-shares/:id",
-		element: <LearnSharesDetails />,
-	},
-	{
-		path: "education/trading-guides/:id",
-		element: <LearnGuideDetails />,
-	},
-	{
-		path: "signup",
-		element: <SignUp />,
-	},
-	{
-		path: "signin",
-		element: <SignIn />,
-	},
-	{
-		path: "admin/signin",
-		element: <AdminSignIn />,
-	},
-	{
-		element: <AdminProtectedRoutes />,
-		children: [
-			{
-				path: "admin/dashboard",
-				element: <Dashboard />,
-			},
-			{
-				path: "admin/users",
-				element: <Users />,
-			},
-			{
-				path: "admin/account",
-				element: <Account />,
-			},
-			{
-				path: "admin/deposit",
-				element: <AdminDeposit />,
-			},
-			{
-				path: "admin/withdrawal",
-				element: <AdminWithdrawal />,
-			},
-			{
-				path: "admin/trades",
-				element: <AdminTradingSession />,
-			},
-			{
-				path: "admin/subscriptions",
-				element: <AdminSubscription />,
-			},
-			{
-				path: "admin/trades",
-				element: <AdminTradingSession />,
-			},
-			{
-				path: "admin/verification",
-				element: <AdminVerifications />,
-			},
-			{
-				path: "admin/notifications",
-				element: <AdminNotification />,
-			},
-		],
-	},
-	{
-		element: <ProtectedRoutes />,
-		children: [
-			{
-				path: "user/dashboard",
-				element: <UserDashboard />,
-			},
-			{
-				path: "user/deposit",
-				element: <Deposit />,
-			},
-			{
-				path: "user/withdrawal",
-				element: <Withdrawal />,
-			},
-			{
-				path: "user/assets",
-				element: <Asset />,
-			},
-			{
-				path: "user/subscriptions",
-				element: <Subscription />,
-			},
-			{
-				path: "user/user-verify",
-				element: <Verify />,
-			},
-			{
-				path: "user/settings",
-				element: <Settings />,
-			},
-			{
-				path: "user/buy-bitcoin",
-				element: <BuyBitcoin />,
-			},
-		],
-	},
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "company/about",
+    element: <About />,
+  },
+  {
+    path: "company/contact",
+    element: <Contact />,
+  },
+  {
+    path: "market/forex",
+    element: <Forex />,
+  },
+  {
+    path: "market/commodities",
+    element: <Commodities />,
+  },
+  {
+    path: "market/indices",
+    element: <Indices />,
+  },
+  {
+    path: "market/shares",
+    element: <Shares />,
+  },
+  {
+    path: "market/treasures",
+    element: <Treasures />,
+  },
+  {
+    path: "market/cryptocurrency",
+    element: <Cryptocurrencies />,
+  },
+  {
+    path: "platforms/meta4",
+    element: <Metatrader4 />,
+  },
+  {
+    path: "platforms/meta5",
+    element: <Metatrader5 />,
+  },
+  {
+    path: "education/learn-cfds",
+    element: <LearnCfds />,
+  },
+  {
+    path: "education/learn-forex",
+    element: <LearnForex />,
+  },
+  {
+    path: "education/learn-shares",
+    element: <LearnShares />,
+  },
+  {
+    path: "education/trading-guides",
+    element: <TradingGuides />,
+  },
+  {
+    path: "education/learn-forex/:id",
+    element: <LearnForexDetails />,
+  },
+  {
+    path: "education/learn-shares/:id",
+    element: <LearnSharesDetails />,
+  },
+  {
+    path: "education/trading-guides/:id",
+    element: <LearnGuideDetails />,
+  },
+  {
+    path: "signup",
+    element: <SignUp />,
+  },
+  {
+    path: "signin",
+    element: <SignIn />,
+  },
+  {
+    path: "admin/signin",
+    element: <AdminSignIn />,
+  },
+  {
+    element: <AdminProtectedRoutes />,
+    children: [
+      {
+        path: "admin/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "admin/users",
+        element: <Users />,
+      },
+      {
+        path: "admin/account",
+        element: <Account />,
+      },
+      {
+        path: "admin/deposit",
+        element: <AdminDeposit />,
+      },
+      {
+        path: "admin/withdrawal",
+        element: <AdminWithdrawal />,
+      },
+      {
+        path: "admin/trades",
+        element: <AdminTradingSession />,
+      },
+      {
+        path: "admin/subscriptions",
+        element: <AdminSubscription />,
+      },
+      {
+        path: "admin/trades",
+        element: <AdminTradingSession />,
+      },
+      {
+        path: "admin/verification",
+        element: <AdminVerifications />,
+      },
+      {
+        path: "admin/notifications",
+        element: <AdminNotification />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "user/dashboard",
+        element: <UserDashboard />,
+      },
+      {
+        path: "user/deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "user/withdrawal",
+        element: <Withdrawal />,
+      },
+      {
+        path: "user/assets",
+        element: <Asset />,
+      },
+      {
+        path: "user/subscriptions",
+        element: <Subscription />,
+      },
+      {
+        path: "user/user-verify",
+        element: <Verify />,
+      },
+      {
+        path: "user/settings",
+        element: <Settings />,
+      },
+      {
+        path: "user/buy-bitcoin",
+        element: <BuyBitcoin />,
+      },
+    ],
+  },
 ]);
 
 function App() {
-	useEffect(() => {
-		// Retrieve expiration time from local storage
-		const expirationTime = parseInt(localStorage.getItem("expirationTime") || "0", 10);
-		// Get the current time
-		const currentTime = new Date().getTime();
+  useEffect(() => {
+    // Retrieve expiration time from local storage
+    const expirationTime = parseInt(
+      localStorage.getItem("expirationTime") || "0",
+      10
+    );
+    // Get the current time
+    const currentTime = new Date().getTime();
 
-		// Check if the expiration time is valid and if it's expired
-		if (expirationTime && currentTime >= expirationTime) {
-			// Clear tokens from local storage
-			localStorage.removeItem("token");
-			localStorage.removeItem("adminToken");
-			// Redirect to the sign-in page
-			window.location.href = "/signin";
-		}
-	}, []);
+    // Check if the expiration time is valid and if it's expired
+    if (expirationTime && currentTime >= expirationTime) {
+      // Clear tokens from local storage
+      localStorage.removeItem("token");
+      localStorage.removeItem("adminToken");
+      // Redirect to the sign-in page
+      window.location.href = "/signin";
+    }
+  }, []);
 
-	useEffect(() => {
-		// Scroll to the top of the page when the component mounts
-		window.scrollTo(0, 0);
-	}, []);
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
-	useEffect(() => {
-		// Set a timer to clear tokens from local storage after 2 hours
-		const tokenExpirationTimer = setTimeout(() => {
-			localStorage.removeItem("token");
-			localStorage.removeItem("adminToken");
-			// window.location.href = "/signin";
-		}, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
+  useEffect(() => {
+    // Set a timer to clear tokens from local storage after 2 hours
+    const tokenExpirationTimer = setTimeout(() => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("adminToken");
+      // window.location.href = "/signin";
+    }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
 
-		// Clear the timer when the component unmounts or when the expiration time changes
-		return () => clearTimeout(tokenExpirationTimer);
-	}, []);
+    // Clear the timer when the component unmounts or when the expiration time changes
+    return () => clearTimeout(tokenExpirationTimer);
+  }, []);
 
-	return (
-		<Suspense fallback={<Loader />}>
-			<UserProvider>
-				<AdminProvider>
-					<Toaster position="top-right" reverseOrder={false} />
-					<RouterProvider router={router} />
-				</AdminProvider>
-			</UserProvider>
-		</Suspense>
-	);
+  return (
+    <Suspense fallback={<Loader />}>
+      <UserProvider>
+        <AdminProvider>
+          <Toaster position="top-right" reverseOrder={false} />
+          <RouterProvider router={router} />
+        </AdminProvider>
+      </UserProvider>
+    </Suspense>
+  );
 }
 
 export default App;
