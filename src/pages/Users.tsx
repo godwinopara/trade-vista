@@ -233,38 +233,38 @@ const Users = (props: Props) => {
               <tbody>
                 {paginatedUsers?.map((userItem: any, key: number) => (
                   <tr key={key}>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <h5 className="text-white">{key + 1}</h5>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <h5 className="font-medium text-white whitespace-nowrap">
                         {userItem?.firstname} {userItem?.lastname}
                       </h5>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <h5 className="font-medium text-white">
                         {userItem?.username}
                       </h5>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">{userItem?.email}</p>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">{userItem?.mobile}</p>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">{userItem?.password}</p>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">{userItem?.country}</p>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">{userItem?.gender}</p>
                     </td>
                     {/* <td className="border-b min-w-fit border-[#eee] py-5 px-4 dark:border-strokedark">
 											<p className="text-black min-w-fit dark:text-white">{userItem?.status}</p>
 										</td> */}
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p
                         className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
                           userItem.status === "Active"
@@ -275,12 +275,12 @@ const Users = (props: Props) => {
                         {userItem.status}
                       </p>
                     </td>
-                    <td className="border-b  py-5 px-4 border-strokedark">
+                    <td className="border  py-5 px-4 border-strokedark">
                       <p className="text-white">
                         {userItem?.joinedDate}
                       </p>
                     </td>
-                    <td className="border-b  py-5 px-4 flex items-center gap-x-2 border-strokedark">
+                    <td className="border  py-5 px-4 flex items-center gap-x-2 border-strokedark">
                       <button
                         onClick={() => handleBillUser(userItem.uid)}
                         className="w-[100px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
