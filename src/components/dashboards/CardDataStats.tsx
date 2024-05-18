@@ -17,8 +17,8 @@ interface CardDataStatsProps {
   url?: string;
   icon?: ReactNode;
   verify?: boolean;
-  classname?:string
-  linkClassname?:string
+  classname?: string;
+  linkClassname?: string;
 }
 
 export const CardDataStats: React.FC<CardDataStatsProps> = ({
@@ -28,7 +28,7 @@ export const CardDataStats: React.FC<CardDataStatsProps> = ({
   totalEth,
 }) => {
   return (
-    <div className="w-full rounded-md border border-stroke  bg-primary text-white py-4 px-7 shadow-default ">
+    <div className="w-full rounded-md border border-strokedark  bg-boxdark text-white py-4 px-7 shadow-default ">
       <div className="w-full my-2 flex items-end justify-between">
         <div>
           <span className="text-xl font-semibold mb-2 block">{title}</span>
@@ -106,10 +106,12 @@ export const AdminCardDataStats: React.FC<CardDataStatsProps> = ({
   url,
   verify,
   classname,
-  linkClassname
+  linkClassname,
 }) => {
   return (
-    <div className={`flex flex-col justify-between  bg-boxdark text-white rounded-lg hover:scale-105 duration-300 ${classname}`}>
+    <div
+      className={`flex flex-col justify-between  bg-boxdark text-white rounded-lg hover:scale-105 duration-300 ${classname}`}
+    >
       <div className="flex items-center justify-between px-3 py-5">
         <div className="flex flex-col  text-white">
           <p className="text-3xl font-semibold block">{desc}</p>
