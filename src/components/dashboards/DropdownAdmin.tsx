@@ -10,7 +10,6 @@ import { verifications } from "./data";
 const DropdownAdmin = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [status, setStatus] = useState("not-verified");
-	const [count, setCount] = useState(0);
 	const navigate = useNavigate();
 
 	const trigger = useRef<any>(null);
@@ -21,9 +20,7 @@ const DropdownAdmin = () => {
 	useEffect(() => {
 		if (state && state.verification && state.verification.status) {
 			setStatus(state.verification.status);
-			setCount(count + 1);
 		}
-		console.log(count);
 	}, [state.verification.status]);
 
 	// close on click outside
@@ -75,7 +72,7 @@ const DropdownAdmin = () => {
 						{loading ? "Loading..." : capitalizeFirstLetter(status)}
 					</span>
 				</div>
-				<div className="relative w-[50px] h-[50px] bg-boxdark-2 rounded-full overflow-hidden flex items-center justify-center">
+				<div className="relative w-[50px] h-[530px] bg-boxdark-2 rounded-full overflow-hidden flex items-center justify-center">
 					{!loading && state.photoUrl ? (
 						<img
 							src={state.photoUrl}
