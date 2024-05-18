@@ -102,7 +102,7 @@ const AdminNotification = (props: Props) => {
         >
           <form onSubmit={handleSubmit}>
             <div className="mb-5 mt-10">
-              <label className="mb-2.5 block font-medium text-black">
+              <label className="mb-2.5 block font-medium text-white">
                 Notification Title:
               </label>
               <div className="relative">
@@ -118,7 +118,7 @@ const AdminNotification = (props: Props) => {
               </div>
             </div>
             <div className="mb-5 ">
-              <label className="mb-2.5 block font-medium text-black">
+              <label className="mb-2.5 block font-medium text-white">
                 Notification Message:
               </label>
               <div className="relative">
@@ -134,7 +134,7 @@ const AdminNotification = (props: Props) => {
               </div>
             </div>
             <div className="w-full relative z-20 bg-transparent mb-4">
-              <label className="mb-2.5 block text-black">Status:</label>
+              <label className="mb-2.5 block text-white">Status:</label>
               <select
                 name="status"
                 required
@@ -166,8 +166,8 @@ const AdminNotification = (props: Props) => {
         </Modal>
       )}
       {usersInfo?.length > 0 && (
-        <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-          <h2 className="font-bold text-xl mb-5 bg-primary p-4 text-white rounded-md ">
+        <div className="rounded-sm border px-5 pt-6 pb-2.5 shadow-default border-strokedark bg-boxdark sm:px-7.5 xl:pb-1">
+          <h2 className="font-bold text-xl mb-5  p-4 text-white rounded-md ">
             Manage Notifications
           </h2>
           <SearchBar
@@ -178,23 +178,23 @@ const AdminNotification = (props: Props) => {
           <div className="max-w-full overflow-x-auto no-scrollbar">
             <table className="w-full table-auto ">
               <thead>
-                <tr className=" text-left border-2 ">
-                  <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-black">
+                <tr className=" text-left bg-meta-4 ">
+                  <th className="min-w-[100px] py-4 px-4 font-medium text-white dark:text-white">
                     S/N
                   </th>
-                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-black">
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-white dark:text-white">
                     Fullname
                   </th>
-                  <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-black whitespace-nowrap">
+                  <th className="min-w-[100px] py-4 px-4 font-medium text-white dark:text-white whitespace-nowrap">
                     Notification Title
                   </th>
-                  <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-black">
+                  <th className="min-w-[100px] py-4 px-4 font-medium text-white dark:text-white">
                     Notification Message
                   </th>
-                  <th className="min-w-[100px] py-4 px-4 font-medium text-black dark:text-black">
+                  <th className="min-w-[100px] py-4 px-4 font-medium text-white dark:text-white">
                     Status
                   </th>
-                  <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-black">
+                  <th className="min-w-[150px] py-4 px-4 font-medium text-white dark:text-white">
                     Action
                   </th>
                 </tr>
@@ -202,28 +202,28 @@ const AdminNotification = (props: Props) => {
               <tbody>
                 {paginatedUsers?.map((userItem: any, key: number) => (
                   <tr key={key}>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <h5 className="text-black  dark:text-white">
+                    <td className="border py-5 px-4 border-strokedark">
+                      <h5 className="text-white  dark:text-white">
                         {userItem?.userId}
                       </h5>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <h5 className="font-medium text-black dark:text-white">
+                    <td className="border py-5 px-4 border-strokedark">
+                      <h5 className="font-medium text-white dark:text-white">
                         {userItem.fullname}
                       </h5>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <h5 className="font-medium text-black dark:text-white">
+                    <td className="border py-5 px-4 border-strokedark">
+                      <h5 className="font-medium text-white dark:text-white">
                         {userItem.noteTitle}
                       </h5>
                     </td>
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <h5 className="font-medium text-black dark:text-white">
+                    <td className="border py-5 px-4 border-strokedark">
+                      <h5 className="font-medium text-white dark:text-white">
                         {userItem.message}
                       </h5>
                     </td>
 
-                    {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    {/* <td className="border py-5 px-4 border-strokedark">
                       <button
                         onClick={() => handlePreviewImg(userItem.document)}
                         className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-1"
@@ -231,7 +231,7 @@ const AdminNotification = (props: Props) => {
                         Preview <FaRegEyeSlash />
                       </button>
                     </td> */}
-                    <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <td className="border py-5 px-4 border-strokedark">
                       <p
                         className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
                           userItem.status === "Active"
@@ -243,7 +243,7 @@ const AdminNotification = (props: Props) => {
                       </p>
                     </td>
 
-                    <td className="border-b border-[#eee] py-5 px-4 flex items-center gap-x-2 dark:border-strokedark">
+                    <td className="border py-5 px-4 flex items-center gap-x-2 border-strokedark">
                       <UploadButton
                         approveBtnClick={handleShowModal}
                         userId={userItem.userId}
